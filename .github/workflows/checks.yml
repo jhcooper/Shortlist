@@ -1,0 +1,50 @@
+# Runs on every push and pull request: secret scan of the full history, personal-data scan, and the test suite.
+name: checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+
+jobs:
+  leaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install gitleaks (pinned, checksum verified)
+        run: scripts/install_gitleaks.sh
+      - name: Secret scan (all commits)
+        run: .tools/gitleaks git --config .gitleaks.toml --redact --no-banner -v .
+      - name: Personal-data scan
+        env:
+          # Optional repo secret: the contents of your private leak_patterns.txt. Matches are never printed.
+          LEAK_PATTERNS: ${{ secrets.LEAK_PATTERNS }}
+        run: python3 scripts/leak_check.py --all
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      # anthropic<1 still ships with httpx, which tests/test_telemetry.py imports for its SDK checks; with a newer SDK
+      # those 3 checks are skipped (not failed).
+      - run: pip install pyyaml "anthropic<1" && npm ci --silent
+      - name: Postgres binaries for tests/test_telemetry_sql.py
+        # ubuntu-latest ships PostgreSQL (server stopped); the test starts its own throwaway cluster on a socket.
+        # Install it only if an image ever drops it. Without Postgres the test prints "skipped" and exits 0.
+        run: |
+          ls /usr/lib/postgresql/*/bin/initdb 2>/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q postgresql; } \
+            || echo "Postgres unavailable: tests/test_telemetry_sql.py will skip"
+      - name: Tests (fictional example config, telemetry included)
+        env:
+          CONFIG_DIR: ${{ github.workspace }}/config.example
+        run: |
+          set -e
+          for t in tests/test_*.py; do echo "== $t"; python3 "$t"; done

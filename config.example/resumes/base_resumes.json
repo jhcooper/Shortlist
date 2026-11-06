@@ -1,0 +1,64 @@
+{
+  "client_facing": {
+    "type": "resume",
+    "tagline": "Data analyst • Client-facing analytics",
+    "summary": "Analyst who turns messy operational data into clear answers for customers and teammates; comfortable with SQL, Python and explaining results to non-technical audiences.",
+    "jobs": [
+      {
+        "org": "Northwind Traders",
+        "loc": "Philadelphia, PA",
+        "title": "Data Analyst Intern",
+        "dates": "Jun 2025 – Aug 2025",
+        "bullets": [
+          "Built a Python pipeline that cleaned 400K order records and cut weekly reporting time by 30%.",
+          "Presented dashboard findings to three regional sales teams."
+        ]
+      },
+      {
+        "org": "Riverbend University",
+        "loc": "Philadelphia, PA",
+        "title": "Teaching Assistant, Intro to Statistics",
+        "dates": "Jan 2025 – May 2025",
+        "bullets": [
+          "Led weekly labs for 40 students on regression and data visualization."
+        ]
+      }
+    ],
+    "skills": [
+      [
+        "Languages",
+        "Python, SQL"
+      ],
+      [
+        "Tools",
+        "Pandas, Git, Tableau"
+      ]
+    ]
+  },
+  "general": {
+    "type": "resume",
+    "tagline": "Data analyst",
+    "summary": "Recent statistics graduate with internship experience building data pipelines and dashboards in Python and SQL.",
+    "jobs": [
+      {
+        "org": "Northwind Traders",
+        "loc": "Philadelphia, PA",
+        "title": "Data Analyst Intern",
+        "dates": "Jun 2025 – Aug 2025",
+        "bullets": [
+          "Built a Python pipeline that cleaned 400K order records and cut weekly reporting time by 30%."
+        ]
+      }
+    ],
+    "skills": [
+      [
+        "Languages",
+        "Python, SQL"
+      ],
+      [
+        "Tools",
+        "Pandas, Git"
+      ]
+    ]
+  }
+}

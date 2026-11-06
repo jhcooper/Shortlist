@@ -1,0 +1,67 @@
+# EXAMPLE (fictional). Where to look: search queries (rotated each run), dream employers, list sources, alert filters.
+
+schema_version: 1
+search:
+  per_run:
+    connector: 4
+    web: 6
+    short_term: 5
+  connector_queries:
+  - role: data analyst
+    location: Philadelphia, PA
+    radius: 30
+  - role: analytics engineer
+    location: remote
+  - role: business analyst
+    location: New York, NY
+    radius: 20
+  - role: data scientist new grad
+    location: Washington, DC
+    radius: 30
+  web_queries:
+  - "site:job-boards.greenhouse.io \"new grad\" 2027 analyst OR \"data scientist\" -senior"
+  - "site:jobs.lever.co \"early career\" OR \"new grad\" data analyst 2027"
+  - "site:jobs.ashbyhq.com \"new grad\" data OR analytics 2027"
+  short_term_queries:
+  - web: true
+    query: Outlier AI coding expert remote hourly
+  - web: true
+    query: Alignerr OR Labelbox AI trainer data science remote hourly
+  - web: true
+    query: Mercor AI training contractor data science python remote
+  - web: true
+    query: Handshake AI fellow OR micro1 AI trainer graduate student remote hourly
+  list_sources: []
+search_note: Each run takes the next slice of each list, starting at the stored pointer, and advances the pointer (scripts/rotation.py).
+  Connector queries are cheap and run every time; web queries rotate. Connector searches always filter to roles posted in
+  the last 7 days (3 on Mondays).
+dream_employers:
+- name: Northwind Analytics
+  method: search
+  url: "https://example.com/careers"
+  search: "site:example.com careers analyst 2027"
+  notes: Example entry.
+- name: Contoso Health
+  method: search
+  url: "https://example.org/jobs"
+  search: "\"Contoso Health\" careers new grad data"
+  notes: Example entry.
+dream_note: "Checked fully on every run. Dream employers override excluded_categories in criteria.json but never the 'never'\
+  \ list. FETCH RULE: WebFetch only opens URLs that came from a WebSearch result in the same session; typed or config URLs\
+  \ are refused ('not on the allowlist'). So every employer is reached by running its `search` query first and fetching result\
+  \ links. `url` is reference only."
+dream_fetch_prompt: "List every job on this board located in the United States (or remote US) whose title or text suggests\
+  \ entry level, new grad, early career, associate, analyst, 2027 start, rotational/development program, intern (short-term\
+  \ only if paid and remote), or 0-2 years. For each: title, location, URL, posting date if shown. Ignore senior/staff/principal/manager/director\
+  \ roles. Output JSON lines only."
+email_alerts:
+  _about: "Inbox helper: job-alert senders whose emails are read as leads (not application updates)"
+  alert_senders:
+  - indeed.com
+  - linkedin.com
+  - glassdoor.com
+  - jobright.ai
+  - joinhandshake.com
+  - ziprecruiter.com
+  ignore_subjects:
+  - Job digest

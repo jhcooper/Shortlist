@@ -1,0 +1,13 @@
+#!/bin/sh
+# Runs before every commit: gitleaks on the staged changes (secrets), then leak_check (personal data).
+# Turned on by `npm install` (package.json "prepare") or: git config core.hooksPath .githooks
+set -e
+GL=$(command -v gitleaks || true)
+[ -z "$GL" ] && [ -x .tools/gitleaks ] && GL=.tools/gitleaks
+if [ -z "$GL" ]; then
+  echo "pre-commit: gitleaks is not installed, so the secret scan can't run. Run scripts/install_gitleaks.sh" >&2
+  echo "            (Linux) or install it (brew install gitleaks), then commit again." >&2
+  exit 1
+fi
+"$GL" protect --staged --config .gitleaks.toml --redact --no-banner
+python3 scripts/leak_check.py --staged

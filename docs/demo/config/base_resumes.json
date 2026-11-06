@@ -1,0 +1,128 @@
+{
+ "resumes": {
+  "solutions_engineering": {
+   "type": "resume",
+   "tagline": "M.S. Business Analytics Candidate",
+   "summary": "Analyst who turns messy operational data into tools people actually use, then explains them in plain terms. At Kestrel Insurance Group, built a renewal-risk model on 640K policies and presented the outreach plan to regional leadership. Comfortable in customer-facing, fast-paced settings from years leading café shifts.",
+   "jobs": [
+    {
+     "org": "Kestrel Insurance Group",
+     "loc": "Philadelphia, PA",
+     "title": "Analytics Intern",
+     "dates": "Jun 2024 – Aug 2024",
+     "bullets": [
+      "Built a claims-lapse model on 640K policy records that flagged 27% of at-risk renewals two months early, with 0.81 AUC.",
+      "Automated a weekly SQL + Python report that replaced a manual spreadsheet process for the retention team.",
+      "Presented findings and outreach recommendations to the regional operations leadership team.",
+      "Cleaned and joined claims, billing and call-center data from three source systems into one analysis table."
+     ]
+    },
+    {
+     "org": "Fairmount Transit Lab, Schuylkill Institute of Technology",
+     "loc": "Philadelphia, PA",
+     "title": "Graduate Research Assistant",
+     "dates": "Sep 2024 – Present",
+     "bullets": [
+      "Built a Python pipeline over 900K+ trip records to measure on-time performance by route and time of day.",
+      "Designed an interactive ridership dashboard used by lab staff and a city planning partner.",
+      "Presented results to the lab and to the partner agency’s service-planning team."
+     ]
+    },
+    {
+     "org": "Department of Statistics, Schuylkill Institute of Technology",
+     "loc": "Philadelphia, PA",
+     "title": "Teaching Assistant",
+     "dates": "Sep 2025 – Present",
+     "bullets": [
+      "Teaching Assistant for STAT 310: Applied Regression; run weekly labs and office hours helping students with R and Python."
+     ]
+    },
+    {
+     "org": "Grindstone Coffee Co.",
+     "loc": "Philadelphia, PA",
+     "title": "Shift Lead",
+     "dates": "Aug 2021 – Present",
+     "bullets": [
+      "Lead a four-person shift in a high-volume café, handling customer issues and training new staff."
+     ]
+    }
+   ],
+   "skills": [
+    [
+     "Languages",
+     "Python, SQL, R"
+    ],
+    [
+     "Data & ML",
+     "Pandas, NumPy, scikit-learn, statsmodels, XGBoost"
+    ],
+    [
+     "Tools & Platforms",
+     "Git, Tableau, Power BI, dbt, AWS"
+    ]
+   ]
+  },
+  "development_program": {
+   "type": "resume",
+   "tagline": "M.S. Business Analytics Candidate",
+   "summary": "M.S. Business Analytics candidate with a B.S. in Statistics (3.71 GPA) and hands-on experience in predictive modeling, data pipelines and dashboards in industry and research settings. Quick to learn new tools and practiced at presenting analysis to leadership and non-technical audiences.",
+   "jobs": [
+    {
+     "org": "Kestrel Insurance Group",
+     "loc": "Philadelphia, PA",
+     "title": "Analytics Intern",
+     "dates": "Jun 2024 – Aug 2024",
+     "bullets": [
+      "Built a claims-lapse model on 640K policy records that flagged 27% of at-risk renewals two months early, with 0.81 AUC.",
+      "Automated a weekly SQL + Python report that replaced a manual spreadsheet process for the retention team.",
+      "Presented findings and outreach recommendations to the regional operations leadership team.",
+      "Cleaned and joined claims, billing and call-center data from three source systems into one analysis table."
+     ]
+    },
+    {
+     "org": "Fairmount Transit Lab, Schuylkill Institute of Technology",
+     "loc": "Philadelphia, PA",
+     "title": "Graduate Research Assistant",
+     "dates": "Sep 2024 – Present",
+     "bullets": [
+      "Built a Python pipeline over 900K+ trip records to measure on-time performance by route and time of day.",
+      "Designed an interactive ridership dashboard used by lab staff and a city planning partner.",
+      "Presented results to the lab and to the partner agency’s service-planning team."
+     ]
+    },
+    {
+     "org": "Department of Statistics, Schuylkill Institute of Technology",
+     "loc": "Philadelphia, PA",
+     "title": "Teaching Assistant",
+     "dates": "Sep 2025 – Present",
+     "bullets": [
+      "Teaching Assistant for STAT 310: Applied Regression; run weekly labs and office hours helping students with R and Python."
+     ]
+    },
+    {
+     "org": "Grindstone Coffee Co.",
+     "loc": "Philadelphia, PA",
+     "title": "Shift Lead",
+     "dates": "Aug 2021 – Present",
+     "bullets": [
+      "Lead a four-person shift in a high-volume café, handling customer issues and training new staff."
+     ]
+    }
+   ],
+   "skills": [
+    [
+     "Languages",
+     "Python, SQL, R"
+    ],
+    [
+     "Data & ML",
+     "Pandas, NumPy, scikit-learn, statsmodels, XGBoost"
+    ],
+    [
+     "Tools & Platforms",
+     "Git, Tableau, Power BI, dbt, AWS"
+    ]
+   ]
+  }
+ }
+}

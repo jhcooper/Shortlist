@@ -1,5 +1,5 @@
 {
-  "summary": "A thin day with one solid local pick: Cooper University Health Care's entry-level Reporting and Analytics Developer in Camden, a short drive from Philadelphia. Most other analytics roles today asked for 3–5 years or a finished master's.",
+  "summary": "A thin day with one solid local pick: Riverside Regional Health's entry-level Reporting and Analytics Developer in Camden, a short drive from Philadelphia. Most other analytics roles today asked for 3–5 years or a finished master's.",
   "picks": [
     {
       "cid": "c004",
@@ -7,18 +7,18 @@
       "fit": 4,
       "chance": "High",
       "card": {
-        "company": "Cooper University Health Care",
+        "company": "Riverside Regional Health",
         "role": "Reporting and Analytics Developer",
-        "url": "https://careers-cooperhealth.icims.com/jobs/85602/reporting-and-analytics-developer/job",
+        "url": "https://careers.riverside-health.example.com/jobs/85602/reporting-and-analytics-developer/job",
         "wlb": "Large academic health system; full-time day shift (Shift 1), no on-call or travel listed. Hospital IT reviews often mention steady ~40-hour weeks; ratings not checked for this team.",
-        "location": "Camden, NJ (101 Haddon Ave), about 30 miles from Philadelphia, PA (~35 min). Work mode not stated in the posting.",
+        "location": "Camden, NJ, about 30 miles from Philadelphia, PA (~35 min). Work mode not stated in the posting.",
         "pay": "$37–$61/hr (about $77k–$127k a year)",
         "chance_line": "High: asks 0–2 years and a bachelor's in computer science, statistics, informatics or math. You meet both, and your requirements, reporting and stakeholder work lines up.",
         "what": "South Jersey's academic health system (hospital, cancer institute, 100+ outpatient offices). This role sits on the reporting team for Addiction Medicine.",
         "why_fits": "It's requirements-to-report work: scoping what users need, building and testing reports, and walking stakeholders through results. That matches your data pipeline work and presenting findings to leadership.",
         "growth": "Non-profit health system with a large central analytics and IT group. Developer to senior developer paths, and Epic Clarity/Caboodle certifications are encouraged on sister roles.",
         "watch_outs": "Work mode not stated (sister roles are hybrid). Apply button not readable by our check: confirm it opens. Hourly range, so confirm the full-time salary equivalent.",
-        "verified": "Listed on Indeed Nov 1; matching employer posting on Cooper's careers site (job 73490): 0-2 years, bachelor's. Apply button not readable by our fetch.",
+        "verified": "Listed on Indeed Nov 1; matching employer posting on Riverside's careers site (job 73490): 0-2 years, bachelor's. Apply button not readable by our fetch.",
         "deadline": ""
       },
       "row": {
@@ -31,23 +31,23 @@
         "base": "development_program",
         "notes": "Lead with the reporting-automation bullet and the dashboard bullet (requirements from users -> analysis -> findings to leadership). Mirror 'reporting', 'requirements' and 'stakeholders' only where a base bullet says it. Skills first: SQL, Python, Pandas, Matplotlib. Summary angle: entry-level analyst who turns user needs into tested reports, healthcare-ready."
       },
-      "row_id": "cooper-university-health-care-reporting-and-analytics-develo-20261106"
+      "row_id": "riverside-regional-health-reporting-and-analytics-develo-20261106"
     }
   ],
   "near_misses": [
     {
       "cid": "c005",
-      "company": "Cooper University Health Care",
+      "company": "Riverside Regional Health",
       "title": "Analytics Developer",
-      "url": "https://jobs.cooperhealth.org/job/camden/analytics-developer/338/89559226672",
+      "url": "https://jobs.riverside-health.example.com/job/camden/analytics-developer/338/89559226672",
       "reason": "Asks 3–5 years of analytics and a finished master's; you finish in May 2027.",
       "retry": false
     },
     {
       "cid": "c002",
-      "company": "Cooper University Health Care",
+      "company": "Riverside Regional Health",
       "title": "Financial Analytics Developer - Hybrid",
-      "url": "https://careers-cooperhealth.icims.com/jobs/84947/financial-analytics-developer---hybrid/job",
+      "url": "https://careers.riverside-health.example.com/jobs/84947/financial-analytics-developer---hybrid/job",
       "reason": "3–5 years plus advanced Power BI; master's required.",
       "retry": false
     },

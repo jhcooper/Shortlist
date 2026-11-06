@@ -1,18 +1,18 @@
 {
  "c004": {
   "live": true,
-  "checked": "Listed on Indeed Nov 1; matching employer posting on Cooper's careers site (job 73490): 0-2 years, bachelor's. Apply button not readable by our fetch.",
-  "employer_url": "https://careers-cooperhealth.icims.com/jobs/85602/reporting-and-analytics-developer/job"
+  "checked": "Listed on Indeed Nov 1; matching employer posting on Riverside's careers site (job 73490): 0-2 years, bachelor's. Apply button not readable by our fetch.",
+  "employer_url": "https://careers.riverside-health.example.com/jobs/85602/reporting-and-analytics-developer/job"
  },
  "c005": {
   "live": true,
-  "checked": "Employer posting (job 55170) loads on jobs.cooperhealth.org",
-  "employer_url": "https://jobs.cooperhealth.org/job/camden/analytics-developer/338/89559226672"
+  "checked": "Employer posting (job 55170) loads on jobs.riverside-health.example.com",
+  "employer_url": "https://jobs.riverside-health.example.com/job/camden/analytics-developer/338/89559226672"
  },
  "c002": {
   "live": true,
-  "checked": "Employer posting (job 70736) loads on Cooper's careers site",
-  "employer_url": "https://careers-cooperhealth.icims.com/jobs/84947/financial-analytics-developer---hybrid/job"
+  "checked": "Employer posting (job 70736) loads on Riverside's careers site",
+  "employer_url": "https://careers.riverside-health.example.com/jobs/84947/financial-analytics-developer---hybrid/job"
  },
  "c003": {
   "live": true,

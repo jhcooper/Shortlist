@@ -4,7 +4,7 @@
 
 ![Shortlist tracker: today's confirmations, follow-ups and new picks](docs/media/tracker-today.png)
 
-> **Try it:** open [`docs/demo/tracker-demo.html`](docs/demo/tracker-demo.html) in a browser (download it, or use the live link once GitHub Pages is on). It runs fully offline on a fictional candidate, Daniel Reyes, with real job listings from a run on Nov 6, 2026. Every button works; changes stay in your browser tab.
+> **Try it:** open [`docs/demo/tracker-demo.html`](docs/demo/tracker-demo.html) in a browser (download it, or use the live link once GitHub Pages is on). It runs fully offline on a fictional candidate, Daniel Reyes, with real job listings from a run on Nov 6, 2026 (one employer renamed). Every button works; changes stay in your browser tab.
 
 ## Why
 

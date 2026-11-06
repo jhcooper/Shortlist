@@ -1,0 +1,1248 @@
+[
+ {
+  "name": "DC contractor mention stays Career",
+  "in": {
+   "company": "Analytics Co",
+   "title": "Data Analyst",
+   "location": "Washington, DC",
+   "pay": "$85,000-$100,000",
+   "work_mode": "Hybrid",
+   "snippet": "Support our federal contract clients with SQL and Python dashboards."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "company age is not a requirement",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Philadelphia, PA",
+   "pay": "$90,000-$105,000",
+   "work_mode": "Hybrid",
+   "snippet": "Founded in 1995, Acme has over 25 years of experience serving clients. 0-2 years of experience required."
+  },
+  "expect": {
+   "keep": true
+  }
+ },
+ {
+  "name": "level II kept with flag",
+  "in": {
+   "company": "Acme",
+   "title": "Software Engineer II",
+   "location": "New York, NY",
+   "pay": "$110,000-$130,000",
+   "work_mode": "Hybrid",
+   "snippet": "Master's degree or 1+ years of experience."
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "level II"
+   ]
+  }
+ },
+ {
+  "name": "contract-to-hire hybrid is Career",
+  "in": {
+   "company": "Acme",
+   "title": "Business Analyst",
+   "location": "Arlington, VA",
+   "pay": "$45/hr",
+   "work_mode": "",
+   "employment_type": "Contract",
+   "snippet": "Contract-to-hire, hybrid 3 days."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ],
+   "flags_has": [
+    "contract-to-hire"
+   ]
+  }
+ },
+ {
+  "name": "in-person interview is not in-office",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Charlotte, NC",
+   "pay": "$90,000",
+   "snippet": "Full time. Candidates will complete an in-person interview at our office."
+  },
+  "expect": {
+   "keep": true,
+   "work_mode": ""
+  }
+ },
+ {
+  "name": "3+ preferred is a flag",
+  "in": {
+   "company": "Acme",
+   "title": "Analytics Engineer",
+   "location": "Washington, DC",
+   "pay": "$95,000",
+   "work_mode": "Hybrid",
+   "snippet": "3+ years of experience preferred; new grads with a master's encouraged to apply."
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "3 yrs preferred"
+   ]
+  }
+ },
+ {
+  "name": "3-4 required goes to judge",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Philadelphia, PA",
+   "work_mode": "Hybrid",
+   "snippet": "Requirements: 3+ years of experience with SQL."
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "asks 3 yrs"
+   ]
+  }
+ },
+ {
+  "name": "5+ required drops",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Philadelphia, PA",
+   "work_mode": "Hybrid",
+   "snippet": "Minimum 5 years of professional experience required."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "needs 5+"
+  }
+ },
+ {
+  "name": "years or degree never drops",
+  "in": {
+   "company": "Acme",
+   "title": "Data Scientist",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "snippet": "5+ years of experience or a Master's degree in a quantitative field."
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "years or degree"
+   ]
+  }
+ },
+ {
+  "name": "senior drops",
+  "in": {
+   "company": "Acme",
+   "title": "Senior Data Analyst",
+   "location": "Remote",
+   "work_mode": "Remote"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "senior"
+  }
+ },
+ {
+  "name": "senior associate drops",
+  "in": {
+   "company": "Acme",
+   "title": "Senior Associate, Analytics",
+   "location": "New York, NY",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "engineer III drops",
+  "in": {
+   "company": "Acme",
+   "title": "Software Engineer III",
+   "location": "New York, NY",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "level 3+"
+  }
+ },
+ {
+  "name": "analyst 3 drops",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst 3",
+   "location": "New York, NY",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "lead generation is not lead",
+  "in": {
+   "company": "Acme",
+   "title": "Lead Generation Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$90,000"
+  },
+  "expect": {
+   "keep": true
+  }
+ },
+ {
+  "name": "lead data analyst drops",
+  "in": {
+   "company": "Acme",
+   "title": "Lead Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "web3 is not a level",
+  "in": {
+   "company": "Acme",
+   "title": "Web3 Data Engineer",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$100,000"
+  },
+  "expect": {
+   "keep": true
+  }
+ },
+ {
+  "name": "associate product manager kept",
+  "in": {
+   "company": "Acme",
+   "title": "Associate Product Manager",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$100,000"
+  },
+  "expect": {
+   "keep": true
+  }
+ },
+ {
+  "name": "product manager drops",
+  "in": {
+   "company": "Acme",
+   "title": "Product Manager",
+   "location": "New York, NY",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "new grad program with 2027 kept",
+  "in": {
+   "company": "Acme",
+   "title": "Technology Leadership Program - 2027 Start",
+   "location": "Malvern, PA",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "5 days in office drops Career",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Charlotte, NC",
+   "pay": "$90,000",
+   "snippet": "This role requires 5 days a week in the office."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "fully in-person"
+  }
+ },
+ {
+  "name": "onsite 2 days is hybrid",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Charlotte, NC",
+   "pay": "$90,000",
+   "snippet": "Hybrid: 2 days per week in the office."
+  },
+  "expect": {
+   "keep": true,
+   "work_mode": "hybrid"
+  }
+ },
+ {
+  "name": "onsite gym ignored",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Charlotte, NC",
+   "pay": "$90,000",
+   "snippet": "Perks include an onsite gym and cafeteria."
+  },
+  "expect": {
+   "keep": true,
+   "work_mode": ""
+  }
+ },
+ {
+  "name": "remote 6-month contract fits Bridge",
+  "in": {
+   "company": "Acme",
+   "title": "Python Data Contractor",
+   "location": "Remote",
+   "pay": "$40/hr",
+   "employment_type": "Contract",
+   "snippet": "6-month contract, 20-30 hrs/week."
+  },
+  "expect": {
+   "keep": true,
+   "goals_has": "bridge"
+  }
+ },
+ {
+  "name": "bridge query gig",
+  "in": {
+   "company": "Outlier",
+   "title": "AI Trainer - Python Coding Expert",
+   "location": "Remote",
+   "pay": "$40-$50/hr",
+   "remote": true,
+   "employment_type": "contract",
+   "snippet": "Flexible hours, up to 40 hrs/week",
+   "goal_hint": "bridge"
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "bridge"
+   ]
+  }
+ },
+ {
+  "name": "gig under $25 drops",
+  "in": {
+   "company": "Acme AI",
+   "title": "AI Trainer",
+   "location": "Remote",
+   "pay": "$18/hr",
+   "remote": true,
+   "goal_hint": "bridge"
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "hybrid gig fails Bridge, no Career",
+  "in": {
+   "company": "Acme",
+   "title": "Part-Time Data Entry",
+   "location": "Wilmington, DE",
+   "pay": "$30/hr",
+   "work_mode": "Hybrid",
+   "goal_hint": "bridge"
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "remote full-time contract fits both",
+  "in": {
+   "company": "Acme",
+   "title": "Data Scientist (Contract)",
+   "location": "Remote",
+   "pay": "$55-$65/hr",
+   "remote": true,
+   "employment_type": "Contract"
+  },
+  "expect": {
+   "keep": true,
+   "goals_has": "bridge",
+   "goals_has2": "career",
+   "flags_has": [
+    "contract role"
+   ]
+  }
+ },
+ {
+  "name": "never-list company drops (any spacing)",
+  "in": {
+   "company": "ExampleCorp  Defense",
+   "title": "AI Trainer",
+   "location": "Remote",
+   "pay": "$40/hr",
+   "remote": true,
+   "goal_hint": "bridge"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "never"
+  }
+ },
+ {
+  "name": "clearance eligible drops",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Arlington, VA",
+   "work_mode": "Hybrid",
+   "snippet": "Must be eligible to obtain a Secret clearance."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "clearance"
+  }
+ },
+ {
+  "name": "hourly long-term under floor drops",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Philadelphia, PA",
+   "pay": "$30/hr",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "out-of-list city drops Career",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Dallas, TX",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "location"
+  }
+ },
+ {
+  "name": "remote career kept",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Remote",
+   "pay": "$95,000",
+   "remote": true
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "old summer start drops Career",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "pay": "$95,000",
+   "work_mode": "Hybrid",
+   "snippet": "Start date: June 2026."
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "internship not 2027 drops",
+  "in": {
+   "company": "Acme",
+   "title": "Data Science Intern",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$35/hr"
+  },
+  "expect": {
+   "keep": false
+  }
+ },
+ {
+  "name": "AI trainer is not Career",
+  "in": {
+   "company": "Acme",
+   "title": "AI Trainer (Data Science)",
+   "location": "Remote",
+   "pay": "$60/hr",
+   "remote": true
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "bridge"
+   ]
+  }
+ },
+ {
+  "name": "posted date before 'start your career' is not a start date",
+  "in": {
+   "company": "Northwind Analytics",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Posted October 2026. Join our analytics team and start your career working with SQL and Python."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "old month after 'starting' drops Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Cohort starting September 2026 in our New York office."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "starts September 2026"
+  }
+ },
+ {
+  "name": "old month after 'begins' drops Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Training program begins July 2026."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "starts July 2026"
+  }
+ },
+ {
+  "name": "month far past the start phrase is not a start date",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "You can start right away on our analytics team, which has been growing steadily since March 2026."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "2027 start date keeps Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start date: July 2027."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "401(k) is not the top of an hourly range",
+  "in": {
+   "company": "Lumen Tutoring Co",
+   "title": "Data Annotation Specialist (Part-time)",
+   "location": "Remote",
+   "remote": true,
+   "employment_type": "Part-time",
+   "pay": "Up to $45 per hour + 401(k)"
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "bridge"
+   ]
+  }
+ },
+ {
+  "name": "401k match alone is not pay",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "Competitive salary, 401k match",
+   "snippet": "SQL dashboards for internal teams."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "start window stops at '?'",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Ready to start? Posted November 2026."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "start window stops at '!'",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start your career with us! Applications open October 2026."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "start window stops at ';'",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start date is flexible; posted May 2026"
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "start window stops at '.'",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start immediately. Benefits begin after 60 days. Founded January 2019."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "'Summer 2026 start' drops Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Summer 2026 start for our analyst cohort."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "starts Summer 2026"
+  }
+ },
+ {
+  "name": "'Fall 2026 cohort start' drops Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Fall 2026 cohort start in New York."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "starts Fall 2026"
+  }
+ },
+ {
+  "name": "date in the sentence before 'Start your career' is kept",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Posted October 2026. Start your career with SQL and Python."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "USD range under the floor drops Career",
+  "in": {
+   "company": "Northwind Analytics",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "USD 40,000 - 45,000",
+   "snippet": "SQL dashboards."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "pay tops out at $45,000"
+  }
+ },
+ {
+  "name": "'Begin your career' with a founding date is kept",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Begin your career at a company founded June 2019."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "'start-up' is not a start phrase",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Join a fast-growing start-up founded in March 2019."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "'jump-start' is not a start phrase",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Jump-start your career at Acme, founded March 2019."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "'head start' is not a start phrase",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Head start program since May 2010."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "'starting salary' is not a start phrase",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Starting salary $85k, posted October 2026."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "'starting at' is not a start phrase",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Starting at $95k with growth; reviews in June 2026."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "start date in a past year is ignored",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start date: June 2025."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "posted date then '- Start your career' is kept",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Posted October 2026 - Start your career with SQL."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "posted date then 'Start your career' is kept",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Posted October 2026 Start your career with SQL."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "'Start: Jan. 2026' drops Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start: Jan. 2026. Hybrid in New York."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "starts Jan 2026"
+  }
+ },
+ {
+  "name": "'Start date: Sept. 2026' drops Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start date: Sept. 2026."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "starts Sept 2026"
+  }
+ },
+ {
+  "name": "'Start date: Jan 2026' drops Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start date: Jan 2026"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "starts Jan 2026"
+  }
+ },
+ {
+  "name": "start date on the next line drops Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start date:\nJune 2026"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "starts June 2026"
+  }
+ },
+ {
+  "name": "'Start: Jan. 2027' keeps Career",
+  "in": {
+   "company": "Bluefin Labs",
+   "title": "Data Analyst",
+   "location": "New York, NY",
+   "work_mode": "Hybrid",
+   "pay": "$95,000",
+   "snippet": "Start: Jan. 2027. Hybrid in New York."
+  },
+  "expect": {
+   "keep": true,
+   "goals": [
+    "career"
+   ]
+  }
+ },
+ {
+  "name": "never term (employers.never_terms) in posting text drops",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Philadelphia, PA",
+   "pay": "$95,000",
+   "work_mode": "Hybrid",
+   "snippet": "You will tune our loot box economy."
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "never list"
+  }
+ },
+ {
+  "name": "bare city in places.far_cities drops Career",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Phoenix",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "location"
+  }
+ },
+ {
+  "name": "foreign country drops Career",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Montreal, QC, Canada",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "location"
+  }
+ },
+ {
+  "name": "bare unlisted city passes flagged",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Springfield",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: United States or Canada",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "United States or Canada",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: USA / Canada",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "USA / Canada",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: US, UK",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "US, UK",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: New England",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "New England",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: Hybrid - New England",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Hybrid - New England",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: New England area",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "New England area",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: Mexico Beach",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Mexico Beach",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: China Grove",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "China Grove",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "US location naming a country word stays unknown: Ireland Army Community",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Ireland Army Community",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": true,
+   "flags_has": [
+    "location unknown"
+   ]
+  }
+ },
+ {
+  "name": "foreign location drops Career: London, UK",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "London, UK",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "location"
+  }
+ },
+ {
+  "name": "foreign location drops Career: Berlin, Germany",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Berlin, Germany",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "location"
+  }
+ },
+ {
+  "name": "foreign location drops Career: Toronto, ON",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Toronto, ON",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "location"
+  }
+ },
+ {
+  "name": "foreign location drops Career: Vancouver, BC",
+  "in": {
+   "company": "Acme",
+   "title": "Data Analyst",
+   "location": "Vancouver, BC",
+   "pay": "$95,000",
+   "work_mode": "Hybrid"
+  },
+  "expect": {
+   "keep": false,
+   "reason_has": "location"
+  }
+ }
+]

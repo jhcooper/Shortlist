@@ -1,0 +1,20 @@
+node_modules/
+__pycache__/
+*.pyc
+/out/
+/tmp/
+.DS_Store
+/backups/
+# personal: your config lives in its own private folder/repo (CONFIG_DIR), never here
+/.config_dir
+/config/
+/data/
+/resumes/
+/backups/
+config.example/state/*
+!config.example/state/.gitkeep
+# secrets
+.env
+.env.*
+!.env.example
+/.tools/

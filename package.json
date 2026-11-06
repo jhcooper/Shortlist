@@ -1,0 +1,11 @@
+{
+  "name": "job-applications-scripts",
+  "private": true,
+  "description": "Builds resume and cover-letter .docx files (scripts/builder.js).",
+  "dependencies": {
+    "docx": "8.5.0"
+  },
+  "scripts": {
+    "prepare": "git config core.hooksPath .githooks || true"
+  }
+}

@@ -1,0 +1,39 @@
+# gitleaks config: the default rule set plus checks for this project's future API secrets.
+title = "shortlist"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "anthropic-api-key"
+description = "Anthropic API or admin key"
+regex = '''sk-ant-(?:api|admin)\d{2}-[A-Za-z0-9_-]{20,}'''
+keywords = ["sk-ant-"]
+
+[[rules]]
+id = "supabase-secret-key"
+description = "Supabase secret key (new format) - bypasses row-level security"
+regex = '''sb_secret_[A-Za-z0-9_-]{20,}'''
+keywords = ["sb_secret_"]
+
+[[rules]]
+id = "google-oauth-client-secret"
+description = "Google OAuth client secret (Gmail access)"
+regex = '''GOCSPX-[A-Za-z0-9_-]{20,}'''
+keywords = ["gocspx-"]
+
+[[rules]]
+id = "supabase-service-role-jwt"
+description = "Supabase key (JWT) - the service-role key bypasses row-level security"
+regex = '''eyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}'''
+keywords = ["eyj"]
+
+[[rules]]
+id = "google-oauth-refresh-token"
+description = "Google OAuth refresh token (Gmail access)"
+regex = '''1//0[A-Za-z0-9_-]{30,}'''
+keywords = ["1//0"]
+
+[allowlist]
+description = "lockfiles and fictional fixtures"
+paths = ['''package-lock\.json''']

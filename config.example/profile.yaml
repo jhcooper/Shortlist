@@ -1,0 +1,79 @@
+# EXAMPLE (fictional person). Copy config.example/ to your own private folder or repo, then replace every value.
+# Facts only: resumes and letters may use nothing that isn't here or in resumes/base_resumes.json.
+# experience = every job and bullet you have (the source of truth); each base resume is a curated subset of it.
+
+schema_version: 1
+person:
+  id: alex
+  name: Alex Rivera
+  first_name: Alex
+  email: alex.rivera@example.com
+  phone: 212-555-0142
+  home: Philadelphia, PA
+  tagline: Spring 2027 grad
+  links:
+  - label: linkedin.com/in/alex-rivera-example
+    url: "https://www.linkedin.com/in/alex-rivera-example/"
+  - label: github.com/alex-rivera-example
+    url: "https://github.com/alex-rivera-example"
+education:
+  resume_lines:
+  - line: Riverbend University — M.S., Applied Statistics
+    date: Expected May 2027
+  - line: Riverbend University — B.S., Mathematics
+    date: May 2025
+    detail: "GPA: 3.60  •  Minor: Computer Science"
+  graduation: 2027-05
+  degree_in_progress: M.S. Applied Statistics, Riverbend University
+  pre_grad_full_time: part-time only
+  transcript:
+    undergrad:
+      degree: B.S. Mathematics
+      school: Riverbend University
+      gpa: 3.6
+    graduate:
+      degree: M.S. Applied Statistics
+      school: Riverbend University
+      expected: 2027-05
+      gpa_graduate_cumulative: 3.5
+    relevant_courses:
+    - Regression Analysis
+    - Machine Learning
+    - Database Systems
+    work_authorization: Not stated.
+  transcript_note: For chance checks only; never put anything here on a resume beyond what the base resumes say.
+  gpa:
+    undergrad: 3.6
+    graduate_cumulative: 3.5
+    resume_shows: undergrad 3.60 only
+    rule: "cutoff <= 3.50: met. 3.50 < cutoff <= 3.60: met on undergrad only; cap Chance at Medium and note it. cutoff > 3.60:\
+      \ likely miss."
+skills:
+  approved:
+  - Python
+  - SQL
+  - Pandas
+  - Git
+  - Tableau
+  - Excel
+experience:
+- org: Northwind Traders
+  title: Data Analyst Intern
+  loc: Philadelphia, PA
+  dates: Jun 2025 – Aug 2025
+  bullets:
+  - Built a Python pipeline that cleaned 400K order records and cut weekly reporting time by 30%.
+  - Presented dashboard findings to three regional sales teams.
+- org: Riverbend University
+  title: Teaching Assistant, Intro to Statistics
+  loc: Philadelphia, PA
+  dates: Jan 2025 – May 2025
+  bullets:
+  - Led weekly labs for 40 students on regression and data visualization.
+resume_bases:
+  client_facing:
+    label: Client-facing
+    use_for: "customer-facing roles: consulting, implementation, solutions"
+  general:
+    label: General
+    use_for: every other role

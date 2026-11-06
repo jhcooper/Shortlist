@@ -1,0 +1,964 @@
+<title id="doctitle">Job Search</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: an instrument panel. Run strip, then today's picks, then one "All applications" panel whose pipeline strip
+   filters the list below it; watched roles and near misses sit side by side at the end. */
+:root{
+  --bg:#e9eeec; --surface:#ffffff; --band:#f3f6f5; --sunk:#e6ebe9; --ink:#14201d; --ink-2:#34423e; --muted:#5d6b67; --line:#d3dcd8;
+  --accent:#17695f; --accent-soft:#dcefeb; --accent-ink:#ffffff;
+  --good:#2b7a37; --good-soft:#e1f1e3; --warn:#9a5f0c; --warn-soft:#faefdc; --bad:#ad3329; --bad-soft:#f8e3e1; --watch:#7a4fa6;
+  --g0:#17695f; --g0s:#dcefeb; --g1:#7a4fa6; --g1s:#ece3f5; --g2:#9a5f0c; --g2s:#faefdc; --g3:#2f62a3; --g3s:#dde8f6; --g4:#a63d6b; --g4s:#f6e0ea; --g5:#4f6b1f; --g5s:#e6eed8;
+  --s-drafted:#e7dfc2; --s-applied:#d3e2f1; --s-oa:#e4d9ef; --s-interview:#cfe9d2; --s-offer:#b9e0bf; --s-accepted:#bfe3dd; --s-rejected:#f0d3cf; --s-closed:#e1e4e3; --s-waiting:#f2dec9;
+  --d-drafted:#b9a35a; --d-applied:#4f86bf; --d-oa:#8a63b5; --d-interview:#3f9a52; --d-offer:#2b7a37; --d-accepted:#17695f; --d-rejected:#c0544a; --d-closed:#9aa3a0; --d-waiting:#c98a45;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:10px; --shadow:0 1px 0 rgba(20,32,29,.04), 0 1px 3px rgba(20,32,29,.06);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0c1211; --surface:#151e1c; --band:#1a2522; --sunk:#202c29; --ink:#e3ebe8; --ink-2:#c3cfcb; --muted:#91a39e; --line:#2a3834;
+  --accent:#5cc3b4; --accent-soft:#1c3934; --accent-ink:#0b1513;
+  --good:#7fcb87; --good-soft:#1d3322; --warn:#e2a54c; --warn-soft:#3a2c17; --bad:#ef8a80; --bad-soft:#3f2220; --watch:#c09ae6;
+  --g0:#5cc3b4; --g0s:#1c3934; --g1:#c09ae6; --g1s:#2d2340; --g2:#e2a54c; --g2s:#3a2c17; --g3:#7fb0ea; --g3s:#1c2c42; --g4:#ec8fb6; --g4s:#3f1f2e; --g5:#a9c96e; --g5s:#26311a;
+  --s-drafted:#3a3624; --s-applied:#1f3247; --s-oa:#33284a; --s-interview:#1f3b27; --s-offer:#22502c; --s-accepted:#16423c; --s-rejected:#4a2523; --s-closed:#272c2b; --s-waiting:#46301c;
+  --d-drafted:#cdb76a; --d-applied:#6fa3da; --d-oa:#a786d1; --d-interview:#63be76; --d-offer:#7fcb87; --d-accepted:#4fb8a8; --d-rejected:#e07a70; --d-closed:#6f7a77; --d-waiting:#dba268;
+  --shadow:none; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0c1211; --surface:#151e1c; --band:#1a2522; --sunk:#202c29; --ink:#e3ebe8; --ink-2:#c3cfcb; --muted:#91a39e; --line:#2a3834;
+  --accent:#5cc3b4; --accent-soft:#1c3934; --accent-ink:#0b1513;
+  --good:#7fcb87; --good-soft:#1d3322; --warn:#e2a54c; --warn-soft:#3a2c17; --bad:#ef8a80; --bad-soft:#3f2220; --watch:#c09ae6;
+  --g0:#5cc3b4; --g0s:#1c3934; --g1:#c09ae6; --g1s:#2d2340; --g2:#e2a54c; --g2s:#3a2c17; --g3:#7fb0ea; --g3s:#1c2c42; --g4:#ec8fb6; --g4s:#3f1f2e; --g5:#a9c96e; --g5s:#26311a;
+  --s-drafted:#3a3624; --s-applied:#1f3247; --s-oa:#33284a; --s-interview:#1f3b27; --s-offer:#22502c; --s-accepted:#16423c; --s-rejected:#4a2523; --s-closed:#272c2b; --s-waiting:#46301c;
+  --d-drafted:#cdb76a; --d-applied:#6fa3da; --d-oa:#a786d1; --d-interview:#63be76; --d-offer:#7fcb87; --d-accepted:#4fb8a8; --d-rejected:#e07a70; --d-closed:#6f7a77; --d-waiting:#dba268;
+  --shadow:none; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:14px; line-height:1.5}
+.wrap{max-width:1180px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:28px 64px; display:flex; flex-direction:column; gap:20px}
+h1,h2{font-family:var(--f-display); text-wrap:balance; margin:0}
+h1{font-size:30px; font-weight:700; letter-spacing:-.015em; line-height:1.1}
+h2{font-size:15px; font-weight:700; letter-spacing:.005em}
+.label{font-size:11px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); font-weight:600}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+a{color:var(--accent)}
+button,select,input,textarea{font:inherit; color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+header{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px}
+header .sub{color:var(--muted); margin-top:4px}
+header .hl{min-width:0}
+header .hr{display:flex; flex-direction:column; align-items:flex-end; gap:3px; min-width:0; max-width:100%}
+.runline{display:block; border:0; background:none; padding:0; color:var(--muted); font-size:12.5px; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:right}
+.runline:hover{color:var(--ink-2)}
+.runline .bad{color:var(--bad); font-weight:600}
+.runmore{font-size:12.5px; color:var(--ink-2); display:flex; flex-wrap:wrap; gap:4px 8px; justify-content:flex-end; max-width:520px}
+.runmore b{font-family:var(--f-mono); font-weight:600; color:var(--ink)}
+.runmore .arr{color:var(--muted)}
+.runmore .flags{flex-basis:100%; text-align:right; color:var(--bad)}
+.sync{font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px}
+.hrow{display:flex; align-items:center; gap:10px}
+.themebtn{display:inline-flex; align-items:center; gap:5px; border:1px solid var(--line); background:var(--surface); color:var(--ink-2); border-radius:999px; padding:3px 10px 3px 8px; font-size:12px; font-weight:500}
+.themebtn:hover{border-color:var(--accent); color:var(--ink)}
+.themebtn svg{width:14px; height:14px}
+.sync i{width:7px; height:7px; border-radius:50%; background:var(--muted)}
+.sync.live i{background:var(--good)}
+
+/* panels */
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; min-width:0}
+.panel-h{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; padding:11px 16px; background:var(--band); border-bottom:1px solid var(--line)}
+.panel-h .aside{font-size:12.5px; color:var(--muted)}
+.panel-b{padding:16px}
+
+/* today */
+.today .ti{display:flex; align-items:center; gap:8px 12px; flex-wrap:wrap; padding:10px 16px; border-top:1px solid var(--line)}
+.today .ti:first-child{border-top:0}
+.today .tt{flex:1 1 280px; min-width:0}
+.today .tt b{font-weight:600}
+.today .ev{display:block; color:var(--muted); font-size:12.5px}
+.today .tb{display:flex; gap:6px; flex-wrap:wrap}
+.today .tag{font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; font-weight:600; padding:1px 6px; border-radius:4px; margin-right:6px; vertical-align:1px}
+.today .tag.c{background:var(--bad-soft); color:var(--bad)}
+.today .tag.f{background:var(--warn-soft); color:var(--warn)}
+.today .sum{border:0; background:none; color:var(--accent); font-weight:600; padding:0; text-align:left}
+.today .none{padding:12px 16px; color:var(--muted)}
+.chip.new{background:var(--good-soft); color:var(--good)}
+.rloc{color:var(--muted); font-weight:400}
+#toast{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:40; width:max-content; max-width:calc(100vw - 32px); pointer-events:none}
+.toast-in{pointer-events:auto; display:flex; align-items:center; gap:12px; background:var(--ink); color:var(--surface); border-radius:8px; padding:8px 8px 8px 14px; box-shadow:0 8px 24px rgba(0,0,0,.25); font-size:13.5px}
+.toast-in button{border:0; background:none; color:var(--accent-soft); font-weight:600; padding:6px 10px; border-radius:6px; text-decoration:underline}
+.toast-in.err{background:var(--bad); color:#fff}
+.didapply{margin:0 16px 12px; padding:8px 10px; border-radius:8px; background:var(--accent-soft); display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+.didapply span{font-weight:600; margin-right:4px}
+.whymore{border:0; background:none; color:var(--accent); font-size:12.5px; font-weight:600; padding:0 16px 10px; align-self:flex-start}
+
+/* picks */
+.lead{font-size:15px; color:var(--ink); margin:0 0 14px; max-width:75ch}
+.picks{display:grid; gap:14px; grid-template-columns:repeat(auto-fill, minmax(320px,1fr))}
+.picks.few{grid-template-columns:minmax(0,1fr)}
+.picks.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pick{border:1px solid var(--line); border-radius:var(--r); display:flex; flex-direction:column; min-width:0; background:var(--surface)}
+.pick-top{display:flex; justify-content:space-between; gap:12px; padding:16px 16px 0}
+.pick .co{font-size:11.5px; text-transform:uppercase; letter-spacing:.09em; font-weight:600; color:var(--muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.pick .role{font-size:18px; font-weight:600; line-height:1.3; margin-top:3px; text-wrap:balance}
+.fitbig{text-align:right; flex:none}
+.fitbig .n{font-family:var(--f-display); font-size:34px; font-weight:700; line-height:1; color:var(--accent)}
+.fitbig .n small{font-size:15px; color:var(--muted); font-weight:600}
+.fitbig .label{font-size:10px}
+.facts{display:grid; grid-template-columns:repeat(auto-fit, minmax(108px,1fr)); gap:8px; padding:14px 16px 0}
+.fact{border-radius:7px; padding:7px 10px; background:var(--band); border:1px solid var(--line); min-width:0}
+.fact .k{font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:600}
+.fact .v{font-size:13.5px; font-weight:500; overflow-wrap:anywhere}
+.fact.good{background:var(--good-soft); border-color:transparent} .fact.good .v{color:var(--good)}
+.fact.warn{background:var(--warn-soft); border-color:transparent} .fact.warn .v{color:var(--warn)}
+.fact.bad{background:var(--bad-soft); border-color:transparent} .fact.bad .v{color:var(--bad)}
+.pick .why{padding:12px 16px 14px; color:var(--ink-2); font-size:13.5px}
+.pick .watch{margin:8px 16px 14px; padding:7px 10px; border-radius:7px; background:var(--warn-soft); color:var(--warn); font-size:13px}
+.pick .watch b{font-weight:600}
+.picks:not(.few):not(.two) .pick .why{display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden}
+.picks:not(.few):not(.two) .pick .why.open{display:block; -webkit-line-clamp:unset; overflow:visible}
+.pick-foot{margin-top:auto; padding:12px 16px; border-top:1px solid var(--line); display:flex; gap:8px; align-items:center; flex-wrap:wrap; background:var(--band); border-radius:0 0 var(--r) var(--r)}
+.pick-foot a.lnk{font-size:13px; font-weight:500; text-decoration:none; padding:5px 4px}
+.pick-foot a.lnk:hover{text-decoration:underline}
+.empty{border:1px dashed var(--line); border-radius:var(--r); padding:18px; color:var(--muted)}
+.chip{display:inline-block; font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:1px 7px; border-radius:4px; background:var(--accent-soft); color:var(--accent)}
+
+/* pipeline (inside All applications) */
+.pipe{display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:1px; background:var(--line); border-bottom:1px solid var(--line)}
+.stage{background:var(--surface); padding:12px 16px; display:flex; flex-direction:column; gap:2px; text-align:left; border:0}
+.stage:hover{background:var(--band)}
+.stage .n{font-family:var(--f-display); font-size:28px; font-weight:700; line-height:1.1}
+.stage[aria-pressed="true"]{background:var(--accent-soft)}
+.stage .bar{height:4px; border-radius:2px; margin-top:6px}
+.subbar{display:flex; justify-content:space-between; align-items:center; gap:10px 16px; flex-wrap:wrap; padding:12px 16px; border-bottom:1px solid var(--line)}
+.week{display:flex; align-items:center; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:13px}
+.meter{flex:0 1 200px; width:200px; height:8px; background:var(--sunk); border-radius:4px; position:relative; overflow:hidden}
+.meter i{position:absolute; inset:0 auto 0 0; background:var(--accent); border-radius:4px}
+.meter b{position:absolute; top:0; bottom:0; width:2px; background:var(--muted); opacity:.5}
+.meter i.met{background:var(--good)}
+
+/* controls */
+.controls{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.controls input[type=search]{flex:1 1 220px; min-width:0}
+.field, .controls select, .controls input[type=search]{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 10px}
+.seg{display:inline-flex; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--surface)}
+.seg button{border:0; background:none; padding:7px 12px}
+.seg button[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink)}
+.btn{border:1px solid var(--line); background:var(--surface); border-radius:6px; padding:7px 12px}
+.btn.primary{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
+.btn.small{padding:4px 10px; font-size:13px}
+
+/* list */
+.row{display:grid; grid-template-columns:96px minmax(0,2.4fr) minmax(0,1.4fr) 124px 72px 128px 24px; gap:12px; align-items:center; padding:11px 16px; border-top:1px solid var(--line); background:none; border-left:0; border-right:0; border-bottom:0; width:100%; text-align:left}
+.list > div:first-child .row, .list > .row:first-child{border-top:0}
+.row[data-toggle]{cursor:pointer}
+.row[data-toggle]:hover{background:var(--band)}
+.row[data-toggle]:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+.stsel{appearance:none; -webkit-appearance:none; border:1px solid transparent; border-radius:999px; padding:3px 22px 3px 10px; font:600 12px var(--f-body); color:var(--ink); cursor:pointer; max-width:100%;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink-2) 50%),linear-gradient(135deg,var(--ink-2) 50%,transparent 50%); background-position:calc(100% - 11px) 52%,calc(100% - 7px) 52%; background-size:4px 4px; background-repeat:no-repeat}
+.stsel:hover{border-color:var(--line-2,var(--line))}
+.stsel:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+.stsel option{background:var(--surface); color:var(--ink)}
+.rq{border:1px dashed var(--accent); background:none; color:var(--accent); border-radius:999px; padding:1px 9px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap}
+.rq:hover{background:var(--accent); color:#fff}
+.rq.on{border-style:solid; color:var(--watch); border-color:var(--watch)}
+.rq.on:hover{background:var(--watch); color:#fff}
+.rq:disabled{opacity:.5; cursor:default}
+.mini .acts{grid-column:2; margin-top:4px}
+.head{font-size:11px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); font-weight:600; background:var(--band); cursor:default}
+.date{display:flex; align-items:center; gap:8px; color:var(--ink-2)}
+.dot{width:9px; height:9px; border-radius:50%; flex:none}
+.row .who{min-width:0}
+.row .who .co-l{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.row .who b{font-weight:600}
+.row .who .role-l{display:block; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.row .loc{color:var(--muted); min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.row .pay{font-size:13px; color:var(--ink-2)}
+.chev{color:var(--muted); transition:transform .15s}
+.row[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.grp{padding:8px 16px; font-size:11px; text-transform:uppercase; letter-spacing:.09em; font-weight:600; color:var(--muted); background:var(--band); border-top:1px solid var(--line); display:flex; align-items:center; gap:8px}
+.pill{display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:600; white-space:nowrap; color:var(--ink)}
+.fit{display:inline-flex; gap:3px}
+.fit i{width:8px; height:8px; border-radius:2px; background:var(--sunk); border:1px solid var(--line)}
+.fit i.on{background:var(--accent); border-color:var(--accent)}
+.flag{color:var(--bad); font-weight:600; font-size:12px}
+
+.detail{padding:16px 16px 20px; border-top:1px dashed var(--line); background:var(--band); display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:20px}
+.detail p{margin:0}
+.kv{display:grid; grid-template-columns:110px minmax(0,1fr); gap:6px 12px; align-content:start}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0; min-width:0; overflow-wrap:anywhere}
+.edit{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:start}
+.edit label{display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); font-weight:600}
+.edit .full{grid-column:1/-1}
+.edit textarea{min-height:84px; resize:vertical}
+.edit .check{flex-direction:row; align-items:center; gap:8px; color:var(--ink); font-weight:500; font-size:14px}
+.saved{font-size:12px; color:var(--good); min-height:18px}
+.confirm{grid-column:1/-1; border:1px solid var(--warn); background:var(--surface); border-radius:var(--r); padding:12px; display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+.confirm strong{color:var(--warn)}
+
+[hidden]{display:none !important}
+details.ckp .count.n{background:var(--sunk); color:var(--ink-2)}
+.mini{display:flex; flex-direction:column}
+.mini > div{display:grid; grid-template-columns:auto minmax(0,1fr); gap:2px 12px; padding:10px 16px; border-top:1px solid var(--line)}
+.mini > div:first-child{border-top:0}
+.mini .when{font-family:var(--f-mono); font-size:12px; color:var(--muted); grid-row:span 2; padding-top:2px}
+.mini .t{font-weight:500}
+.mini .why{color:var(--muted); font-size:13px}
+.mini .none{padding:14px 16px; color:var(--muted)}
+.more{border:0; background:none; color:var(--accent); padding:10px 16px; border-top:1px solid var(--line); width:100%; text-align:left; font-size:13px; font-weight:500}
+details.addp summary{cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center}
+details.addp summary::-webkit-details-marker{display:none}
+details.addp summary::after{content:"+"; font-family:var(--f-mono); color:var(--muted); font-size:16px}
+details.addp[open] summary::after{content:"−"}
+.addform{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px}
+.addform label{display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); font-weight:600}
+.notice{padding:16px; color:var(--muted)}
+
+/* resume button + preview */
+.rbtn{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--accent); background:var(--surface); border-radius:6px; padding:5px 11px; font-size:13px; font-weight:600; color:var(--accent)}
+.rbtn:hover{background:var(--accent); color:var(--accent-ink)}
+.rbtn[disabled]{opacity:.6; cursor:default}
+.rbtn svg{width:14px; height:14px}
+#rv{position:fixed; z-index:30; width:min(440px,calc(100vw - 32px)); max-height:min(78vh,700px); overflow:auto; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:10px; box-shadow:0 14px 36px rgba(0,0,0,.2); padding:16px 18px; font-size:12.5px; line-height:1.45}
+#rv h4{font-family:var(--f-body); font-weight:600; font-size:15px; margin:0}
+#rv .rh{display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:8px}
+#rv .x{border:0; background:none; color:var(--muted); font-size:16px; line-height:1; padding:2px 4px}
+#rv .sec{font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:600; border-bottom:1px solid var(--line); margin:10px 0 4px; padding-bottom:2px}
+#rv .job{display:flex; justify-content:space-between; gap:8px; font-weight:600; margin-top:6px}
+#rv .job span{font-weight:400; color:var(--muted); white-space:nowrap}
+#rv ul{margin:2px 0 0; padding-left:16px}
+#rv li{margin:1px 0}
+#rv .chg{background:var(--accent-soft); border-radius:3px; padding:0 2px}
+#rv .legend{font-size:11px; color:var(--muted); display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+#rv .tog{display:flex; gap:6px; align-items:center; font-size:12px; color:var(--muted)}
+#rv .note{color:var(--muted); font-size:11.5px}
+#rv .hint{font-size:11.5px; color:var(--muted); margin-top:10px}
+@media (max-width:640px){ #rv{left:8px!important; right:8px; width:auto; top:auto!important; bottom:calc(8px + env(safe-area-inset-bottom,0px)); max-height:75vh} }
+
+/* check these yourself */
+details.ckp summary{cursor:pointer; list-style:none; border-bottom:0}
+details.ckp summary::-webkit-details-marker{display:none}
+details.ckp .ckt{display:flex; align-items:center; gap:8px}
+details.ckp .ckt::before{content:"›"; display:inline-block; color:var(--muted); font-size:16px; transition:transform .15s}
+details.ckp[open] .ckt::before{transform:rotate(90deg)}
+details.ckp .count{min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:var(--warn-soft); color:var(--warn); font-family:var(--f-mono); font-size:12px; font-weight:600; display:inline-flex; align-items:center; justify-content:center}
+@media (prefers-reduced-motion: reduce){ details.ckp .ckt::before{transition:none} }
+
+.checks{display:flex; flex-direction:column}
+.ck{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 16px; padding:14px 16px; border-top:1px solid var(--line); align-items:start}
+.ck:first-child{border-top:0}
+.ck .t{font-weight:600}
+.ck .t .co{font-size:11.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-weight:600}
+.ck .why{color:var(--ink-2); font-size:13.5px}
+.ck .rsn{color:var(--muted); font-size:12.5px}
+.ck .act{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+.ck .act a.btn{text-decoration:none; color:var(--accent); font-weight:500}
+.ask{grid-column:1/-1; display:flex; gap:8px 10px; align-items:center; flex-wrap:wrap; padding:10px 12px; border-radius:8px; background:var(--accent-soft)}
+.ask b{font-weight:600; margin-right:4px}
+.ask .btn{padding:5px 11px; font-size:13px}
+.ask .msg{font-size:12.5px; color:var(--muted)}
+.chip.dream{background:var(--warn-soft); color:var(--warn)}
+@media (max-width:640px){ .ck{grid-template-columns:minmax(0,1fr)} .ck .act{justify-content:flex-start} }
+
+@media (max-width:900px){ .picks.two{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:820px){
+  .pipe{grid-template-columns:repeat(4, minmax(0,1fr))}
+  .row{grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"who status" "loc fit"; row-gap:4px}
+  .row .date,.row .chev,.row .pay{display:none}
+  .row .who{grid-area:who} .row .st{grid-area:status; justify-self:end} .row .loc{grid-area:loc} .row .fitc{grid-area:fit; justify-self:end}
+  .head{display:none}
+  .detail,.edit,.addform{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion: reduce){ .chev{transition:none} }
+@media (max-width:820px){ .stsel{font-size:13px} }
+@media (max-width:640px){
+  header{align-items:flex-start}
+  header .hr{flex-direction:row; align-items:center; gap:10px; width:100%}
+  .runline{flex:1 1 auto; min-width:0; text-align:left}
+  .runmore{justify-content:flex-start} .runmore .flags{text-align:left}
+  h1{font-size:26px}
+  header .sub{display:none}
+  .wrap{padding-block:18px 64px; gap:16px}
+  .today .ti{padding:8px 16px; gap:6px 12px}
+  .today .ev{display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden}
+}
+/* hit areas of at least 44x44 on touch and narrow screens */
+@media (pointer:coarse), (max-width:820px){
+  .stsel, .rq, .pick-foot .btn, .rbtn, .stage, .seg button, .more, .today .btn, .today .sum, .didapply .btn, .toast-in button, .themebtn, details > summary{min-height:44px}
+  .pick-foot a.lnk, .hidecl{min-height:44px; display:inline-flex; align-items:center}
+  .stsel, .rq, .pick-foot .btn, .rbtn, .seg button, .today .btn, .didapply .btn, .toast-in button{min-width:44px}
+  .rq, .rbtn, .today .sum{display:inline-flex; align-items:center}
+  .pick-foot a.lnk{padding:0 6px}
+}
+</style>
+
+<script>try{ const t=localStorage.getItem("cjs-theme"); if(t==="light"||t==="dark") document.documentElement.dataset.theme=t; }catch(e){}</script>
+<div class="wrap">
+  <header>
+    <div class="hl">
+      <div class="label" id="hlabel">Job search</div>
+      <h1 id="htitle">Job Search</h1>
+      <div class="sub">Updated by each scheduled run. Edit any row here; the next run picks up your changes.</div>
+    </div>
+    <div class="hr">
+      <div class="hrow"><div class="sync" id="sync"><i></i><span>Connecting…</span></div><button type="button" class="themebtn" id="themebtn"></button></div>
+      <button type="button" class="runline" id="runline" aria-expanded="false" aria-controls="runmore" hidden></button>
+      <div class="runmore" id="runmore" hidden></div>
+    </div>
+  </header>
+
+  <section class="panel today" id="today" aria-labelledby="today-h" hidden>
+    <div class="panel-h"><h2 id="today-h">Today</h2></div>
+    <div id="todaylist"></div>
+  </section>
+
+
+  <section class="panel" id="applypanel" aria-labelledby="picks-h">
+    <div class="panel-h"><h2 id="picks-h">To apply</h2><span class="aside" id="picksaside"></span></div>
+    <div class="panel-b">
+      <p class="lead" id="lead" hidden></p>
+      <div class="picks" id="picks"><div class="empty">Roles waiting for you to apply appear here.</div></div>
+    </div>
+    <button type="button" class="more" id="picksmore" hidden></button>
+  </section>
+
+  <details class="panel ckp" id="ckpanel" hidden>
+    <summary class="panel-h"><span class="ckt"><h2>Check these yourself</h2><span class="count" id="ckcount" aria-label="items to check">0</span></span><span class="aside">Strong matches the run couldn't confirm are open</span></summary>
+    <div class="checks" id="checks" style="border-top:1px solid var(--line)"></div>
+  </details>
+
+  <section class="panel" aria-labelledby="all-h">
+    <div class="panel-h"><h2 id="all-h">All applications</h2><span class="aside">Click a stage to filter the list</span></div>
+    <div class="pipe" id="pipe"></div>
+    <div class="subbar">
+      <div class="week"><span id="weektext">Applied this week: –</span><div class="meter" id="meter" aria-hidden="true"><i id="weekbar" style="width:0"></i><b id="weekmark"></b></div></div>
+      <div class="controls">
+        <input type="search" id="q" placeholder="Search company, role, notes" aria-label="Search">
+        <div class="seg" role="group" aria-label="Goal" id="goalseg"></div>
+        <select id="sort" aria-label="Sort">
+          <option value="date">Newest found</option>
+          <option value="fit">Best fit first</option>
+          <option value="status">By stage</option>
+          <option value="follow">Follow-up date</option>
+        </select>
+        <label class="hidecl" style="display:flex;gap:6px;align-items:center;color:var(--muted)"><input type="checkbox" id="hideclosed"> Hide closed</label>
+      </div>
+    </div>
+    <div class="list" id="list" role="list"><div class="notice">Your applications load here from the tracker database.</div></div>
+  </section>
+
+  <details class="panel ckp" id="nmpanel" data-fold="nm">
+    <summary class="panel-h"><span class="ckt"><h2 id="nm-h">Recent near misses</h2><span class="count n" id="nmn">0</span></span><span class="aside" id="nmcount"></span></summary>
+    <div class="mini" id="nm" style="border-top:1px solid var(--line)"></div>
+  </details>
+
+  <div id="rv" role="dialog" aria-label="Resume preview" hidden></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <details class="panel addp" id="addbox">
+    <summary class="panel-h" style="border-bottom:0"><h2>Add a role you found yourself</h2></summary>
+    <form class="addform panel-b" id="addform" style="border-top:1px solid var(--line)">
+      <label>Company<input class="field" id="a-company" required></label>
+      <label>Role<input class="field" id="a-role" required></label>
+      <label>Posting link<input class="field" id="a-url" type="url" placeholder="https://"></label>
+      <label>Location<input class="field" id="a-loc"></label>
+      <label>Goal<select class="field" id="a-track"></select></label>
+      <label>Status<select class="field" id="a-status"></select></label>
+      <div style="grid-column:1/-1;display:flex;gap:10px;align-items:center"><button class="btn primary" type="submit" id="a-submit">Add to tracker</button><span class="saved" id="a-msg"></span></div>
+    </form>
+  </details>
+</div>
+
+<script>
+const STATUSES=["Drafted","Applied","OA","Interview","Offer","Accepted","Rejected","Withdrawn","Skipped","Waiting for opening"];
+const SKEY={Drafted:"drafted",Applied:"applied",OA:"oa",Interview:"interview",Offer:"offer",Accepted:"accepted",Rejected:"rejected",Withdrawn:"closed",Skipped:"closed","Waiting for opening":"waiting"};
+// Stored stage values never change (the daily run writes them); this map is the only place display names live.
+const STAGE_NAME={Drafted:"To apply",Applied:"Applied",OA:"Assessment",Interview:"Interview",Offer:"Offer",Accepted:"Accepted",
+  Rejected:"Rejected",Withdrawn:"Withdrawn",Skipped:"Skipped","Waiting for opening":"Watching"};
+const stageName=s=>STAGE_NAME[s]||s||"";
+const STAGES=["Drafted","Applied","OA","Interview","Offer","Accepted","Waiting for opening"];
+const CLOSED=new Set(["Rejected","Withdrawn","Skipped"]);
+const ORDER=Object.fromEntries(["Accepted","Offer","Interview","OA","Applied","Drafted","Waiting for opening","Rejected","Withdrawn","Skipped"].map((s,i)=>[s,i]));
+let loaded=false, checks=[], asked=new Set(), rows=[], state={}, nearMisses=[], bases={}, dl=null, db=null, canWrite=true, open=new Set(), nmAll=false, filt={q:"",track:"",stage:"",sort:"date",hide:false};
+try{ const p=JSON.parse(localStorage.getItem("cjs-filters")||"{}"); Object.assign(filt,p, {q:""}); }catch(e){}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"";
+const sk=s=>SKEY[s]||"closed";
+const pill=s=>`<span class="pill" style="background:var(--s-${sk(s)})">${esc(stageName(s))}</span>`;
+const dot=s=>`<span class="dot" style="background:var(--d-${sk(s)})" aria-hidden="true"></span>`;
+const fit=n=>{n=+n||0; return `<span class="fit" role="img" aria-label="Fit ${n} of 5">${[1,2,3,4,5].map(i=>`<i class="${i<=n?"on":""}"></i>`).join("")}</span>`};
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtDate=d=>{ if(!d) return ""; const p=String(d).slice(0,10).split("-"); return p.length===3?`${MON[+p[1]-1]} ${+p[2]}`:esc(d)};
+const fmtDay=d=>{ if(!d) return ""; const t=new Date(String(d).slice(0,10)+"T12:00:00"); return isNaN(t)?esc(d):`${["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][t.getDay()]}, ${MON[t.getMonth()]} ${t.getDate()}`; };
+/* ---------- profile (meta/state.profile, written by each run from the owner's config; nothing personal is built in) ---------- */
+const prof=k=>{ const v=(state.profile||{})[k]; return v==null?(k==="links"||k==="education"?[]:""):v; };
+const uid=()=>(state.profile&&state.profile.id)||"owner";
+// Sources share one vocabulary with the run (scripts/sources.py). The page only ever writes "manual", with no name.
+const SOURCE_LABEL={email_alert:"Email alert",job_board:"Job board",career_site:"Employer careers site",web_search:"Web search",manual:"Added by hand"};
+const sourceText=r=>{ const l=SOURCE_LABEL[r.source]; if(!l) return r.source||""; return r.source_detail&&r.source_detail!==l?`${l} (${r.source_detail})`:l; };
+function renderProfile(){
+  const p=state.profile||{};
+  const title=p.title||(p.name?String(p.name).split(" ").slice(-1)[0]+" Job Search":"Job Search");
+  $("htitle").textContent=title; $("doctitle").textContent=title; document.title=title;
+  $("hlabel").textContent="Job search"+(p.tagline?" · "+p.tagline:"");
+}
+const baseLabel=k=>(state.resume_bases&&state.resume_bases[k]&&state.resume_bases[k].label)||String(k||"").replace(/_/g," ").replace(/\b\w/g,c=>c.toUpperCase());
+
+/* ---------- goals (meta/state.goals, from the owner's config); old label spellings via meta/state.goal_aliases ---------- */
+const aliases=()=>state.goal_aliases||{};
+function goals(){ return (state.goals&&state.goals.length)?state.goals:[{id:"main",name:"Main",default:true}]; }
+const defGoal=()=>{ const g=goals(); return (g.find(x=>x.default)||g[0]).name; };
+const goalName=t=>aliases()[t]||t||defGoal();
+const sameRole=r=>{ const k=x=>[x.company,x.role].map(v=>String(v||"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim()).join("|"), kr=k(r), loc=String(r.location||"").trim().toLowerCase();
+  return !!loc && rows.some(x=>x.id!==r.id&&k(x)===kr&&String(x.location||"").trim().toLowerCase()!==loc); };
+const roleText=r=>esc(r.role)+(sameRole(r)?` <span class="rloc">· ${esc(String(r.location).replace(/\s*\(.*?\)\s*/g," ").trim())}</span>`:"");
+const goalToWrite=t=>{ const n=goalName(t); return goals().some(g=>g.name===n)?n:defGoal(); };  // never write a name that isn't a goal
+const rowGoals=r=>{ const gs=(r.goals&&r.goals.length?r.goals:[r.track]).map(goalName); return [...new Set(gs)]; };
+// One rule everywhere: the default goal never gets a chip; other goals get their own color, cycling a 6-color palette.
+const goalChip=n=>{ const g=goals(); const i=g.findIndex(x=>x.name===n); const c=(i<0?0:i)%6; return `<span class="chip" style="background:var(--g${c}s);color:var(--g${c})" title="Goal: ${esc(n)}">${esc(n)}</span>`; };
+const goalChips=gs=>goals().length<2?"":gs.filter(g=>g!==defGoal()).map(goalChip).join("");
+const shortTag=r=>goalChips(rowGoals(r));
+function renderGoalSeg(){
+  const g=goals(); const seg=$("goalseg"); seg.hidden=g.length<2;
+  if(filt.track) filt.track=goalName(filt.track);
+  seg.innerHTML=[["","All"],...g.map(x=>[x.name,x.name])].map(([v,l])=>`<button type="button" data-track="${esc(v)}" aria-pressed="${filt.track===v}">${esc(l)}</button>`).join("");
+  seg.querySelectorAll("[data-track]").forEach(b=>b.onclick=()=>{ filt.track=b.dataset.track; saveFilt(); renderGoalSeg(); renderList(); });
+  const sel=$("a-track"), cur=sel.value; sel.innerHTML=g.map(x=>`<option>${esc(x.name)}</option>`).join(""); if(cur) sel.value=cur;
+}
+function saveFilt(){ try{ localStorage.setItem("cjs-filters", JSON.stringify({track:filt.track,sort:filt.sort,hide:filt.hide,stage:filt.stage})) }catch(e){} }
+function setSync(t,live){ const el=$("sync"); el.className="sync"+(live?" live":""); el.querySelector("span").textContent=t; }
+
+/* ---------- pick-card facts (prefer fields the run saved; fall back to parsing the one-line summary) ---------- */
+function payMax(s){ const t=String(s||"").toLowerCase().replace(/,/g,""); const n=[...t.matchAll(/\$?\s*(\d+(?:\.\d+)?)\s*(k)?/g)].map(m=>+m[1]*(m[2]?1000:1)).filter(x=>x>=5); if(!n.length) return null; const hr=/hr|hour/.test(t)||Math.max(...n)<300; return Math.max(...n)*(hr?2080:1); }
+function facts(r){
+  const why=String(r.why||""), wlbTxt=String(r.card_wlb||why);
+  const m=wlbTxt.match(/WLB\s*(?:rating\s*)?(\d\.\d)/i) || wlbTxt.match(/(\d\.\d)\s*(?:\(Glassdoor\)|Glassdoor|WLB)/i);
+  const unver=/WLB unverified|not checked|unverified/i.test(wlbTxt) && !m;
+  const wlb = m ? {v:`${m[1]} rating`, c:(+m[1]>=3.8?"good":+m[1]<3.5?"bad":"")} : (unver?{v:"Unverified",c:"warn"}:null);
+  const pm=payMax(r.base_pay);
+  const g=goals().find(x=>x.name===goalName(r.track)); const floor=g&&g.pay_floor!=null?+g.pay_floor:null;
+  const pay = r.base_pay ? {v:String(r.base_pay).replace(/\s*\(.*?\)\s*/g," ").trim(), c:(pm!=null && floor!=null && pm<floor)?"warn":""} : null;
+  const ch=(r.chance||"").trim();
+  const chance = ch ? {v:ch, c:/^high/i.test(ch)?"good":/^low/i.test(ch)?"bad":""} : null;
+  const mode=String(r.work_mode||"").split(/[;(]/)[0].trim();
+  const where = r.location ? {v:[String(r.location).split(/\(|;/)[0].trim(), mode].filter(Boolean).join(" · "), c:""} : null;
+  return [["Pay",pay],["Where",where],["Chance",chance],["Work-life",wlb]].filter(([,x])=>x);
+}
+function whyWatch(r){
+  let why=r.card_why||"", watch=r.card_watch||"";
+  if(!why||!watch){
+    const t=String(r.why||"").replace(/^WLB.*?chance\s+[A-Za-z-]+(?:\s*\([^)]*\))?\s*[.;]\s*/i,"");
+    const i=t.search(/concerns?:/i);
+    if(!why) why=(i>=0?t.slice(0,i):t).trim();
+    if(!watch && i>=0) watch=t.slice(i).replace(/^concerns?:\s*/i,"").trim();
+  }
+  return {why, watch};
+}
+
+/* ---------- resume: one button (hover = preview beside it, click = download) ---------- */
+const DLICON='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10"/></svg>';
+const canHover=()=>matchMedia("(hover:hover) and (pointer:fine)").matches;
+function resumeBtn(r){
+  if(!(r.resume_spec&&r.resume_spec.jobs)) return "";
+  return `<button type="button" class="rbtn" data-resume="${esc(r.id)}" aria-label="Download tailored resume (.docx); hover to preview">${DLICON}<span>Resume .docx</span></button>`;
+}
+const norm=t=>String(t||"").toLowerCase().replace(/[^a-z0-9%.+ ]/g,"").replace(/\s+/g," ").trim();
+function renderPreview(r, diffOn){
+  const sp=r.resume_spec, base=(bases[r.resume_base]||null);
+  const baseBul=new Set(); if(base) base.jobs.forEach(j=>(j.bullets||[]).forEach(b=>baseBul.add(norm(b))));
+  const baseSkills=new Set(); if(base) base.skills.forEach(([k,v])=>v.split(",").forEach(x=>baseSkills.add(x.trim())));
+  const mark=(txt,changed)=>diffOn&&changed?`<span class="chg">${esc(txt)}</span>`:esc(txt);
+  const sumChanged=base&&norm(base.summary)!==norm(sp.summary);
+  const jobs=(sp.jobs||[]).map(j=>{
+    const bj=base&&base.jobs.find(x=>x.org===j.org&&x.title===j.title);
+    const order=bj&&(bj.bullets||[]).map(norm).join("|")!==(j.bullets||[]).map(norm).join("|")&&(j.bullets||[]).every(b=>baseBul.has(norm(b)));
+    return `<div class="job">${esc(j.org)}<span>${esc(j.loc)}</span></div><div class="job" style="margin-top:0;font-weight:400;font-style:italic">${esc(j.title)}<span>${esc(j.dates)}</span></div>
+    ${(j.bullets||[]).length?`<ul>${j.bullets.map(b=>`<li>${mark(b,base&&!baseBul.has(norm(b)))}</li>`).join("")}</ul>`:""}${diffOn&&order?`<div class="note">Bullets reordered</div>`:""}`;}).join("");
+  const skills=(sp.skills||[]).map(([k,v])=>`<div><b>${esc(k)}:</b> ${v.split(",").map(x=>mark(x.trim(),base&&!baseSkills.has(x.trim()))).join(", ")}</div>`).join("");
+  return `<div class="rh"><div><h4>${esc(r.company)} — ${esc(r.role)}</h4><div class="legend">${base?`Tailored from the ${esc(baseLabel(r.resume_base))} resume`:"Base resume not loaded"}</div></div>
+    <button type="button" class="x" data-close aria-label="Close preview">✕</button></div>
+    <div class="legend"><label class="tog"><input type="checkbox" id="rv-diff" ${diffOn?"checked":""}> Highlight changes from base</label>${diffOn?`<span><span class="chg">shaded</span> = rewritten or added</span>`:""}</div>
+    <div class="sec">Summary</div><div>${mark(sp.summary,sumChanged)}</div>
+    <div class="sec">Experience</div>${jobs}
+    <div class="sec">Technical skills</div>${skills}
+    ${canHover()?`<div class="hint">Click the Resume button to download the Word file. Education and contact lines appear in the file as on every resume.</div>`
+      :`<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button type="button" class="rbtn" data-dlnow="${esc(r.id)}">${DLICON}<span>Download .docx</span></button></div>`}
+    ${safeUrl(r.resume_url)?`<div class="hint"><a href="${esc(r.resume_url)}" target="_blank" rel="noopener">Open the Drive copy</a></div>`:""}`;
+}
+let rvFor=null, rvAnchor=null, rvDiff=true, rvTimer=null;
+function placePreview(anchor){
+  const el=$("rv"); if(innerWidth<=640) return;
+  const a=anchor.getBoundingClientRect(), w=el.offsetWidth, h=el.offsetHeight, vw=innerWidth, vh=innerHeight, gap=12;
+  let left, top;
+  if(vw-a.right-gap-16>=w){ left=a.right+gap; top=a.top-24; }          // right of the button
+  else if(a.left-gap-16>=w){ left=a.left-gap-w; top=a.top-24; }        // left of the button
+  else { left=Math.min(Math.max(16,a.left), vw-w-16); top=a.bottom+gap; if(top+h>vh-16) top=Math.max(16,a.top-h-gap); } // below/above, never over it
+  top=Math.min(Math.max(16,top), Math.max(16,vh-h-16));
+  el.style.left=left+"px"; el.style.top=top+"px";
+}
+function showPreview(id, anchor){
+  const r=rows.find(x=>x.id===id); if(!r) return;
+  const el=$("rv"); rvFor=id; rvAnchor=anchor; clearTimeout(rvTimer);
+  el.innerHTML=renderPreview(r,rvDiff); el.hidden=false; placePreview(anchor);
+  el.querySelector("[data-close]").onclick=hidePreview;
+  el.querySelector("#rv-diff").onchange=e=>{ rvDiff=e.target.checked; showPreview(id, anchor); };
+  el.querySelectorAll("[data-dlnow]").forEach(b=>b.onclick=()=>downloadDocx(b.dataset.dlnow,b));
+}
+function hidePreview(){ $("rv").hidden=true; rvFor=null; rvAnchor=null; }
+function hideSoon(){ clearTimeout(rvTimer); rvTimer=setTimeout(()=>{ if(!$("rv").matches(":hover") && !(rvAnchor&&rvAnchor.matches(":hover"))) hidePreview(); },220); }
+$("rv").addEventListener("mouseenter",()=>clearTimeout(rvTimer));
+$("rv").addEventListener("mouseleave",()=>{ if(canHover()) hideSoon(); });
+function bindResumeBtns(root){
+  root.querySelectorAll("[data-resume]").forEach(b=>{
+    const id=b.dataset.resume;
+    b.onmouseenter=()=>{ if(canHover()) showPreview(id,b); };
+    b.onmouseleave=()=>{ if(canHover()) hideSoon(); };
+    b.onfocus=()=>{ if(canHover()) showPreview(id,b); };
+    b.onblur=()=>{ if(canHover()) hideSoon(); };
+    b.onclick=e=>{ e.stopPropagation(); if(canHover()) downloadDocx(id,b); else { if(rvFor===id) hidePreview(); else showPreview(id,b); } };
+  });
+}
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") hidePreview(); });
+document.addEventListener("click",e=>{ if(rvFor&&!$("rv").contains(e.target)&&!e.target.closest("[data-resume]")) hidePreview(); });
+addEventListener("scroll",()=>{ if(rvFor&&rvAnchor&&canHover()) placePreview(rvAnchor); },{passive:true});
+
+
+
+/* ---------- check these yourself ---------- */
+let lastCk=-1;
+function renderChecks(){
+  const items=checks.filter(c=>!c.processed&&!c.answer).sort((a,b)=>(b.dream?1:0)-(a.dream?1:0)||String(b.date).localeCompare(String(a.date)));
+  $("ckpanel").hidden=!items.length; $("ckcount").textContent=items.length;
+  if(items.length!==lastCk){ $("ckpanel").open=items.length>0; lastCk=items.length; }  // a manual open/close stands until the count changes
+  if(!items.length){ $("checks").innerHTML=""; return; }
+  $("checks").innerHTML=items.map(c=>{
+    const k=esc(c.key), show=asked.has(c.key)||c.opened_at;
+    return `<div class="ck" data-ck="${k}">
+      <div class="t"><div class="co">${esc(c.company)}${c.dream?`<span class="chip dream">Dream employer</span>`:""}${goalChips([goalName(c.track)])}</div>${esc(c.title)}</div>
+      <div class="act">${safeUrl(c.url)?`<a class="btn" href="${esc(c.url)}" target="_blank" rel="noopener" data-ckopen="${k}">Open posting ↗</a>`:`<span class="rsn">No link saved</span>`}</div>
+      <div style="grid-column:1/-1">${c.why?`<div class="why">${esc(c.why)}</div>`:""}<div class="rsn">${esc([c.location,c.pay].filter(Boolean).join(" · "))}${c.reason?` · Couldn't confirm: ${esc(c.reason)}`:""} · flagged ${fmtDate(c.date)}</div></div>
+      ${show?askHtml(c):(safeUrl(c.url)?"":askHtml(c))}
+    </div>`;}).join("");
+  $("checks").querySelectorAll("[data-ckopen]").forEach(a=>a.addEventListener("click",()=>{ const k=a.dataset.ckopen; asked.add(k); setTimeout(()=>renderChecks(),300); markOpened(k); }));
+  $("checks").querySelectorAll("[data-ans]").forEach(b=>b.onclick=()=>answerCheck(b.dataset.key,b.dataset.ans,b));
+}
+function askHtml(c){
+  const k=esc(c.key), dis=canWrite?"":"disabled";
+  const no=c.dream
+    ? `<button type="button" class="btn" data-key="${k}" data-ans="closed_watch" ${dis}>No, it's closed (keep watching)</button>`
+    : `<button type="button" class="btn" data-key="${k}" data-ans="closed_watch" ${dis}>No, closed: watch for it</button><button type="button" class="btn" data-key="${k}" data-ans="closed_drop" ${dis}>No, closed: drop it</button>`;
+  return `<div class="ask"><b>Was this job open?</b><button type="button" class="btn primary" data-key="${k}" data-ans="open" ${dis}>Yes, add it to my tracker</button>${no}<span class="msg" id="ckmsg-${k}">${c.dream?"Dream-employer roles stay watched if closed.":""}</span></div>`;
+}
+async function markOpened(k){ if(!db||!canWrite) return; try{ await db.doc("checks/"+k).update({opened_at:new Date().toISOString()}); }catch(e){} }
+async function answerCheck(k, ans, btn){
+  const c=checks.find(x=>x.key===k); if(!c||!db) return;
+  const msg=$("ckmsg-"+k); btn.parentElement.querySelectorAll("button").forEach(b=>b.disabled=true);
+  const now=new Date().toISOString(), today=todayET();
+  const id=(c.company+"-"+c.title).toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,60).replace(/-$/,"")+"-"+today.replace(/-/g,"");
+  try{
+    if(ans==="open"||ans==="closed_watch"){
+      const open_=ans==="open";
+      if(!rows.some(r=>r.company===c.company&&r.role===c.title)){
+        await db.doc("apps/"+id).set({id,date_found:today,track:goalToWrite(c.track),company:c.company,role:c.title,location:c.location||"",work_mode:"",
+          posting_url:c.url||"",source:"manual",source_detail:open_?"Confirmed open by hand":"Checked by hand (closed)",base_pay:c.pay||"",fit:0,chance:"",why:c.why||"",
+          status:open_?"Drafted":"Waiting for opening",resume_url:"",cover_letter_url:"",date_applied:"",contact:"",
+          next_step:open_?"Next run scores it and drafts a resume if it fits":"Watched: each run checks whether it reopened",follow_up:"",
+          notes:`${today}: ${open_?"you confirmed it open":"you found it closed; watching for a reopening"}`,my_notes:"",request_cover_letter:false,pending_confirm:{},
+          last_checked:open_?"":today,updated_by:uid(),updated_at:now,edits:{status:now}});
+      }
+    }
+    await db.doc("checks/"+k).update({answer:ans==="open"?"open":"closed",watch:ans==="closed_watch",answered_at:now});
+    if(msg){ msg.style.color="var(--good)"; msg.textContent=ans==="open"?"Added. The next run researches it and drafts a resume if it fits.":ans==="closed_watch"?"Added to Watching. You'll get an email if it reopens.":"Dropped. It won't be shown again."; }
+  }catch(e){
+    btn.parentElement.querySelectorAll("button").forEach(b=>b.disabled=false);
+    if(msg){ msg.style.color="var(--bad)"; msg.textContent=e&&e.code==="invalid_argument"?"You can view this tracker but not edit it.":"Couldn't save. Try again."; }
+  }
+}
+
+function renderRun(){
+  const btn=$("runline"), more=$("runmore");
+  if(!state.last_run){ btn.hidden=true; more.hidden=true; return; }
+  const c=state.counts||{}, flags=state.error_flags||[];
+  const picks=c.picks!=null?c.picks:(state.today_picks||[]).length;
+  const status=flags.length?`<span class="bad">${flags.length} new problem${flags.length>1?"s":""}</span>`:"no new problems";
+  btn.innerHTML=`Run ${fmtDay(state.last_run)} · ${picks} pick${picks===1?"":"s"} · ${status}`;
+  btn.hidden=false;
+  const n=(v,l)=>`<span><b>${v??"–"}</b> ${l}</span>`;
+  more.innerHTML=(c.found!=null?`${n(c.found,"found")}<span class="arr">→</span>${n(c.shortlisted,"shortlisted")}<span class="arr">→</span>${n(c.verified,"confirmed open")}<span class="arr">→</span>${n(picks,picks===1?"pick":"picks")}${c.updates?`<span>· ${n(c.updates,c.updates===1?"update":"updates")}</span>`:""}`:`<span>No counts saved for this run.</span>`)
+    +(flags.length?`<span class="flags">${flags.map(esc).join(" · ")}</span>`:"");
+  more.hidden=btn.getAttribute("aria-expanded")!=="true";
+}
+$("runline").onclick=()=>{ const b=$("runline"), x=b.getAttribute("aria-expanded")!=="true"; b.setAttribute("aria-expanded",String(x)); $("runmore").hidden=!x; };
+function renderPipe(){
+  const c={}; rows.forEach(r=>c[r.status]=(c[r.status]||0)+1);
+  $("pipe").innerHTML=STAGES.map(s=>`<button class="stage" type="button" data-stage="${esc(s)}" aria-pressed="${filt.stage===s}"><span class="label">${esc(stageName(s))}</span><span class="n">${c[s]||0}</span><span class="bar" style="background:var(--d-${sk(s)})"></span></button>`).join("");
+  $("pipe").querySelectorAll(".stage").forEach(b=>b.onclick=()=>{ filt.stage=filt.stage===b.dataset.stage?"":b.dataset.stage; saveFilt(); renderPipe(); renderList(); });
+  const now=new Date(); const day=(now.getDay()+6)%7; const mon=new Date(now); mon.setHours(0,0,0,0); mon.setDate(now.getDate()-day);
+  const wk=rows.filter(r=>r.date_applied && new Date(r.date_applied+"T12:00:00")>=mon).length;
+  const t=state.weekly_target||null;  // from the owner's config; none set = no weekly meter
+  $("meter").hidden=!t;
+  if(!t){ $("weektext").innerHTML=`Applied this week: <b class="mono">${wk}</b>`; return; }
+  const mn=+t.min||0, mx=Math.max(+t.max||0, mn, 1);
+  $("weektext").innerHTML=`Applied this week: <b class="mono">${wk}</b> · goal ${mn}–${mx}`;
+  $("weekbar").style.width=Math.min(100,wk/mx*100)+"%"; $("weekbar").classList.toggle("met", wk>=mn&&mn>0);
+  $("weekmark").style.left=Math.min(100,mn/mx*100)+"%";
+}
+function pickCard(r){
+  const fx=facts(r), ww=whyWatch(r);
+  return `<article class="pick">
+    <div class="pick-top"><div style="min-width:0"><div class="co">${esc(r.company)} ${isNew(r)?`<span class="chip new">New</span>`:""}${shortTag(r)}</div><div class="role">${roleText(r)}</div></div>
+      <div class="fitbig"><div class="n">${+r.fit||"–"}<small>/5</small></div><div class="label">Fit</div></div></div>
+    ${fx.length?`<div class="facts">${fx.map(([k,x])=>`<div class="fact ${x.c}"><div class="k">${k}</div><div class="v">${esc(x.v)}</div></div>`).join("")}</div>`:""}
+    ${ww.why?`<div class="why" ${ww.watch?'style="padding-bottom:0"':""}>${esc(ww.why)}</div><button type="button" class="whymore" aria-expanded="false" hidden>More</button>`:""}
+    ${ww.watch?`<div class="watch"><b>Watch out:</b> ${esc(ww.watch)}</div>`:""}
+    ${askApplied.has(r.id)&&canWrite&&db?`<div class="didapply" role="group" aria-label="Did you apply to ${esc(r.company)}?"><span>Did you apply?</span><button type="button" class="btn small primary" data-applied="${esc(r.id)}">Yes, mark applied</button><button type="button" class="btn small" data-notyet="${esc(r.id)}">Not yet</button></div>`:""}
+    <div class="pick-foot">${canWrite&&db?`<button type="button" class="btn primary" data-applied="${esc(r.id)}">Mark applied</button>`:""}${resumeBtn(r)||rqBtn(r)}${safeUrl(r.posting_url)?`<a class="lnk" href="${esc(r.posting_url)}" target="_blank" rel="noopener" data-post="${esc(r.id)}">Posting ↗</a>`:""}<a class="lnk" href="#" data-open="${esc(r.id)}">Edit / notes</a></div>
+  </article>`;
+}
+let picksAll=false;
+const postClicked=new Set(), askApplied=new Set();
+// Came back from a posting: ask on that card whether they applied.
+document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState!=="visible"||!postClicked.size) return;
+  postClicked.forEach(id=>{ const r=rows.find(x=>x.id===id); if(r&&r.status==="Drafted") askApplied.add(id); }); postClicked.clear(); renderPicks();
+});
+// "More" appears only when the clamped text actually overflows.
+function fitWhy(box){
+  requestAnimationFrame(()=>box.querySelectorAll(".pick").forEach(card=>{
+    const w=card.querySelector(".why"), b=card.querySelector(".whymore"); if(!w||!b) return;
+    if(!w.classList.contains("open")) b.hidden=!(w.scrollHeight>w.clientHeight+1);
+    b.onclick=()=>{ const o=w.classList.toggle("open"); b.textContent=o?"Less":"More"; b.setAttribute("aria-expanded",String(o)); };
+  }));
+}
+let fitT=null; addEventListener("resize",()=>{ clearTimeout(fitT); fitT=setTimeout(()=>fitWhy($("picks")),150); });
+
+/* ---------- toast ---------- */
+let toastT=null;
+function showToast(text, undo, isErr){
+  const host=$("toast"); clearTimeout(toastT);
+  host.innerHTML=`<div class="toast-in${isErr?" err":""}"><span>${esc(text)}</span>${undo?`<button type="button" id="toastundo">Undo</button>`:""}</div>`;
+  const inner=host.firstElementChild, hide=()=>{ host.innerHTML=""; };
+  const arm=()=>{ clearTimeout(toastT); toastT=setTimeout(hide,6000); };
+  inner.addEventListener("mouseenter",()=>clearTimeout(toastT)); inner.addEventListener("mouseleave",arm);
+  inner.addEventListener("focusin",()=>clearTimeout(toastT)); inner.addEventListener("focusout",arm);
+  if(undo) $("toastundo").onclick=()=>{ hide(); undo(); };
+  arm();
+}
+async function markApplied(id){
+  const r=rows.find(x=>x.id===id); if(!r||!db) return;
+  askApplied.delete(id);
+  document.querySelectorAll(`[data-applied="${CSS.escape(id)}"]`).forEach(b=>b.disabled=true);
+  const before={date_applied:r.date_applied||"", follow_up:r.follow_up||"", next_step:r.next_step||""};
+  const ok=await setStage(id,"Applied");
+  if(ok){ showToast(`Marked applied: ${r.company}`, async()=>{  // undo puts back exactly what this action changed
+      const back=await writePatch(id,{status:"Drafted", ...before});
+      if(!back) showToast("Couldn't save. Try again.",null,true); });
+  } else { document.querySelectorAll(`[data-applied="${CSS.escape(id)}"]`).forEach(b=>b.disabled=false); showToast("Couldn't save. Try again.",null,true); }
+}
+const isNew=r=>(state.today_picks||[]).includes(r.id);
+// Every stored date is YYYY-MM-DD in America/New_York, whatever the device's time zone (9 pm Eastern is already tomorrow in UTC).
+const ET_FMT=new Intl.DateTimeFormat("en-CA",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit"});
+const todayET=(d=new Date())=>ET_FMT.format(d);
+const todayISO=()=>todayET();
+function nextRun(){ // weekdays at state.run_time ("HH:MM" Eastern, from config); close enough to say in plain words
+  const rt=/^(\d{1,2}):(\d{2})$/.exec(state.run_time||""); if(!rt) return "after the next scheduled run";
+  const hh=+rt[1], mm=+rt[2], label=`${hh>12?hh-12:hh}:${rt[2]}${hh>=12?" pm":""}`;
+  const now=new Date(); const d=new Date(now);
+  const after=now.getHours()>hh||(now.getHours()===hh&&now.getMinutes()>=mm);
+  if(after||d.getDay()===0||d.getDay()===6){ do{ d.setDate(d.getDate()+1); }while(d.getDay()===0||d.getDay()===6); }
+  const same=d.toDateString()===now.toDateString(), tmr=new Date(now); tmr.setDate(now.getDate()+1);
+  return (same?"today":d.toDateString()===tmr.toDateString()?"tomorrow":d.toLocaleDateString(undefined,{weekday:"long"}))+" at "+label;
+}
+const toApply=()=>rows.filter(r=>r.status==="Drafted").sort((a,b)=>(isNew(b)-isNew(a))||(b.date_found||"").localeCompare(a.date_found||"")||(b.fit||0)-(a.fit||0));
+function renderPicks(){
+  const all=toApply(), picks=picksAll?all:all.slice(0,6);
+  const nNew=all.filter(isNew).length;
+  $("picksaside").textContent=all.length?`${all.length} waiting${nNew?` · ${nNew} new today`:""} · newest first`:"";
+  const lead=$("lead"); lead.hidden=!(state.run_summary&&nNew); lead.textContent=state.run_summary||"";
+  const m=$("picksmore"); m.hidden=all.length<=6; m.textContent=picksAll?"Show fewer":`Show all ${all.length}`; m.onclick=()=>{ picksAll=!picksAll; renderPicks(); };
+  const box=$("picks"); box.className="picks"+(picks.length===1?" few":picks.length===2?" two":"");
+  if(!picks.length){ box.innerHTML=`<div class="empty">${rows.length?`Nothing to apply to right now. The next run is ${nextRun()}.`:"Roles waiting for you to apply appear here."}</div>`; return; }
+  box.innerHTML=picks.map(pickCard).join("");
+  bindResumeBtns(box); bindRq(box); fitWhy(box);
+  box.querySelectorAll("[data-applied]").forEach(b=>b.onclick=()=>markApplied(b.dataset.applied));
+  box.querySelectorAll("[data-notyet]").forEach(b=>b.onclick=()=>{ askApplied.delete(b.dataset.notyet); renderPicks(); });
+  box.querySelectorAll("[data-post]").forEach(a=>a.addEventListener("click",()=>postClicked.add(a.dataset.post)));
+  box.querySelectorAll("[data-open]").forEach(a=>a.onclick=e=>{e.preventDefault(); open.add(a.dataset.open); filt.stage=""; filt.q=""; $("q").value=""; renderPipe(); renderList(); const el=document.querySelector(`[data-row="${CSS.escape(a.dataset.open)}"]`); el&&el.scrollIntoView({behavior:"smooth",block:"center"});});
+}
+function visible(){
+  const q=filt.q.toLowerCase();
+  let v=rows.filter(r=>(!filt.track||rowGoals(r).includes(filt.track))&&(!filt.stage||r.status===filt.stage)&&(!filt.hide||!CLOSED.has(r.status))&&(!q||[r.company,r.role,r.notes,r.location,r.next_step].join(" ").toLowerCase().includes(q)));
+  const by={date:(a,b)=>(b.date_found||"").localeCompare(a.date_found||"")||(b.fit||0)-(a.fit||0), fit:(a,b)=>(b.fit||0)-(a.fit||0), status:(a,b)=>(ORDER[a.status]??9)-(ORDER[b.status]??9)||(b.date_found||"").localeCompare(a.date_found||""), follow:(a,b)=>(a.follow_up||"9999").localeCompare(b.follow_up||"9999")};
+  return v.sort(by[filt.sort]||by.date);
+}
+function renderList(){
+  const v=visible();
+  if(!rows.length){ $("list").innerHTML=`<div class="notice">${db?"No applications yet. The first run adds its picks here, or add one below.":"Open this page in Claude to load your tracker."}</div>`; return; }
+  if(!v.length){ $("list").innerHTML=`<div class="notice">No applications match these filters.</div>`; return; }
+  let last=null;
+  $("list").innerHTML=`<div class="row head" role="presentation"><span>Found</span><span>Company · role</span><span>Location</span><span>Stage</span><span>Fit</span><span>Pay</span><span></span></div>`+
+  v.map(r=>{ const ex=open.has(r.id); const pend=r.pending_confirm&&r.pending_confirm.type;
+    const grp=(filt.sort==="status"&&r.status!==last)?`<div class="grp" role="presentation">${dot(r.status)}${esc(stageName(r.status))}</div>`:""; last=r.status;
+    return `${grp}<div role="listitem" data-row="${esc(r.id)}"><div class="row" role="button" tabindex="0" aria-expanded="${ex}" data-toggle="${esc(r.id)}">
+      <span class="date mono">${dot(r.status)}${fmtDate(r.date_found)}</span>
+      <span class="who"><span class="co-l"><b>${esc(r.company)}</b>${shortTag(r)}${pend?`<span class="flag">Confirm ${esc(stageName(pend).toLowerCase())}?</span>`:""}${r.request_cover_letter?`<span class="flag" style="color:var(--watch)">letter queued</span>`:""}${rqBtn(r)}</span><span class="role-l">${roleText(r)}</span></span>
+      <span class="loc">${r.status==="Waiting for opening"?(r.last_checked?`Checked ${fmtDate(r.last_checked)} · still closed`:"Not checked yet"):esc(String(r.location||"").replace(/\s*\(.*?\)\s*/g," ").trim())}</span>
+      <span class="st">${stageCtl(r)}</span>
+      <span class="fitc">${fit(r.fit)}</span>
+      <span class="pay">${esc(String(r.base_pay||"").replace(/\s*\(.*?\)\s*/g," ").trim())}</span>
+      <span class="chev" aria-hidden="true">›</span></div>${ex?detail(r):""}</div>`}).join("");
+  const tog=id=>{ open.has(id)?open.delete(id):open.add(id); renderList(); const el=document.querySelector(`[data-toggle="${CSS.escape(id)}"]`); el&&el.focus(); };
+  $("list").querySelectorAll("[data-toggle]").forEach(b=>{ b.onclick=e=>{ if(e.target.closest("select,button,a,input")) return; tog(b.dataset.toggle); };
+    b.onkeydown=e=>{ if(e.target!==b) return; if(e.key==="Enter"||e.key===" "){ e.preventDefault(); tog(b.dataset.toggle); } }; });
+  $("list").querySelectorAll(".stsel").forEach(sel=>{ sel.onclick=e=>e.stopPropagation(); sel.onkeydown=e=>e.stopPropagation();
+    sel.onchange=()=>{ sel.style.backgroundColor=`var(--s-${sk(sel.value)})`; setStage(sel.dataset.id, sel.value); }; });
+  bindRq($("list"));
+  $("list").querySelectorAll("[data-field]").forEach(bindField);
+  bindResumeBtns($("list"));
+  $("list").querySelectorAll("[data-confirm]").forEach(b=>b.onclick=()=>confirmEvent(b.dataset.id,b.dataset.confirm==="yes"));
+}
+
+/* .docx builder: same code and same docx version (8.5.0) as scripts/builder.js, so the file matches the run's */
+let docxLib=null;
+function loadDocx(){ if(docxLib) return docxLib; docxLib=new Promise((res,rej)=>{ const s=document.createElement("script"); s.src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"; s.onload=()=>res(window.docx); s.onerror=()=>{ docxLib=null; rej(new Error("load")); }; document.head.appendChild(s); }); return docxLib; }
+async function buildDocx(spec){
+  const { Document, Packer, Paragraph, TextRun, ExternalHyperlink, AlignmentType, LevelFormat, BorderStyle, Table, TableRow, TableCell, WidthType } = await loadDocx();
+  const FONT='Calibri', SZ=21, RIGHT=12240-2*864;
+  const run=(t,o={})=>new TextRun({text:t,font:FONT,size:SZ,...o});
+  const link=(l,u)=>new ExternalHyperlink({link:u,children:[run(l,{color:'1155CC',underline:{}})]});
+  const section=t=>new Paragraph({spacing:{before:140,after:60},border:{bottom:{style:BorderStyle.SINGLE,size:6,color:'444444',space:1}},children:[run(t.toUpperCase(),{bold:true,size:22})]});
+  const NB={style:BorderStyle.NONE,size:0,color:'FFFFFF'}, NOB={top:NB,bottom:NB,left:NB,right:NB,insideHorizontal:NB,insideVertical:NB};
+  const LW=Math.round(RIGHT*0.72), RW=RIGHT-LW;
+  const twoCol=(l,r,lo={},ro={},before=0)=>new Table({width:{size:RIGHT,type:WidthType.DXA},columnWidths:[LW,RW],borders:NOB,rows:[new TableRow({children:[
+    new TableCell({width:{size:LW,type:WidthType.DXA},borders:NOB,margins:{top:0,bottom:0,left:0,right:0},children:[new Paragraph({spacing:{before,after:0},children:[run(l,lo)]})]}),
+    new TableCell({width:{size:RW,type:WidthType.DXA},borders:NOB,margins:{top:0,bottom:0,left:0,right:0},children:[new Paragraph({alignment:AlignmentType.RIGHT,spacing:{before,after:0},children:[run(r,ro)]})]})]})]});
+  const bullet=t=>new Paragraph({numbering:{reference:'b',level:0},spacing:{after:20},children:[run(t)]});
+  const para=(c,o={})=>new Paragraph({spacing:{after:20},...o,children:c});
+  // Contact block and education come from the profile; with no profile the output matches the original byte for byte.
+  const email=prof("email"), contact=[prof("location"),prof("phone")].filter(Boolean).join('  •  ');
+  const links=prof("links").flatMap((l,i)=>[...(i?[run('  •  ')]:[]),link(l.label,l.url)]);
+  const header=tag=>[new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:20},children:[run(prof("name"),{bold:true,size:34})]}),
+    ...(tag?[new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:20},children:[run(tag)]})]:[]),
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:0},children:[run(contact+(email?'  •  ':'')),...(email?[link(email,'mailto:'+email)]:[])]}),
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},children:links})];
+  const edu=prof("education").flatMap((e,i)=>[twoCol(e.line,e.date||'',{bold:true},{},i?40:0),...(e.detail?[para([run(e.detail)])]:[])]);
+  const job=j=>[twoCol(j.org,j.loc,{bold:true},{},80),twoCol(j.title,j.dates,{italics:true},{italics:true}),...(j.bullets||[]).map(bullet)];
+  const children=[...header(spec.tagline),section('Summary'),para([run(spec.summary)]),section('Education'),...edu,
+    section('Experience'),...spec.jobs.flatMap(job),section('Technical Skills'),...spec.skills.map(([k,v])=>para([run(k+': ',{bold:true}),run(v)]))];
+  const doc=new Document({numbering:{config:[{reference:'b',levels:[{level:0,format:LevelFormat.BULLET,text:'•',alignment:AlignmentType.LEFT,style:{paragraph:{indent:{left:300,hanging:220}}}}]}]},
+    sections:[{properties:{page:{size:{width:12240,height:15840},margin:{top:720,bottom:720,left:864,right:864}}},children}]});
+  return Packer.toBlob(doc);
+}
+async function downloadDocx(id, btn){
+  const r=rows.find(x=>x.id===id); if(!r||!r.resume_spec) return;
+  if(!state.profile||!state.profile.name){ (btn.querySelector("span")||btn).textContent="Profile not loaded yet (next run adds it)"; return; }
+  if(!dl){ (btn.querySelector("span")||btn).textContent="Downloads unavailable here"; btn.disabled=true; return; }
+  const lab=btn.querySelector("span")||btn; const old=lab.textContent; btn.disabled=true; lab.textContent="Preparing…";
+  try{
+    const blob=await buildDocx(r.resume_spec);
+    const name=(r.resume_file||`${r.company} – ${r.role} – Resume.docx`).replace(/[\\/:*?"<>|]/g,"-");
+    await dl.save({filename:name, data:blob});
+    lab.textContent="Saved";
+  }catch(e){
+    lab.textContent= e&&e.code==="declined" ? old : (e&&e.message==="load" ? "Couldn't load the file builder" : "Couldn't save. Try again");
+  }
+  setTimeout(()=>{ lab.textContent=old; btn.disabled=false; }, 1800);
+}
+
+
+const NEXT={Drafted:"Review resume; apply", Applied:d=>`Applied ${d}; watch for a confirmation or assessment`, OA:"Complete the assessment",
+  Interview:"Prepare for the interview; send a thank-you after", Offer:"Review the offer; decide by the deadline", Accepted:"Offer accepted", "Waiting for opening":"Watching; each run checks if it reopens",
+  Rejected:"None (closed)", Withdrawn:"None (closed)", Skipped:"None (skipped)"};
+function stagePatch(r, val, now){
+  const p={edits:{}}; if(!r) return p; const today=todayISO();  // local date: after 7 pm Eastern the UTC date is already tomorrow
+  if(val==="Applied" && !r.date_applied){ p.date_applied=today; p.edits.date_applied=now; }
+  if(val==="Applied" && !r.follow_up){ p.follow_up=addDays(today,14); p.edits.follow_up=now; }
+  const n=NEXT[val]; if(n){ p.next_step=typeof n==="function"?n(fmtDate(today)):n; p.edits.next_step=now; }
+  return p;
+}
+function stageCtl(r){
+  if(!canWrite||!db) return pill(r.status);
+  return `<select class="stsel" data-id="${esc(r.id)}" aria-label="Stage for ${esc(r.company)}" style="background-color:var(--s-${sk(r.status)})">${STATUSES.map(s=>`<option value="${esc(s)}" ${s===r.status?"selected":""}>${esc(stageName(s))}</option>`).join("")}</select>`;
+}
+function setStage(id,val){ return writeField(id,"status",val); }
+function rqBtn(r,full){
+  if((r.resume_spec&&r.resume_spec.jobs)||safeUrl(r.resume_url)||r.status!=="Drafted") return "";
+  if(!canWrite||!db) return r.request_resume&&!full?`<span class="flag" style="color:var(--watch)">resume queued</span>`:"";
+  return r.request_resume?`<button type="button" class="rq on" data-rq="${esc(r.id)}" data-v="0" title="The next run drafts a tailored resume. Click to cancel.">Resume queued ✓</button>`
+    :`<button type="button" class="rq" data-rq="${esc(r.id)}" data-v="1" title="The next run tailors a resume for this role">Draft a resume</button>`;
+}
+function bindRq(box){ box.querySelectorAll("[data-rq]").forEach(b=>b.onclick=e=>{ e.stopPropagation(); b.disabled=true; writeField(b.dataset.rq,"request_resume",b.dataset.v==="1"); }); }
+async function requestFromNearMiss(i,btn){
+  const n=nearMisses[i]; if(!n||!db) return; btn.disabled=true;
+  const key=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+  const ex=rows.find(r=>key(r.company)===key(n.company)&&key(r.role)===key(n.title));
+  if(ex){ await writeField(ex.id,"request_resume",true); btn.textContent="Resume queued ✓"; btn.classList.add("on"); return; }
+  const today=todayET(), now=new Date().toISOString();
+  const id=(n.company+"-"+n.title).toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,60).replace(/-$/,"")+"-"+today.replace(/-/g,"");
+  const doc={id,date_found:today,track:defGoal(),company:n.company,role:n.title,location:"",work_mode:"",posting_url:n.url||"",source:"manual",source_detail:"Added by hand (from near misses)",base_pay:"",fit:0,chance:"",
+    why:"Near miss: "+(n.reason||""),status:"Drafted",resume_url:"",cover_letter_url:"",date_applied:"",contact:"",next_step:"Resume drafting in the next run; then apply",follow_up:"",
+    notes:today+": you asked for a resume from the near-miss list ("+(n.reason||"")+")",my_notes:"",request_cover_letter:false,request_resume:true,pending_confirm:{},updated_by:uid(),updated_at:now,edits:{status:now,request_resume:now}};
+  try{ await db.doc("apps/"+id).set(doc); btn.textContent="Added · resume queued ✓"; btn.classList.add("on"); }
+  catch(e){ btn.disabled=false; btn.textContent="Couldn't add. Try again"; }
+}
+function detail(r){
+  const link=(u,l)=>safeUrl(u)?`<a href="${esc(u)}" target="_blank" rel="noopener">${l}</a>`:"–";
+  const dis=canWrite?"":"disabled";
+  const p=r.pending_confirm;
+  return `<div class="detail">
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      ${r.why?`<p>${esc(r.why)}</p>`:""}
+      <dl class="kv">
+        <dt>Work mode</dt><dd>${esc(r.work_mode)||"–"}</dd>
+        <dt>Chance</dt><dd>${esc(r.chance)||"–"}</dd>
+        <dt>Source</dt><dd>${esc(sourceText(r))||"–"}</dd>
+        <dt>Links</dt><dd style="display:flex;gap:12px;flex-wrap:wrap">${link(r.posting_url,"Posting")} ${link(r.resume_url,"Resume in Drive")} ${link(r.cover_letter_url,"Cover letter")}</dd>
+        <dt>Resume</dt><dd style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${resumeBtn(r)||`<span style="color:var(--muted)">${safeUrl(r.resume_url)?"Drafted before in-dashboard previews; open it in Drive.":r.request_resume?"Requested. The next run drafts it.":"No tailored resume yet."}</span>${rqBtn(r,true)}`}</dd>
+        <dt>History</dt><dd style="color:var(--muted)">${esc(r.notes)||"–"}</dd>
+      </dl>
+    </div>
+    <div class="edit">
+      ${p&&p.type?`<div class="confirm"><span><strong>Confirm ${esc(stageName(p.type).toLowerCase())}?</strong> ${esc(p.evidence||"")}</span><span style="display:flex;gap:8px"><button class="btn small primary" type="button" data-confirm="yes" data-id="${esc(r.id)}" ${dis}>Yes, mark ${esc(stageName(p.type))}</button><button class="btn small" type="button" data-confirm="no" data-id="${esc(r.id)}" ${dis}>No, keep as is</button></span></div>`:""}
+      <label>Date applied<input class="field" type="date" id="f-da-${esc(r.id)}" data-field="date_applied" data-id="${esc(r.id)}" value="${esc(r.date_applied)}" ${dis}></label>
+      <label class="full">Next step<input class="field" id="f-ns-${esc(r.id)}" data-field="next_step" data-id="${esc(r.id)}" value="${esc(r.next_step)}" ${dis}></label>
+      <label>Follow-up date<input class="field" type="date" id="f-fu-${esc(r.id)}" data-field="follow_up" data-id="${esc(r.id)}" value="${esc(r.follow_up)}" ${dis}></label>
+      <label>Contact / referral<input class="field" id="f-ct-${esc(r.id)}" data-field="contact" data-id="${esc(r.id)}" value="${esc(r.contact)}" ${dis}></label>
+      <label class="full">Your notes<textarea class="field" id="f-mn-${esc(r.id)}" data-field="my_notes" data-id="${esc(r.id)}" placeholder="Anything for yourself or the next run" ${dis}>${esc(r.my_notes)}</textarea></label>
+      <label class="check full"><input type="checkbox" id="f-cl-${esc(r.id)}" data-field="request_cover_letter" data-id="${esc(r.id)}" ${r.request_cover_letter?"checked":""} ${dis}> Draft a cover letter in the next run</label>
+      <div class="saved full" id="saved-${esc(r.id)}" aria-live="polite"></div>
+    </div></div>`;
+}
+const timers={};
+function bindField(el){
+  const ev=el.tagName==="SELECT"||el.type==="checkbox"||el.type==="date"?"change":"input";
+  el.addEventListener(ev,()=>{ const id=el.dataset.id, f=el.dataset.field; const val=el.type==="checkbox"?el.checked:el.value;
+    clearTimeout(timers[id+f]); timers[id+f]=setTimeout(()=>writeField(id,f,val), ev==="input"?700:0); });
+}
+const queue={};
+// Writes are queued per row; resolves true when saved, false when not. A status change also fills its follow-on fields.
+function writePatch(id, fields){
+  if(!db) return Promise.resolve(false);
+  const now=new Date().toISOString();
+  const patch={updated_by:uid(), updated_at:now, edits:{}};
+  if("status" in fields){ const sp=stagePatch(rows.find(x=>x.id===id), fields.status, now), e=sp.edits; delete sp.edits; Object.assign(patch, sp); Object.assign(patch.edits, e); }
+  for(const [k,v] of Object.entries(fields)){ patch[k]=v; patch.edits[k]=now; }
+  const prev=queue[id]||Promise.resolve();
+  queue[id]=prev.then(()=>db.doc("apps/"+id).update(patch)).then(()=>{ const s=$("saved-"+id); if(s){ s.style.color=""; s.textContent="Saved"; setTimeout(()=>{ if(s) s.textContent=""; },1600);} return true; })
+    .catch(e=>{ const s=$("saved-"+id); if(e&&e.code==="invalid_argument"){ canWrite=false; } if(s){ s.style.color="var(--bad)"; s.textContent=e&&e.code==="invalid_argument"?"You can view this tracker but not edit it.":"Couldn't save. Check your connection and try again."; } return false; });
+  return queue[id];
+}
+function writeField(id,f,val){ return writePatch(id,{[f]:val}); }
+const confirming=new Set();
+async function confirmEvent(id,yes){
+  const r=rows.find(x=>x.id===id); if(!r||!db||confirming.has(id)) return;
+  const p=r.pending_confirm||{}; if(!p.type) return;  // already answered
+  confirming.add(id);
+  document.querySelectorAll(`[data-confirm][data-id="${CSS.escape(id)}"]`).forEach(b=>b.disabled=true);
+  const now=new Date().toISOString(), kind=String(p.type).toLowerCase();
+  // The database merges updates, so an empty {} would leave the old fields in place: overwrite each one instead.
+  const cleared={type:"", evidence:"", detected:"", answered:now, answer:yes?"confirmed "+kind:"not "+kind};
+  const patch={pending_confirm:cleared, updated_by:uid(), updated_at:now, edits:{pending_confirm:now}};
+  if(yes){ patch.status=p.type; patch.edits.status=now; patch.notes=(r.notes?r.notes+"; ":"")+todayET()+": you confirmed "+kind; }
+  else { patch.notes=(r.notes?r.notes+"; ":"")+todayET()+": you said the "+kind+" email was not one"; }
+  Object.assign(r, patch, {edits:{...(r.edits||{}), ...patch.edits}}); renderAll();  // hide the buttons right away
+  try{ await db.doc("apps/"+id).update(patch); }
+  catch(e){ r.pending_confirm=p; renderAll(); const s=$("saved-"+id); if(s){ s.style.color="var(--bad)"; s.textContent="Couldn't save. Try again."; } }
+  finally{ confirming.delete(id); }
+}
+function renderSide(){
+  $("nmcount").textContent=nearMisses.length?`${nearMisses.length} in the last few runs`:"";
+  const list=nmAll?nearMisses:nearMisses.slice(0,5);
+  $("nm").innerHTML=nearMisses.length?list.map(n=>`<div><span class="when">${fmtDate(n.date)}</span><span class="t">${esc(n.company)} — ${safeUrl(n.url)?`<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`:esc(n.title)}</span><span class="why">${esc(n.reason)}</span>${canWrite&&db?(rows.some(r=>r.request_resume&&r.company===n.company&&r.role===n.title)?`<span class="acts"><span class="flag" style="color:var(--watch)">resume queued</span></span>`:`<span class="acts"><button type="button" class="rq" data-nmi="${nearMisses.indexOf(n)}">Draft a resume</button></span>`):""}</div>`).join("")+(nearMisses.length>5?`<button type="button" class="more" id="nmmore">${nmAll?"Show fewer":"Show all "+nearMisses.length}</button>`:""):`<div class="none">Each run lists the roles it skipped and why.</div>`;
+  const m=$("nmmore"); if(m) m.onclick=()=>{ nmAll=!nmAll; renderSide(); };
+  $("nm").querySelectorAll("[data-nmi]").forEach(b=>b.onclick=()=>requestFromNearMiss(+b.dataset.nmi,b));
+  $("nmn").textContent=nearMisses.length;
+}
+document.querySelectorAll("details[data-fold]").forEach(d=>{ try{ if(localStorage.getItem("cjs-fold-"+d.dataset.fold)==="1") d.open=true; }catch(e){}
+  d.addEventListener("toggle",()=>{ try{ localStorage.setItem("cjs-fold-"+d.dataset.fold, d.open?"1":"0"); }catch(e){} }); });
+function openRows(ids){
+  if(!ids.length) return; ids.forEach(id=>open.add(id)); filt.stage=""; filt.q=""; filt.track=""; $("q").value=""; saveFilt(); renderGoalSeg(); renderPipe(); renderList();
+  const el=document.querySelector(`[data-row="${CSS.escape(ids[0])}"]`); el&&el.scrollIntoView({behavior:"smooth",block:"center"});
+}
+const addDays=(iso,n)=>{ const [y,m,d]=iso.split("-").map(Number); return new Date(Date.UTC(y,m-1,d+n)).toISOString().slice(0,10); };  // calendar math, no time zone
+function renderToday(){
+  const panel=$("today"); panel.hidden=!loaded; if(!loaded) return;
+  const today=todayISO(), dis=canWrite&&db?"":"disabled";
+  const conf=rows.filter(r=>r.pending_confirm&&r.pending_confirm.type);
+  const due=r=>r.follow_up&&r.follow_up<=today&&["Applied","OA","Interview","Offer"].includes(r.status);
+  const fu=rows.filter(r=>due(r)||(r.needs_follow_up&&r.status==="Applied")).sort((a,b)=>(a.follow_up||a.date_applied||"").localeCompare(b.follow_up||b.date_applied||""));
+  const n=toApply().length, id=r=>esc(r.id);
+  const lines=[
+    ...conf.map(r=>{ const nm=stageName(r.pending_confirm.type); return `<div class="ti"><div class="tt"><span class="tag c">Confirm</span><b>${esc(r.company)}</b> — ${esc(r.role)}: confirm ${esc(nm.toLowerCase())}?${r.pending_confirm.evidence?`<span class="ev">${esc(r.pending_confirm.evidence)}</span>`:""}</div>
+      <div class="tb"><button type="button" class="btn small primary" data-confirm="yes" data-id="${id(r)}" ${dis}>Yes, mark ${esc(nm)}</button><button type="button" class="btn small" data-confirm="no" data-id="${id(r)}" ${dis}>No, keep as is</button></div></div>`; }),
+    ...fu.map(r=>`<div class="ti"><div class="tt"><span class="tag f">Follow up</span>Follow up with <b>${esc(r.company)}</b> — ${roleText(r)}${r.date_applied?` (applied ${fmtDate(r.date_applied)}${r.needs_follow_up&&!due(r)?", no reply in 3+ weeks":""})`:""}</div>
+      <div class="tb"><button type="button" class="btn small" data-fuopen="${id(r)}">Open</button><button type="button" class="btn small" data-fudone="${id(r)}" ${dis}>Done</button><button type="button" class="btn small" data-fusnooze="${id(r)}" ${dis}>Snooze a week</button></div></div>`),
+    ...(n?[`<div class="ti"><button type="button" class="sum" data-toapply>${n} role${n===1?"":"s"} to apply to ↓</button></div>`]:[]),
+  ];
+  const box=$("todaylist");
+  box.innerHTML=lines.length?lines.join(""):`<div class="none">Nothing needs you right now. The next run is ${nextRun()}.</div>`;
+  box.querySelectorAll("[data-confirm]").forEach(b=>b.onclick=()=>confirmEvent(b.dataset.id,b.dataset.confirm==="yes"));
+  box.querySelectorAll("[data-fuopen]").forEach(b=>b.onclick=()=>openRows([b.dataset.fuopen]));
+  box.querySelectorAll("[data-fudone]").forEach(b=>b.onclick=()=>{ const r=rows.find(x=>x.id===b.dataset.fudone); if(!r) return; b.disabled=true;
+    writePatch(r.id,{follow_up:"", needs_follow_up:false, last_follow_up:todayET(), notes:(r.notes?r.notes+"; ":"")+todayET()+": followed up"}).then(ok=>{ if(!ok){ b.disabled=false; showToast("Couldn't save. Try again.",null,true); } }); });
+  box.querySelectorAll("[data-fusnooze]").forEach(b=>b.onclick=()=>{ b.disabled=true;
+    writePatch(b.dataset.fusnooze,{follow_up:addDays(todayET(),7), needs_follow_up:false}).then(ok=>{ if(!ok){ b.disabled=false; showToast("Couldn't save. Try again.",null,true); } }); });
+  const t=box.querySelector("[data-toapply]"); if(t) t.onclick=()=>$("applypanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+/* ---------- theme: Auto follows the device; Light/Dark override it (remembered in this browser) ---------- */
+const THEMES=["auto","light","dark"];
+const THEME_ICON={auto:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="M8 2.5v11A5.5 5.5 0 0 0 8 2.5z" fill="currentColor"/></svg>',
+  light:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg>',
+  dark:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z"/></svg>'};
+const THEME_LABEL={auto:"Auto",light:"Light",dark:"Dark"};
+function curTheme(){ const t=document.documentElement.dataset.theme; return t==="light"||t==="dark"?t:"auto"; }
+function renderTheme(){
+  const t=curTheme(), next=THEMES[(THEMES.indexOf(t)+1)%3], b=$("themebtn");
+  b.innerHTML=THEME_ICON[t]+`<span>${THEME_LABEL[t]}</span>`;
+  b.setAttribute("aria-label",`Theme: ${THEME_LABEL[t]}${t==="auto"?" (follows your device)":""}. Switch to ${THEME_LABEL[next]}.`);
+  b.title=t==="auto"?"Theme follows your device. Click to switch.":`Theme: ${THEME_LABEL[t]}. Click to switch.`;
+}
+$("themebtn").onclick=()=>{
+  const next=THEMES[(THEMES.indexOf(curTheme())+1)%3];
+  if(next==="auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme=next;
+  try{ next==="auto"?localStorage.removeItem("cjs-theme"):localStorage.setItem("cjs-theme",next); }catch(e){}
+  renderTheme();
+};
+renderTheme();
+function renderAll(){ renderProfile(); renderToday(); renderRun(); renderPicks(); renderChecks(); renderPipe(); renderList(); renderSide(); }
+
+$("a-status").innerHTML=STATUSES.map(s=>`<option value="${esc(s)}" ${s==="Applied"?"selected":""}>${esc(stageName(s))}</option>`).join("");
+$("q").oninput=e=>{ filt.q=e.target.value; renderList(); };
+$("sort").value=filt.sort; $("sort").onchange=e=>{ filt.sort=e.target.value; saveFilt(); renderList(); };
+$("hideclosed").checked=!!filt.hide; $("hideclosed").onchange=e=>{ filt.hide=e.target.checked; saveFilt(); renderList(); };
+renderGoalSeg();
+$("addform").addEventListener("submit", async e=>{ e.preventDefault(); if(!db) return;
+  const co=$("a-company").value.trim(), ro=$("a-role").value.trim(); if(!co||!ro) return;
+  const today=todayET();
+  const id=(co+"-"+ro).toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,60).replace(/-$/,"")+"-"+today.replace(/-/g,"");
+  const now=new Date().toISOString(); const st=$("a-status").value;
+  const doc={id,date_found:today,track:goalToWrite($("a-track").value),company:co,role:ro,location:$("a-loc").value.trim(),work_mode:"",posting_url:$("a-url").value.trim(),source:"manual",source_detail:"Added by hand",base_pay:"",fit:0,chance:"",why:"",status:st,resume_url:"",cover_letter_url:"",date_applied:st==="Applied"?today:"",contact:"",next_step:"",follow_up:"",notes:today+": added by hand",my_notes:"",request_cover_letter:false,pending_confirm:{},updated_by:uid(),updated_at:now,edits:{status:now}};
+  $("a-submit").disabled=true;
+  try{ await db.doc("apps/"+id).set(doc); $("a-msg").style.color="var(--good)"; $("a-msg").textContent="Added. The next run fills in research for it."; e.target.reset(); $("a-status").value="Applied"; }
+  catch(err){ $("a-msg").style.color="var(--bad)"; $("a-msg").textContent=err&&err.code==="invalid_argument"?"You can view this tracker but not edit it.":"Couldn't add it. Try again."; }
+  $("a-submit").disabled=false;
+});
+renderAll();
+
+(async()=>{
+  const c=window.claude; if(!c||!c.use){ setSync("Open in Claude to load live data"); renderAll(); return; }
+  db=await c.use("db");
+  if(!db){ setSync("Tracker data isn't available in this view"); renderAll(); return; }
+  try{ const u=await c.use("user"); if(u){ const w=await u.can("data.write"); if(w===false){ canWrite=false; $("addbox").hidden=true; } } }catch(e){}
+  setSync("Live",true);
+  db.collection("apps").onSnapshot(s=>{ rows=s.docs.map(d=>({id:d.id,...d.data()})); loaded=true; renderGoalSeg(); renderAll(); }, ()=>{ setSync("Lost connection. Reload to reconnect."); });
+  db.doc("meta/state").onSnapshot(s=>{ state=s.exists?s.data():{}; renderGoalSeg(); renderAll(); }, ()=>{});
+  db.doc("meta/near_misses").onSnapshot(s=>{ nearMisses=(s.exists&&s.data().items)||[]; renderSide(); }, ()=>{});
+  db.collection("checks").onSnapshot(s=>{ checks=s.docs.map(d=>({key:d.id,...d.data()})); renderChecks(); }, ()=>{});
+  db.doc("meta/bases").onSnapshot(s=>{ bases=(s.exists&&s.data().resumes)||{}; }, ()=>{});
+  try{ dl=await c.use("downloads"); }catch(e){ dl=null; }
+})();
+</script>

@@ -16,27 +16,27 @@ search:
     location: Philadelphia, PA
     radius: 40
   - role: associate data scientist
-    location: Washington, DC
+    location: Philadelphia, PA
     radius: 30
   - role: technology development program 2027
     location: remote
   - role: solutions architect associate
-    location: Charlotte, NC
+    location: Philadelphia, PA
     radius: 30
   - role: data analyst
-    location: Washington, DC
+    location: Philadelphia, PA
     radius: 30
   - role: technical consultant entry level
     location: Philadelphia, PA
     radius: 40
   - role: data scientist new grad
-    location: New York, NY
+    location: remote
     radius: 20
   - role: software engineer new grad
-    location: Charlotte, NC
+    location: Philadelphia, PA
     radius: 30
   - role: technical product analyst
-    location: Washington, DC
+    location: Philadelphia, PA
     radius: 30
   - role: integration engineer
     location: Philadelphia, PA
@@ -44,36 +44,36 @@ search:
   - role: technical trainer
     location: remote
   - role: business intelligence analyst
-    location: Charlotte, NC
+    location: Philadelphia, PA
     radius: 30
   - role: technical account manager associate
-    location: New York, NY
+    location: remote
     radius: 20
   - role: associate product manager technical
     location: Philadelphia, PA
     radius: 40
   - role: data analyst
-    location: Baltimore, MD
+    location: Camden, NJ
     radius: 30
   - role: rotational program analyst 2027
-    location: Charlotte, NC
+    location: Philadelphia, PA
     radius: 30
   - role: systems analyst entry level
-    location: Washington, DC
+    location: Philadelphia, PA
     radius: 30
   - role: data engineer new grad
     location: remote
   - role: data scientist associate
-    location: Charlotte, NC
+    location: Philadelphia, PA
     radius: 30
   - role: solutions engineer entry level
     location: Philadelphia, PA
     radius: 40
   - role: GIS analyst
-    location: Washington, DC
+    location: Philadelphia, PA
     radius: 30
   - role: analytics engineer
-    location: New York, NY
+    location: remote
     radius: 20
   web_queries:
   - "site:job-boards.greenhouse.io \"new grad\" 2027 analyst OR \"data scientist\" -senior"
@@ -81,15 +81,15 @@ search:
   - "site:jobs.ashbyhq.com \"new grad\" data OR analytics 2027"
   - "site:myworkdayjobs.com \"2027\" \"development program\" technology analyst"
   - "\"technology leadership program\" OR \"technology development program\" 2027 bank"
-  - "\"analyst development program\" 2027 data Charlotte OR Philadelphia OR Washington"
-  - entry level analytics engineer hybrid Philadelphia OR King of Prussia
-  - associate data scientist hybrid Washington DC health tech
+  - "\"analyst development program\" 2027 data Philadelphia OR remote"
+  - entry level analytics engineer hybrid Philadelphia OR Camden
+  - associate data scientist hybrid Philadelphia health tech
   - new grad solutions architect 2027 hybrid
   - best places to work work-life balance mid-size software company hiring new grads 2027
-  - climate nonprofit data analyst entry level hybrid DC
-  - health tech company data analyst early career 2027 hybrid New York
+  - climate nonprofit data analyst entry level hybrid Philadelphia
+  - health tech company data analyst early career 2027 hybrid Philadelphia
   - utility company data analyst entry level Delaware OR Pennsylvania
-  - asset manager technology analyst program 2027 Philadelphia OR Charlotte
+  - asset manager technology analyst program 2027 Philadelphia OR remote
   - 4-day work week company hiring data analyst entry level
   - USAJobs data scientist GS-7 OR GS-9 recent graduate non-defense
   - Delaware state jobs data analyst
@@ -178,80 +178,24 @@ search_note: Each run takes the next slice of each list, starting at the stored 
   Connector queries are cheap and run every time; web queries rotate. Connector searches always filter to roles posted in
   the last 7 days (3 on Mondays).
 dream_employers:
-- name: Vanguard
-  method: page
-  url: "https://www.vanguardjobs.com"
-  fallback: "search: site:vanguardjobs.com 2027 OR \"entry level\" OR \"leadership program\""
-  notes: Technology Leadership Program (Malvern PA, Charlotte NC). Daniel already applied to Entry Level Application Engineer
-    (Charlotte + PA).
-  search: "site:vanguardjobs.com 2027 OR \"entry level\" OR \"leadership program\" technology"
-- name: Capital One
+- name: Comcast
   method: search
-  url: "https://www.capitalonecareers.com"
-  fallback: "search: Capital One Technology Development Program 2027 OR \"Associate Software Engineer\" OR \"Data Analyst\"\
-    \ site:capitalonecareers.com"
-  notes: TDP (Aug 2027) closed as of 2026-10-22; watched row in tracker. McLean VA / Richmond VA / Philadelphia DE / NYC offices.
-  search: "site:capitalonecareers.com 2027 \"Technology Development Program\" OR \"Associate\" data OR software"
-- name: Google
-  method: page
-  url: "https://www.google.com/about/careers/applications/jobs/results?target_level=EARLY&location=United%20States"
-  fallback: "search: Google early career 2027 data OR analyst OR engineer site:google.com/about/careers"
-  notes: Exclude any role on YouTube teams. Gen-AI rule does not apply (dream override).
-  search: "site:google.com/about/careers \"early career\" OR \"new grad\" 2027 data OR analyst OR engineer -youtube"
-- name: Cisco
-  method: page
-  url: "https://careers.cisco.com/global/en/c/university-jobs"
-  fallback: "search: Cisco university OR \"new grad\" 2027 site:careers.cisco.com"
-  notes: Skip defense/government-security programs.
-  search: "site:careers.cisco.com \"university\" OR \"new grad\" OR \"early career\" 2027"
-- name: Intel
+  url: "https://jobs.comcast.com"
+  fallback: "search: Comcast early career OR \"new grad\" data analyst Philadelphia site:jobs.comcast.com"
+  notes: Philadelphia HQ; early-career analytics and engineering programs.
+  search: "site:jobs.comcast.com \"early career\" OR \"new grad\" OR associate data OR analyst Philadelphia"
+- name: Children's Hospital of Philadelphia
   method: search
-  url: "https://jobs.intel.com"
-  fallback: "search: Intel \"college graduate\" OR \"new grad\" 2027 data OR software site:jobs.intel.com"
-  notes: Skip roles tied to defense programs or requiring clearance.
-  search: "site:jobs.intel.com \"college graduate\" OR \"new grad\" data OR software"
-- name: Edmunds
-  method: page
-  url: "https://www.builtinla.com/company/edmunds/jobs"
-  fallback: "search: Edmunds.com jobs associate OR analyst OR engineer"
-  notes: Edmunds.com (car shopping), Santa Monica CA; remote-friendly. Not Edmund Optics.
-  search: Edmunds.com careers associate OR analyst OR engineer remote
-- name: Affirm
-  method: greenhouse_api
-  url: "https://boards-api.greenhouse.io/v1/boards/affirm/jobs"
-  fallback: "page: https://www.affirm.com/careers"
-  notes: Many roles remote US.
-  search: "site:job-boards.greenhouse.io/affirm \"early career\" OR \"Analyst I\" OR \"new grad\""
-- name: ABN AMRO
-  method: search
-  url: "https://www.abnamro.com/en/careers"
-  fallback: "search: ABN AMRO Clearing USA jobs Chicago OR New York associate OR analyst"
-  notes: "US presence mainly ABN AMRO Clearing (Chicago). Chicago not on Daniel's relocation list; show only if remote or NYC."
-  search: "ABN AMRO Clearing USA jobs associate OR analyst Chicago OR \"New York\""
+  url: "https://careers.chop.edu"
+  fallback: "search: CHOP research data analyst OR analytics entry level site:careers.chop.edu"
+  notes: Large research and analytics groups; many entry-level analyst roles.
+  search: "site:careers.chop.edu data analyst OR analytics OR biostatistics"
 - name: Toast
   method: greenhouse_api
   url: "https://boards-api.greenhouse.io/v1/boards/toast/jobs"
   fallback: "page: https://careers.toasttab.com"
-  notes: Boston HQ; many remote US roles.
-  search: "site:job-boards.greenhouse.io/toast OR site:careers.toasttab.com associate OR \"I\" OR early career"
-- name: HubSpot
-  method: page
-  url: "https://www.hubspot.com/careers/jobs?hubs_signup-url=www.hubspot.com%2Fcareers&page=1"
-  fallback: "page: https://www.hubspot.com/careers/emerging-talent"
-  notes: Emerging Talent program; Cambridge MA, remote US.
-  search: "site:hubspot.com/careers \"emerging talent\" OR \"new grad\" OR associate"
-- name: monday.com
-  method: page
-  url: "https://builtin.com/company/mondaycom/jobs"
-  fallback: "page: https://monday.com/careers"
-  notes: NYC office.
-  search: "monday.com careers New York associate OR junior OR \"new grad\""
-- name: Datadog
-  method: greenhouse_api
-  url: "https://boards-api.greenhouse.io/v1/boards/datadog/jobs"
-  fallback: "page: https://careers.datadoghq.com"
-  notes: "NYC HQ (hybrid). Large board: API output is truncated, so filter by keywords in the fetch prompt."
-  search: "site:careers.datadoghq.com \"new grad\" OR associate OR \"early career\" New York"
+  notes: Many remote US roles.
+  search: "site:job-boards.greenhouse.io/toast associate OR \"I\" OR early career"
 dream_note: "Checked fully on every run. Dream employers override excluded_categories in criteria.json but never the 'never'\
   \ list. FETCH RULE: WebFetch only opens URLs that came from a WebSearch result in the same session; typed or config URLs\
   \ are refused ('not on the allowlist'). So every employer is reached by running its `search` query first and fetching result\

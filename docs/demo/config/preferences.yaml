@@ -166,121 +166,57 @@ location:
   commute_modes:
   - car
   - train
-  relocate: 'yes'
-  relocate_to:
-  - Washington, DC area (incl. Silver Spring, MD)
-  - Charlotte, NC area
-  - New York City
-  - Philadelphia area
+  relocate: 'no'
+  relocate_to: []
   ratings:
-    Washington, DC area: love
-    Charlotte, NC: love
-    Philadelphia & suburbs: ok
-    New York City: ok
+    Philadelphia & inner suburbs: love
+    South Jersey (Camden, Cherry Hill): ok
     Remote (US): "ok (Career: ranked below hybrid)"
-    Philadelphia / Philadelphia / N. Delaware: only_if_great
-    New Jersey (south/central): only_if_great
-    Baltimore: ok (not rated; assumed)
+    Wilmington, DE / Trenton, NJ: only_if_great
   other_cities: only with a clear remote or listed-city office option; say so explicitly
 places:
   _about: What the automatic filter treats as an acceptable location (literal phrases, matched as whole words) and the location
     bonus in the pre-score.
   acceptable_states:
-  - DE
   - PA
-  - MD
-  - DC
-  - VA
   - NJ
-  - NY
-  - NC
+  - DE
   acceptable_state_names:
-  - delaware
   - pennsylvania
-  - maryland
-  - district of columbia
-  - virginia
   - new jersey
-  - new york
-  - north carolina
+  - delaware
   acceptable_cities:
-  - newark
-  - wilmington
   - philadelphia
   - philly
-  - king of prussia
-  - malvern
-  - conshohocken
-  - baltimore
-  - columbia, md
-  - washington dc
-  - washington, dc
-  - washington d.c.
-  - washington, d.c.
-  - washington d.c
-  - washington, d.c
-  - washington dc area
-  - silver spring
-  - bethesda
-  - rockville
-  - arlington
-  - alexandria
-  - mclean
-  - reston
-  - tysons
-  - herndon
-  - new york
-  - nyc
-  - brooklyn
-  - manhattan
-  - jersey city
-  - hoboken
-  - princeton
   - camden
   - cherry hill
-  - charlotte
-  - chesterfield
-  - richmond
+  - wilmington
+  - trenton
   score:
   - points: 1.5
     contains:
-    - washington
-    - silver spring
-    - arlington
-    - charlotte
+    - philadelphia
+    - philly
   - points: 1.0
     contains:
-    - philadelphia
-    - new york
-    - nyc
-    - baltimore
-    - malvern
-    - conshohocken
-  - points: 0.8
+    - camden
+    - cherry hill
+  - points: 0.5
     contains:
-    - wilmington, de
-    - delaware
+    - wilmington
+    - trenton
   far_cities:
   - seattle
-  - san
-  - francisco
+  - san francisco
   - austin
   - chicago
   - boston
   - denver
   - atlanta
   - dallas
-  - los
-  - angeles
-  - madison
-  - verona
-  - london
-  - toronto
-  - bangalore
-  - dublin
-  - tokyo
-  - paris
-  - madrid
+  - los angeles
+  - phoenix
+  - houston
 roles:
   love:
   - analytics engineer
@@ -430,35 +366,21 @@ employers:
     'no':
     - universities & research institutes
     - startups under 200 people
-  excites: privately held, client-first companies focused on making a good product, not just money
+  excites: teams that build tools people use every day, with steady hours
   never:
-  - Palantir
-  - OpenAI
-  - any defense or surveillance company
-  - social media companies
-  - YouTube (teams at Google)
+  - Acme Gaming Co. (demo)
+  - any payday or predatory lender
   excluded_categories:
-  - "generative-AI companies: main product is generative AI (model labs, AI wrappers, AI content generators, AI agent startups);\
-    \ excluded for Career, AI-training gigs allowed for Bridge"
-  - defense / weapons / surveillance
-  - ad tech & data brokers
-  - social media / engagement apps
+  - defense / weapons
   - gambling & sports betting
   - payday / predatory lending
-  - speculative crypto
   - tobacco / vaping
-  - immigration enforcement / private prisons
   dream_override: Dream employers (config/dream_employers.json) override excluded_categories but NOT the never list.
-  deprioritize: companies that profit by cutting patient care (PE healthcare roll-ups, claim-denial automation)
+  deprioritize: staffing agencies that resell contractors
   mission_bonus: small bonus for mission-led, employee-owned or clearly helpful employers
   never_names:
-  - palantir
-  - openai
-  - dataannotation
-  - data annotation tech
-  - anduril
-  never_terms:
-  - youtube
+  - acme gaming
+  never_terms: []
 cohort:
   _about: Words that mark a role as aimed at your graduating class (new-grad programs)
   terms:

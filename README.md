@@ -4,7 +4,7 @@
 
 > **Status:** working single-user pipeline (ran daily Oct 23 – Nov 2, 2026), now being rebuilt as a multi-user web app: FastAPI, Supabase/Postgres, Next.js + TypeScript, Google sign-in. See the [roadmap](#roadmap).
 
-![Shortlist tracker: today's confirmations, follow-ups and new picks](docs/media/tracker-today.png)
+![Shortlist tracker walkthrough: confirm an interview from the inbox, preview a tailored resume, read why a pick fits, filter the pipeline](docs/media/demo.gif)
 
 > **Try it:** open [`docs/demo/tracker-demo.html`](docs/demo/tracker-demo.html) in a browser (download it and open it locally). It runs fully offline on a fictional candidate, Daniel Reyes, with real job listings from a run on Nov 6, 2026 (one employer renamed). Every button works; changes stay in your browser tab.
 
@@ -34,11 +34,11 @@ Shortlist is being rebuilt from a single-user pipeline into a multi-user web app
 
 ## Demo
 
-| Morning digest email | Today's picks |
+| Today: inbox updates to confirm, follow-ups | Today's picks |
 |---|---|
-| ![Digest email](docs/media/digest-email.png) | ![Pick cards](docs/media/tracker-picks.png) |
-
-![Application pipeline](docs/media/tracker-pipeline.png)
+| ![Today panel](docs/media/tracker-today.png) | ![Pick cards](docs/media/tracker-picks.png) |
+| **Morning digest email** | **Application pipeline** |
+| ![Digest email](docs/media/digest-email.png) | ![Application pipeline](docs/media/tracker-pipeline.png) |
 
 One run (Nov 6, 2026), step by step in [`docs/demo/run/`](docs/demo/run/): **49 listings found → 9 shortlisted and checked → 1 pick**, plus near misses with the reason each one fell short and 2 "check these yourself."
 

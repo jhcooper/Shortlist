@@ -1,0 +1,239 @@
+[
+  {
+    "company": "Penn Medicine",
+    "title": "Analytics Engineer",
+    "location": "Philadelphia, PA",
+    "url": "https://findroles.com/jobs/670745337-analytics-engineer",
+    "source": "WebSearch",
+    "pay_text": "",
+    "pay_min": null,
+    "pay_max": null,
+    "pay_unit": null,
+    "work_mode": "hybrid",
+    "days_ago": null,
+    "employment_type": "",
+    "snippet": "Azure Databricks, SQL, Python, dbt; 5+ years in a related field required.",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career"
+    ],
+    "track": "long",
+    "flags": [
+      "pay not listed"
+    ],
+    "prescore": 3.7,
+    "cid": "c001"
+  },
+  {
+    "company": "Riverside Regional Health",
+    "title": "Financial Analytics Developer - Hybrid",
+    "location": "Camden, NJ",
+    "url": "https://to.indeed.com/aaclgqmbh6st",
+    "source": "Indeed",
+    "pay_text": "$71,317.95 - $100,204.55 a year",
+    "pay_min": 71317.95,
+    "pay_max": 100204.55,
+    "pay_unit": "year",
+    "work_mode": "hybrid",
+    "days_ago": 10,
+    "employment_type": "Full-time",
+    "snippet": "",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career"
+    ],
+    "track": "long",
+    "flags": [],
+    "prescore": 3.2,
+    "cid": "c002"
+  },
+  {
+    "company": "Hewlett Packard Enterprise",
+    "title": "Solutions Architect Graduate",
+    "location": "",
+    "url": "https://www.hirebase.org/company/hewlett-packard-enterprise/jobs/solutions-architect-graduate-921df62e",
+    "source": "WebSearch",
+    "pay_text": "",
+    "pay_min": null,
+    "pay_max": null,
+    "pay_unit": null,
+    "work_mode": "hybrid",
+    "days_ago": null,
+    "employment_type": "",
+    "snippet": "Graduate program: formal training and certifications; design end-to-end solutions with senior architects and account teams; technical input to proposals.",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career"
+    ],
+    "track": "long",
+    "flags": [
+      "location unknown",
+      "pay not listed"
+    ],
+    "prescore": 2.7,
+    "cid": "c003"
+  },
+  {
+    "company": "Riverside Regional Health",
+    "title": "Reporting and Analytics Developer",
+    "location": "Camden, NJ",
+    "url": "https://to.indeed.com/aaj2wgsvyccv",
+    "source": "Indeed",
+    "pay_text": "$65,617.62 - $91,315.89 a year",
+    "pay_min": 65617.62,
+    "pay_max": 91315.89,
+    "pay_unit": "year",
+    "work_mode": "",
+    "days_ago": 5,
+    "employment_type": "Full-time",
+    "snippet": "",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career"
+    ],
+    "track": "long",
+    "flags": [
+      "work mode unknown"
+    ],
+    "prescore": 2.3,
+    "cid": "c004"
+  },
+  {
+    "company": "Riverside Regional Health",
+    "title": "Analytics Developer",
+    "location": "Camden, NJ",
+    "url": "https://to.indeed.com/aa62nn6s8s9t",
+    "source": "Indeed",
+    "pay_text": "$77,934.26 - $112,375.84 a year",
+    "pay_min": 77934.26,
+    "pay_max": 112375.84,
+    "pay_unit": "year",
+    "work_mode": "",
+    "days_ago": 7,
+    "employment_type": "Full-time",
+    "snippet": "",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career"
+    ],
+    "track": "long",
+    "flags": [
+      "work mode unknown"
+    ],
+    "prescore": 2.3,
+    "cid": "c005"
+  },
+  {
+    "company": "Independence Blue Cross",
+    "title": "College Co-op: Risk Adjustment Analytics",
+    "location": "Philadelphia, PA",
+    "url": "https://to.indeed.com/aaltc4hstn72",
+    "source": "Indeed",
+    "pay_text": "$77,543.97 - $116,107.66 a year",
+    "pay_min": 77543.97,
+    "pay_max": 116107.66,
+    "pay_unit": "year",
+    "work_mode": "",
+    "days_ago": 34,
+    "employment_type": "",
+    "snippet": "",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career"
+    ],
+    "track": "long",
+    "flags": [
+      "work mode unknown"
+    ],
+    "prescore": 2.0,
+    "cid": "c006"
+  },
+  {
+    "company": "Randstad Digital",
+    "title": "Technology Consulting Practitioner",
+    "location": "Denver, Colorado",
+    "url": "https://www.dice.com/job-detail/2905a6e5-a48f-401a-aa32-d4e765f24ec0",
+    "source": "Dice",
+    "pay_text": "USD51 - USD61",
+    "pay_min": null,
+    "pay_max": null,
+    "pay_unit": null,
+    "work_mode": "remote",
+    "days_ago": 0,
+    "employment_type": "Contract",
+    "snippet": "",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career",
+      "bridge"
+    ],
+    "track": "long",
+    "flags": [
+      "contract role",
+      "pay not listed"
+    ],
+    "prescore": 1.1,
+    "cid": "c007"
+  },
+  {
+    "company": "Lumen Solutions Group Inc.",
+    "title": "Cybersecurity Engineer Operational Technology (OT) / ICS / SCADA",
+    "location": "Remote",
+    "url": "https://www.dice.com/job-detail/e6d06f42-4faf-447b-986a-1a3e6b0e65bc",
+    "source": "Dice",
+    "pay_text": "Depends on Experience",
+    "pay_min": null,
+    "pay_max": null,
+    "pay_unit": null,
+    "work_mode": "remote",
+    "days_ago": 2,
+    "employment_type": "Contract",
+    "snippet": "",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career",
+      "bridge"
+    ],
+    "track": "long",
+    "flags": [
+      "contract role",
+      "pay not listed"
+    ],
+    "prescore": 1.1,
+    "cid": "c008"
+  },
+  {
+    "company": "Planet Fitness - National Fitness Partners",
+    "title": "Business Intelligence Analyst",
+    "location": "Springfield, PA",
+    "url": "https://to.indeed.com/aabcz82k2djk",
+    "source": "Indeed",
+    "pay_text": "$51,717.66 - $81,783.35 a year",
+    "pay_min": 51717.66,
+    "pay_max": 81783.35,
+    "pay_unit": "year",
+    "work_mode": "",
+    "days_ago": 2,
+    "employment_type": "Full-time",
+    "snippet": "",
+    "hint": null,
+    "dream": false,
+    "goals": [
+      "career"
+    ],
+    "track": "long",
+    "flags": [
+      "work mode unknown"
+    ],
+    "prescore": 0.6,
+    "cid": "c009"
+  }
+]

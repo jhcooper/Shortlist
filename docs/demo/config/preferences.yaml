@@ -1,0 +1,428 @@
+# What you want: goals, must-haves, weights, places, roles, employers, digest. The engine reads only this file for scoring.
+
+schema_version: 1
+goals:
+- id: career
+  name: Career
+  default: true
+  purpose: Career role after the degree
+  must:
+    start_on_or_after: 2027-01
+    work_modes:
+    - hybrid
+    - remote
+    fully_in_person: 'no'
+    pay_floor_annual_usd: 80000
+    locations: see location (relocation list); remote OK
+    internships: only post-grad 2027 programs
+  prefer:
+    start_latest: 2027-08
+    cohort_programs: fine (e.g. Summer/Aug 2027 programs)
+    work_mode:
+      best:
+      - hybrid 3+ days in office
+      - 4-day work week
+      max_office_days: 4
+      fully_remote: allowed, ranked below hybrid
+      fully_in_person: dealbreaker
+    hours:
+      typical: 40
+      max_busy: 50
+    pay:
+      prefer_base_min_usd: 90000
+      floor_usd: 80000
+      target_usd: 100000
+      below_preferred_rule: Below $90k only for a very strong fit with elite WLB and benefits; say why in the card.
+      unlisted: "show with an estimate labeled 'est.' and its source"
+      benefits_weight: a lot (401k match, health, PTO)
+  weights:
+    wlb_stability: 0.35
+    location_flexibility: 0.2
+    pay_benefits: 0.2
+    chance: 0.15
+    role_growth: 0.1
+  email_heading: Career roles
+- id: bridge
+  name: Bridge
+  default: false
+  purpose: Earn money until graduation (through May 2027)
+  must:
+    start: ASAP
+    work_modes:
+    - remote
+    pay_floor_hourly_usd: 25
+    min_hours_per_week: 20
+    employment_types:
+    - part-time
+    - contract
+    - temp
+    - freelance
+    - full-time remote if hours flexible
+    internships: only if remote and paid >= $25/hr
+  prefer:
+    list:
+    - part-time
+    - easy to get
+    - flexible schedule
+    ai_training_gigs: allowed, including annotation-type work
+  weights:
+    ease_of_getting: 0.4
+    flexibility: 0.3
+    pay: 0.3
+  email_heading: Bridge roles (until May)
+shared_exclusions:
+  _rule: Drop only on explicit evidence in the posting or verified company data. If the field is unknown, pass and add a flag.
+    These apply to every goal.
+  experience_years_required_drop_at: 5
+  experience_years_3_to_4: "keep; flag 'asks N yrs' for the judge (a Master's or internships may cover it)"
+  experience_preferred: never drops; flag only
+  seniority_title_words_drop:
+  - senior
+  - sr.
+  - staff
+  - principal
+  - lead (as the job level)
+  - "manager (not 'associate manager')"
+  - director
+  - head of
+  - vp
+  - vice president
+  - chief
+  seniority_levels_drop: III / IV / V, 3 / 4 / 5, Level 3+
+  seniority_levels_keep: "I / II, 1 / 2, Level 1-2 (II is flagged 'level II')"
+  seniority_exceptions:
+  - associate (not senior associate)
+  - new grad
+  - early career
+  - university
+  - campus
+  - entry level
+  - junior
+  - '2027'
+  - rotational
+  - development program
+  - leadership program
+  - analyst program
+  - solutions architect (entry
+  security_clearance: "drop when required, preferred, or 'eligible to obtain'"
+  phd_required: drop (preferred never drops)
+  listed_mandatory_overtime: drop
+  startup_under_employees: 200
+  travel_over_percent: 25
+  data_scientist_roles: in scope
+  ml_research_roles: drop (research scientist / PhD-track)
+  plain_sales_no_technical: drop
+  posted_over_days: 45
+  work_mode_evidence: "job-board work-mode field, then title/location, then only explicit arrangement sentences ('this role\
+    \ is fully on-site', '5 days in office'); in-person interviews or on-site amenities do not count"
+  goal_evidence: the search a result came from sets its first guess; a structured employment type or title (part-time, temporary,
+    freelance, contract) adds Bridge; description words never decide; contract-to-hire counts toward Career
+work_life_balance:
+  priority: 1
+  dealbreakers:
+  - listed mandatory overtime
+  - startup under 200 people
+  - fully in-person (Career)
+  - "shady PTO structure (judged in context: unlimited PTO is flagged only when the job's context suggests it means less time\
+    \ off)"
+  pto:
+    type: scoring factor, not a filter
+    ideal_days: 21
+    holidays: counted separately
+  on_call: rare (a few times a year) at most
+  travel_max_percent_preferred: 25
+  schedule: flexible hours preferred
+  pace: calm and steady
+  unverifiable: "show it, flagged 'WLB unverified', Fit capped at 3"
+  glassdoor_wlb:
+    good: 3.8
+    strong_negative_below: 3.5
+  red_flag_phrases:
+  - expected to be online
+  - always available
+  - face time
+  - always another fire
+  - 50-60 hour weeks
+  - nights and weekends
+  - burnout
+  - stack ranking
+  - unregretted attrition
+  - frequent PIPs
+  - crunch
+  - constant on-call
+  green_flags:
+  - 4-day week
+  - hybrid 3+ days
+  - lots of PTO
+  - job flexibility
+  - opportunity to move around the country
+  - sabbaticals
+  - comp time
+  - people log off at 5
+  - results-oriented
+  - manager respects time off
+location:
+  max_commute_minutes: 45
+  commute_modes:
+  - car
+  - train
+  relocate: 'no'
+  relocate_to: []
+  ratings:
+    Philadelphia & inner suburbs: love
+    South Jersey (Camden, Cherry Hill): ok
+    Remote (US): "ok (Career: ranked below hybrid)"
+    Wilmington, DE / Trenton, NJ: only_if_great
+  other_cities: only with a clear remote or listed-city office option; say so explicitly
+places:
+  _about: What the automatic filter treats as an acceptable location (literal phrases, matched as whole words) and the location
+    bonus in the pre-score.
+  acceptable_states:
+  - PA
+  - NJ
+  - DE
+  acceptable_state_names:
+  - pennsylvania
+  - new jersey
+  - delaware
+  acceptable_cities:
+  - philadelphia
+  - philly
+  - camden
+  - cherry hill
+  - wilmington
+  - trenton
+  score:
+  - points: 1.5
+    contains:
+    - philadelphia
+    - philly
+  - points: 1.0
+    contains:
+    - camden
+    - cherry hill
+  - points: 0.5
+    contains:
+    - wilmington
+    - trenton
+  far_cities:
+  - seattle
+  - san francisco
+  - austin
+  - chicago
+  - boston
+  - denver
+  - atlanta
+  - dallas
+  - los angeles
+  - phoenix
+  - houston
+roles:
+  love:
+  - analytics engineer
+  - business / systems analyst
+  - tech rotational / development program
+  - data scientist
+  - product / project roles (technical)
+  - teaching / training roles
+  - solutions architect
+  ok:
+  - data analyst
+  - software engineer / developer
+  - technical consultant
+  - technical account manager
+  - integration engineer
+  only_if_great:
+  - data engineer
+  - solutions / sales engineer
+  - implementation consultant
+  - GIS / geospatial analyst
+  - ML engineer
+  'no':
+  - research data analyst
+  - IT / cloud / infrastructure
+  only_if_great_means: WLB, location and pay all strong
+  customer_facing: some is fine
+  hands_on_coding: about half the day
+  enjoys: varied work, new coding challenges, collaboration, low stress, interpreting and breaking down problems
+  title_keywords:
+    love:
+    - analytics engineer
+    - business analyst
+    - systems analyst
+    - rotational
+    - development program
+    - leadership program
+    - graduate program
+    - developer program
+    - analyst program
+    - data scientist
+    - solutions architect
+    - product
+    - project
+    - trainer
+    - teaching
+    - instructor
+    ok:
+    - data analyst
+    - software engineer
+    - developer
+    - technical consultant
+    - technical account
+    - integration engineer
+  off_target_title_words:
+  - technician
+  - mechanic
+  - electrician
+  - facilities
+  - administrative
+  - admin assistant
+  - executive assistant
+  - accounts payable
+  - accounts receivable
+  - bookkeeper
+  - accountant
+  - payroll
+  - recruiter
+  - sales representative
+  - sales executive
+  - account executive
+  - business development representative
+  - account strategist
+  - customer care
+  - call center
+  - nurse
+  - physician
+  - therapist
+  - pharmac
+  - medical coder
+  - medical laboratory
+  - physicist
+  - clinical
+  - counsel
+  - attorney
+  - paralegal
+  - driver
+  - warehouse
+  - cad designer
+  - drafter
+  - marketing manager
+  - copywriter
+  - graphic designer
+  - hvac
+  - plumber
+  - security officer
+  - behavior analyst
+  - bcba
+  off_target_unless:
+  - analyst
+  - engineer
+  - software
+  - scientist
+  - developer
+  families:
+  - data / analytics / data science / analytics engineering / data engineering
+  - software engineering
+  - solutions or sales engineering
+  - solutions architect
+  - technical consulting
+  - implementation
+  - technical account management
+  - integration engineering
+  - business or systems analyst
+  - technical product or project roles
+  - teaching / technical training
+  - GIS
+  - ML engineering
+  - technology rotational or development programs
+  skip_families:
+  - data-center technicians
+  - facilities
+  - admin
+  - finance/accounting
+  - recruiting
+  - pure sales
+  - customer care
+  - legal
+  - clinical
+  internships: Keep internships only if they are paid and remote.
+employers:
+  types:
+    love:
+    - banks & asset managers
+    - established mid-size software (500-5,000)
+    - health tech / life sciences software
+    - nonprofits & mission-driven orgs
+    - climate / environmental
+    ok:
+    - utilities & energy
+    - big tech (10,000+)
+    - healthcare providers / hospitals
+    - consulting firms
+    - manufacturing / industrial
+    only_if_great:
+    - federal / state / local government (non-defense only)
+    - insurance
+    'no':
+    - universities & research institutes
+    - startups under 200 people
+  excites: teams that build tools people use every day, with steady hours
+  never:
+  - Acme Gaming Co. (demo)
+  - any payday or predatory lender
+  excluded_categories:
+  - defense / weapons
+  - gambling & sports betting
+  - payday / predatory lending
+  - tobacco / vaping
+  dream_override: Dream employers (config/dream_employers.json) override excluded_categories but NOT the never list.
+  deprioritize: staffing agencies that resell contractors
+  mission_bonus: small bonus for mission-led, employee-owned or clearly helpful employers
+  never_names:
+  - acme gaming
+  never_terms: []
+cohort:
+  _about: Words that mark a role as aimed at your graduating class (new-grad programs)
+  terms:
+  - '2027'
+  career_start_on_or_after: 2027-01
+scoring:
+  prescore_pay_good_annual: 90000
+odds:
+  long_shots: only at dream employers
+  apps_per_week: 8-15
+  chance_levels:
+    High: meets all required and most preferred qualifications; normal applicant pool
+    Medium: meets required, misses some preferred, or competitive employer
+    Low: misses a required qualification or extremely oversubscribed; never a pick unless dream employer
+digest:
+  days: weekdays
+  start_time_et: "09:15"
+  arrive_by_et: "10:30"
+  min_fit_to_show: 3
+  max_roles: no maximum
+  detail: full card
+  empty_day: updates only -> short note; nothing -> no email
+  phone_alerts: interviews, assessment deadlines, reopened dream-employer roles
+  resume_drafts_for: Fit 4+
+  cover_letters: "only when the tracker row's Request Cover Letter box is ticked"
+  early_stop: stop verifying non-dream candidates once 5 likely-Fit-4+ candidates are verified; dream employers always checked
+    fully
+  recipient: daniel.reyes@example.com
+  weekly_target:
+    min: 8
+    max: 15
+integrations:
+  tracker_url: "https://claude.ai/artifact/DEMO-TRACKER"
+  spec_url: "https://claude.ai/artifact/DEMO-SPEC"
+  drive_resumes_folder: DEMO_DRIVE_ID
+  drive_cover_letters_folder: DEMO_DRIVE_ID
+  review_task_id: trig_DEMO
+# API version only (the engine's scripts/telemetry.py). Fill pricing from https://claude.com/pricing when you switch,
+# then set pricing_checked_on. Until a model has a price, its calls are counted but not costed (and flagged).
+telemetry:
+  budget_usd_per_run: 2.00
+  warn_at_fraction: 0.8
+  supabase: true
+  pricing_checked_on: null
+  pricing: {}

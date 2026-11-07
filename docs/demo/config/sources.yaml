@@ -1,0 +1,217 @@
+# Where to look: search queries (rotated each run), dream employers, list sources, and email alert filters.
+
+schema_version: 1
+search:
+  per_run:
+    connector: 4
+    web: 6
+    short_term: 5
+  connector_queries:
+  - role: data analyst
+    location: Philadelphia, PA
+    radius: 40
+  - role: analytics engineer
+    location: remote
+  - role: business systems analyst
+    location: Philadelphia, PA
+    radius: 40
+  - role: associate data scientist
+    location: Philadelphia, PA
+    radius: 30
+  - role: technology development program 2027
+    location: remote
+  - role: solutions architect associate
+    location: Philadelphia, PA
+    radius: 30
+  - role: data analyst
+    location: Philadelphia, PA
+    radius: 30
+  - role: technical consultant entry level
+    location: Philadelphia, PA
+    radius: 40
+  - role: data scientist new grad
+    location: remote
+    radius: 20
+  - role: software engineer new grad
+    location: Philadelphia, PA
+    radius: 30
+  - role: technical product analyst
+    location: Philadelphia, PA
+    radius: 30
+  - role: integration engineer
+    location: Philadelphia, PA
+    radius: 40
+  - role: technical trainer
+    location: remote
+  - role: business intelligence analyst
+    location: Philadelphia, PA
+    radius: 30
+  - role: technical account manager associate
+    location: remote
+    radius: 20
+  - role: associate product manager technical
+    location: Philadelphia, PA
+    radius: 40
+  - role: data analyst
+    location: Camden, NJ
+    radius: 30
+  - role: rotational program analyst 2027
+    location: Philadelphia, PA
+    radius: 30
+  - role: systems analyst entry level
+    location: Philadelphia, PA
+    radius: 30
+  - role: data engineer new grad
+    location: remote
+  - role: data scientist associate
+    location: Philadelphia, PA
+    radius: 30
+  - role: solutions engineer entry level
+    location: Philadelphia, PA
+    radius: 40
+  - role: GIS analyst
+    location: Philadelphia, PA
+    radius: 30
+  - role: analytics engineer
+    location: remote
+    radius: 20
+  web_queries:
+  - "site:job-boards.greenhouse.io \"new grad\" 2027 analyst OR \"data scientist\" -senior"
+  - "site:jobs.lever.co \"early career\" OR \"new grad\" data analyst 2027"
+  - "site:jobs.ashbyhq.com \"new grad\" data OR analytics 2027"
+  - "site:myworkdayjobs.com \"2027\" \"development program\" technology analyst"
+  - "\"technology leadership program\" OR \"technology development program\" 2027 bank"
+  - "\"analyst development program\" 2027 data Philadelphia OR remote"
+  - entry level analytics engineer hybrid Philadelphia OR Camden
+  - associate data scientist hybrid Philadelphia health tech
+  - new grad solutions architect 2027 hybrid
+  - best places to work work-life balance mid-size software company hiring new grads 2027
+  - climate nonprofit data analyst entry level hybrid Philadelphia
+  - health tech company data analyst early career 2027 hybrid Philadelphia
+  - utility company data analyst entry level Delaware OR Pennsylvania
+  - asset manager technology analyst program 2027 Philadelphia OR remote
+  - 4-day work week company hiring data analyst entry level
+  - USAJobs data scientist GS-7 OR GS-9 recent graduate non-defense
+  - Delaware state jobs data analyst
+  - Pennsylvania state government data analyst entry level
+  short_term_queries:
+  - web: true
+    query: Outlier AI coding expert remote hourly
+  - web: true
+    query: Alignerr OR Labelbox AI trainer data science remote hourly
+  - web: true
+    query: Mercor AI training contractor data science python remote
+  - web: true
+    query: Handshake AI fellow OR micro1 AI trainer graduate student remote hourly
+  - connector: true
+    role: AI trainer
+    location: remote
+    types:
+    - contract
+    - parttime
+  - web: true
+    query: Prolific OR Invisible Technologies OR Snorkel AI expert contractor remote
+  - connector: true
+    role: AI data annotation STEM expert
+    location: remote
+    types:
+    - contract
+    - parttime
+  - web: true
+    query: Turing OR Scale AI OR Remotasks coding AI trainer remote hourly
+  - connector: true
+    role: RLHF coding evaluator python
+    location: remote
+    types:
+    - contract
+    - parttime
+  - web: true
+    query: TELUS Digital OR Appen OR RWS TrainAI data annotation STEM remote
+  - connector: true
+    role: part time data analyst
+    location: remote
+    types:
+    - parttime
+    - contract
+  - web: true
+    query: remote part-time Python OR SQL contractor $30/hr 2026
+  - connector: true
+    role: python tutor OR teaching assistant online
+    location: remote
+    types:
+    - parttime
+    - contract
+  - web: true
+    query: AI model evaluation coding contractor remote hourly computer science graduate student
+  - connector: true
+    role: AI training coding evaluator
+    location: remote
+    types:
+    - contract
+    - parttime
+  - connector: true
+    role: SQL contractor part time
+    location: remote
+    types:
+    - contract
+    - temporary
+  - connector: true
+    role: data annotation specialist STEM
+    location: remote
+    types:
+    - contract
+    - parttime
+  - connector: true
+    role: remote data entry analyst python part time
+    location: remote
+    types:
+    - parttime
+  list_sources:
+  - name: zapplyjobs New-Grad Data Science/Analyst 2027
+    url: "https://github.com/zapplyjobs/New-Grad-Data-Science-Jobs-2027"
+    fetch_prompt: "From the Data Scientist and Data Analyst tables, list every US posting with Posted age of 3 days or less\
+      \ (e.g. '16h', '1d', '2d', '3d') whose role is entry level, new grad, early career, associate, analyst I/1, or a 2027\
+      \ program. Skip manager, lead, senior, principal, director, team lead, SME, co-op/intern (unless paid, remote and part-time).\
+      \ Output JSON lines: {company, title, location, posted_age, url}."
+    search: zapplyjobs New-Grad-Data-Science-Jobs-2027 github
+search_note: Each run takes the next slice of each list, starting at the stored pointer, and advances the pointer (scripts/rotation.py).
+  Connector queries are cheap and run every time; web queries rotate. Connector searches always filter to roles posted in
+  the last 7 days (3 on Mondays).
+dream_employers:
+- name: Comcast
+  method: search
+  url: "https://jobs.comcast.com"
+  fallback: "search: Comcast early career OR \"new grad\" data analyst Philadelphia site:jobs.comcast.com"
+  notes: Philadelphia HQ; early-career analytics and engineering programs.
+  search: "site:jobs.comcast.com \"early career\" OR \"new grad\" OR associate data OR analyst Philadelphia"
+- name: Children's Hospital of Philadelphia
+  method: search
+  url: "https://careers.chop.edu"
+  fallback: "search: CHOP research data analyst OR analytics entry level site:careers.chop.edu"
+  notes: Large research and analytics groups; many entry-level analyst roles.
+  search: "site:careers.chop.edu data analyst OR analytics OR biostatistics"
+- name: Toast
+  method: greenhouse_api
+  url: "https://boards-api.greenhouse.io/v1/boards/toast/jobs"
+  fallback: "page: https://careers.toasttab.com"
+  notes: Many remote US roles.
+  search: "site:job-boards.greenhouse.io/toast associate OR \"I\" OR early career"
+dream_note: "Checked fully on every run. Dream employers override excluded_categories in criteria.json but never the 'never'\
+  \ list. FETCH RULE: WebFetch only opens URLs that came from a WebSearch result in the same session; typed or config URLs\
+  \ are refused ('not on the allowlist'). So every employer is reached by running its `search` query first and fetching result\
+  \ links. `url` is reference only."
+dream_fetch_prompt: "List every job on this board located in the United States (or remote US) whose title or text suggests\
+  \ entry level, new grad, early career, associate, analyst, 2027 start, rotational/development program, intern (short-term\
+  \ only if paid and remote), or 0-2 years. For each: title, location, URL, posting date if shown. Ignore senior/staff/principal/manager/director\
+  \ roles. Output JSON lines only."
+email_alerts:
+  _about: "Inbox helper: job-alert senders whose emails are read as leads (not application updates)"
+  alert_senders:
+  - indeed.com
+  - linkedin.com
+  - glassdoor.com
+  - jobright.ai
+  - joinhandshake.com
+  - ziprecruiter.com
+  ignore_subjects:
+  - Job digest

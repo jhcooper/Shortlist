@@ -4,7 +4,7 @@
 
 > **Status:** working single-user pipeline (ran daily Oct 23 – Nov 2, 2026), now being rebuilt as a multi-user web app: FastAPI, Supabase/Postgres, Next.js + TypeScript, Google sign-in. See the [roadmap](#roadmap).
 
-![Shortlist tracker walkthrough: confirm updates found in the inbox, then preview a tailored resume with its changes highlighted](docs/media/demo.gif)
+![Shortlist tracker walkthrough: confirm updates found in the inbox, preview a tailored resume, draft a resume on request, filter the pipeline and add a role by hand](docs/media/demo.gif)
 
 > **Try it:** open [`docs/demo/tracker-demo.html`](docs/demo/tracker-demo.html) in a browser (download it and open it locally). It runs fully offline on a fictional candidate, Daniel Reyes, with real job listings from a run on Nov 6, 2026 (one employer renamed). Every button works; changes stay in your browser tab.
 

@@ -6,7 +6,7 @@
 
 ![Shortlist tracker walkthrough: confirm updates found in the inbox, preview a tailored resume, draft a resume on request, filter the pipeline and add a role by hand](docs/media/demo.gif)
 
-> **Try it:** open [`docs/demo/tracker-demo.html`](docs/demo/tracker-demo.html) in a browser (download it and open it locally). It runs fully offline on a fictional candidate, Daniel Reyes, with real job listings from a run on Nov 6, 2026 (one employer renamed). Every button works; changes stay in your browser tab.
+> **Try it:** [open the live demo](https://jhcooper.github.io/Shortlist/demo/tracker-demo.html) (source: [`docs/demo/tracker-demo.html`](docs/demo/tracker-demo.html)). It runs fully offline on a fictional candidate, Daniel Reyes, with real job listings from a run on Nov 6, 2026 (one employer renamed). Every button works; changes stay in your browser tab.
 
 ## Why
 

@@ -1,0 +1,94 @@
+# Fictional demo candidate. Who you are: contact, education, approved skills, experience. Resumes may only use facts from here.
+schema_version: 1
+person:
+  id: daniel
+  name: Daniel Reyes
+  first_name: Daniel
+  email: daniel.reyes@example.com
+  phone: (212) 555-0147
+  home: Philadelphia, PA
+  tagline: May 2027 grad
+  title: Reyes Job Search
+  links:
+  - label: linkedin.com/in/daniel-reyes-demo
+    url: https://www.linkedin.com/in/daniel-reyes-demo/
+  - label: github.com/daniel-reyes-demo
+    url: https://github.com/daniel-reyes-demo
+education:
+  resume_lines:
+  - line: Schuylkill Institute of Technology — M.S., Business Analytics
+    date: Expected May 2027
+  - line: Schuylkill Institute of Technology — B.S., Statistics
+    date: May 2024
+    detail: 'GPA: 3.71  •  Minor: Economics'
+  graduation: 2027-05
+  degree_in_progress: M.S. Business Analytics, Schuylkill Institute of Technology
+  pre_grad_full_time: part-time only
+  gpa:
+    undergrad: 3.71
+    resume_shows: undergrad 3.71
+    rule: 'cutoff <= 3.7: met; above that, Chance at most Medium and note it.'
+  relevant_courses:
+  - Applied Regression (STAT 310)
+  - Machine Learning for Business
+  - Database Design & SQL
+  - Data Visualization
+  - Forecasting
+  - Optimization
+  work_authorization: Not stated. Do not filter on it; if a posting requires citizenship proof, note it in the card.
+skills:
+  approved:
+  - Python
+  - SQL
+  - R
+  - Pandas
+  - NumPy
+  - scikit-learn
+  - statsmodels
+  - XGBoost
+  - Tableau
+  - Power BI
+  - dbt
+  - Git
+  - AWS
+  - Excel
+experience:
+- org: Kestrel Insurance Group
+  loc: Philadelphia, PA
+  title: Analytics Intern
+  dates: Jun 2024 – Aug 2024
+  bullets:
+  - Built a claims-lapse model on 640K policy records that flagged 27% of at-risk renewals two months early, with
+    0.81 AUC.
+  - Automated a weekly SQL + Python report that replaced a manual spreadsheet process for the retention team.
+  - Presented findings and outreach recommendations to the regional operations leadership team.
+  - Cleaned and joined claims, billing and call-center data from three source systems into one analysis table.
+- org: Fairmount Transit Lab, Schuylkill Institute of Technology
+  loc: Philadelphia, PA
+  title: Graduate Research Assistant
+  dates: Sep 2024 – Present
+  bullets:
+  - Built a Python pipeline over 900K+ trip records to measure on-time performance by route and time of day.
+  - Designed an interactive ridership dashboard used by lab staff and a city planning partner.
+  - Presented results to the lab and to the partner agency’s service-planning team.
+- org: Department of Statistics, Schuylkill Institute of Technology
+  loc: Philadelphia, PA
+  title: Teaching Assistant
+  dates: Sep 2025 – Present
+  bullets:
+  - 'Teaching Assistant for STAT 310: Applied Regression; run weekly labs and office hours helping students with
+    R and Python.'
+- org: Grindstone Coffee Co.
+  loc: Philadelphia, PA
+  title: Shift Lead
+  dates: Aug 2021 – Present
+  bullets:
+  - Lead a four-person shift in a high-volume café, handling customer issues and training new staff.
+resume_bases:
+  solutions_engineering:
+    label: Solutions Engineering
+    use_for: 'customer-facing roles: solutions/sales engineering, implementation, consulting, TAM, integration'
+  development_program:
+    label: Development Programs
+    use_for: every role that isn't customer-facing (development programs, analyst, data science, engineering)
+    keep_numbers: 640K, 27%, 0.81 AUC, 900K+

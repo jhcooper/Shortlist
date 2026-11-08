@@ -1,0 +1,144 @@
+{
+  "summary": "A thin day with one solid local pick: Riverside Regional Health's entry-level Reporting and Analytics Developer in Camden, a short drive from Philadelphia. Most other analytics roles today asked for 3–5 years or a finished master's.",
+  "picks": [
+    {
+      "cid": "c004",
+      "goal": "career",
+      "fit": 4,
+      "chance": "High",
+      "card": {
+        "company": "Riverside Regional Health",
+        "role": "Reporting and Analytics Developer",
+        "url": "https://careers.riverside-health.example.com/jobs/85602/reporting-and-analytics-developer/job",
+        "wlb": "Large academic health system; full-time day shift (Shift 1), no on-call or travel listed. Hospital IT reviews often mention steady ~40-hour weeks; ratings not checked for this team.",
+        "location": "Camden, NJ, about 30 miles from Philadelphia, PA (~35 min). Work mode not stated in the posting.",
+        "pay": "$37–$61/hr (about $77k–$127k a year)",
+        "chance_line": "High: asks 0–2 years and a bachelor's in computer science, statistics, informatics or math. You meet both, and your requirements, reporting and stakeholder work lines up.",
+        "what": "South Jersey's academic health system (hospital, cancer institute, 100+ outpatient offices). This role sits on the reporting team for Addiction Medicine.",
+        "why_fits": "It's requirements-to-report work: scoping what users need, building and testing reports, and walking stakeholders through results. That matches your data pipeline work and presenting findings to leadership.",
+        "growth": "Non-profit health system with a large central analytics and IT group. Developer to senior developer paths, and Epic Clarity/Caboodle certifications are encouraged on sister roles.",
+        "watch_outs": "Work mode not stated (sister roles are hybrid). Apply button not readable by our check: confirm it opens. Hourly range, so confirm the full-time salary equivalent.",
+        "verified": "Listed on Indeed Nov 1; matching employer posting on Riverside's careers site (job 73490): 0-2 years, bachelor's. Apply button not readable by our fetch.",
+        "deadline": ""
+      },
+      "row": {
+        "location": "Camden, NJ",
+        "work_mode": "Not stated (sister roles hybrid)",
+        "base_pay": "$37–$61/hr",
+        "why": "Day shift, ~40 hrs, 30 mi away; chance High. Confirm work mode and that Apply is live."
+      },
+      "tailor": {
+        "base": "development_program",
+        "notes": "Lead with the reporting-automation bullet and the dashboard bullet (requirements from users -> analysis -> findings to leadership). Mirror 'reporting', 'requirements' and 'stakeholders' only where a base bullet says it. Skills first: SQL, Python, Pandas, Matplotlib. Summary angle: entry-level analyst who turns user needs into tested reports, healthcare-ready."
+      },
+      "row_id": "riverside-regional-health-reporting-and-analytics-develo-20261106"
+    }
+  ],
+  "near_misses": [
+    {
+      "cid": "c005",
+      "company": "Riverside Regional Health",
+      "title": "Analytics Developer",
+      "url": "https://jobs.riverside-health.example.com/job/camden/analytics-developer/338/89559226672",
+      "reason": "Asks 3–5 years of analytics and a finished master's; you finish in May 2027.",
+      "retry": false
+    },
+    {
+      "cid": "c002",
+      "company": "Riverside Regional Health",
+      "title": "Financial Analytics Developer - Hybrid",
+      "url": "https://careers.riverside-health.example.com/jobs/84947/financial-analytics-developer---hybrid/job",
+      "reason": "3–5 years plus advanced Power BI; master's required.",
+      "retry": false
+    },
+    {
+      "cid": "c001",
+      "company": "Penn Medicine",
+      "title": "Analytics Engineer",
+      "url": "https://findroles.com/jobs/670745337-analytics-engineer",
+      "reason": "Good hybrid Philadelphia role, but it asks 5+ years.",
+      "retry": false
+    },
+    {
+      "cid": "c003",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Solutions Architect Graduate",
+      "url": "https://refresh.cv/jobs/hpe/1e3777c8-5e42-43c8-9e7f-912f894c9cee",
+      "reason": "Based in Prague; requires Czech.",
+      "retry": false
+    }
+  ],
+  "skipped": [
+    {
+      "cid": "c007",
+      "reason": "Contract consulting in Denver, senior-leaning",
+      "retry": false
+    },
+    {
+      "cid": "c008",
+      "reason": "OT/ICS security engineering, not your field",
+      "retry": false
+    }
+  ],
+  "check_yourself": [
+    {
+      "cid": "c006",
+      "company": "Independence Blue Cross",
+      "title": "College Co-op: Risk Adjustment Analytics",
+      "url": "https://to.indeed.com/aaltc4hstn72",
+      "pay": "$77.5k–$116k (annualized)",
+      "why": "Philadelphia health insurer; analytics co-op that could bridge you to 2027.",
+      "reason": "Only on Indeed; check that co-ops accept a May 2027 master's grad."
+    },
+    {
+      "cid": "c009",
+      "company": "Planet Fitness (National Fitness Partners)",
+      "title": "Business Intelligence Analyst",
+      "url": "https://to.indeed.com/aabcz82k2djk",
+      "pay": "$51.7k–$81.8k",
+      "why": "Entry BI role near Philadelphia.",
+      "reason": "Only on Indeed; pay may sit under your floor."
+    }
+  ],
+  "row_updates": [
+    {
+      "row_id": "sallie-mae-engineer-i-20261102",
+      "fields": {
+        "fit": 4,
+        "chance": "Medium",
+        "why": "Hybrid in Philadelphia, short commute; chance Medium. Entry engineering level; confirm the team.",
+        "base_pay": "est. $75k–$95k (Glassdoor range for Engineer I)",
+        "work_mode": "Hybrid",
+        "card_why": "Entry-level engineering at a large, stable Philadelphia employer. Your Python pipeline and API work fits the Engineer I bar.",
+        "card_watch": "Pay not listed (estimate). Team and stack not named on the posting."
+      },
+      "tailor": null
+    },
+    {
+      "row_id": "cisco-associate-solutions-engineer-20261102",
+      "fields": {
+        "fit": 4,
+        "chance": "Medium",
+        "why": "Early-career program with structured training; chance Medium (competitive).",
+        "base_pay": "not listed",
+        "work_mode": "Not stated",
+        "card_why": "Customer-facing technical role built for new grads; matches your presenting and support-analysis experience.",
+        "card_watch": "Location and start date vary by cohort; very competitive program."
+      },
+      "tailor": null
+    },
+    {
+      "row_id": "indeed-software-engineer-ii-20261103",
+      "fields": {
+        "fit": 3,
+        "chance": "Low",
+        "why": "Remote; chance Low: Engineer II usually asks 2+ years.",
+        "base_pay": "not listed",
+        "work_mode": "Remote",
+        "card_why": "Remote product engineering at a job-search company; your Python/API pipeline work is relevant.",
+        "card_watch": "Level II usually asks 2+ years of full-time experience."
+      },
+      "tailor": null
+    }
+  ]
+}

@@ -76,13 +76,30 @@ Planned (created by later tasks, not yet present):
 ## Task rules
 - Read this file first, then the files the task names. Read before you write.
 - Work on a new branch `task/<id>-<short-name>` from an up-to-date main. One task, one PR.
+- Work in this order: (1) write the tests first, including every edge case the task lists and at least 3 of your
+  own, and confirm they fail for the right reason; (2) make the smallest change that makes them pass; (3) while
+  iterating run only the affected tests, then the full suite and leak check once at the end; (4) reread your diff
+  as a reviewer would before opening the PR.
 - Stay in scope. List other problems you notice in the PR under "Found, not fixed".
-- Add tests for every behavior you add or change. Run the full test suite and the leak check; all must pass.
+- Add tests for every behavior you add or change. The full test suite and the leak check must pass.
 - Never weaken, skip or delete an existing test to make it pass. If one seems wrong, stop and say why.
 - No new dependencies, schema changes or API changes beyond what the task says, unless you ask first.
-- Never put secrets, real personal data or real email addresses in code, tests or fixtures. Use Alex Rivera.
+- Never put secrets, real personal data or real email addresses in code, tests or fixtures. Use fictional data.
 - If the task is unclear, or you need a decision, credentials or access, stop and ask. Don't guess.
 - Finish with a PR that says what changed, why, how you tested it (commands and results), and open questions.
+- When review findings come back, fix them on the same branch, add a test for each, push (no force-push), and add
+  a "Review fixes" section to the PR.
+
+## Scoring design (built in phase 6)
+- Criteria split into dealbreakers (few, user-chosen, hard) and preferences (weighted, soft).
+- Each posting is extracted once by Haiku into one normalized record (seniority, years required, work mode and
+  office days, pay as annual and hourly, geocoded location, employment type, skills, clearance, start date).
+  Scoring reads only that record; old regex extractors stay as cross-checks.
+- Each preference is a 0-1 sub-score on a user-shaped curve (location by distance, remote ignores it; pay 1 at
+  target, 0 at floor, neutral and flagged when missing; a step per extra year required; role similarity; company
+  factors). Total = weighted sum. Sub-scores are stored so weight changes re-rank with no model calls and every
+  card can say why it ranked. Opus judges only the top of the list.
+- Each week show the top K above a minimum score; when fewer clear it, show fewer and say so.
 
 ## Running tests and checks (today)
 ```sh

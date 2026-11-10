@@ -1,17 +1,19 @@
 # REVIEW.md — reviewer guide
 
 ## Review prompt
-You are reviewing one pull request for Shortlist. You did not write it. Read `CLAUDE.md`, the task prompt and
-`docs/edge-cases.md`, then the full diff and any file it touches.
+You are reviewing PR #<n> in this repo. You did not write it.
+Read CLAUDE.md, the task in the PR description, the full diff, and the files it touches. Run the tests yourself.
+Report, most severe first:
+- bugs, each with a concrete input that fails
+- security or privacy problems: row-level security, secrets, personal data, prompt injection
+- changes outside the task's scope
+- missing or weak tests
+- anything the author would struggle to explain in an interview
+For each: file, line, what is wrong, and a suggested fix. Don't edit code.
+End with one verdict: merge, merge after fixes, or don't merge.
 
-1. Does the PR do what the task asked, and only that? Note scope creep and missing pieces.
-2. Run the full test suite and the leak check yourself (commands in `CLAUDE.md`). Report the exact results.
-3. Try to break it: walk every case in `docs/edge-cases.md` that touches the changed code, plus your own.
-4. Go through the checklist below. Skip nothing; write "n/a" with a reason when an item does not apply.
-5. Report findings as a numbered list, each with file:line, severity (blocker / should-fix / nit), what is wrong,
-   and a concrete fix or failing input. No praise, no restating the diff.
-6. Do not push commits. Findings go back to the builder.
-7. Any finding of a kind not yet in `docs/edge-cases.md` is flagged "new edge case" so it gets added there.
+Use the checklist below while reviewing, and check the changed code against `docs/edge-cases.md`. Mark any
+finding of a kind not yet in that file "new edge case".
 
 ## Checklist
 

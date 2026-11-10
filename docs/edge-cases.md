@@ -5,9 +5,12 @@ Known traps, grouped by area. Every review finding of a new kind gets added here
 ## Multi-user isolation
 - Config loads once per process at import (`prefilter.py`, `validate_resume.py`, `finalize.py`): a worker serving
   two users would apply the first user's rules to the second. Pass a per-user config object (task 2.3).
+- Timezone is fixed to America/New_York; it becomes per user.
 - Any module-level cache, global or memoized value keyed without `user_id` can leak between users.
 
 ## Goals and scoring
+- Still in code, not config: "US locations or remote US only" and "3+ years" in `prompts/dream.md`, and the
+  Career internship rule in `prefilter.fit_career`.
 - Goal ids `career` and `bridge` are hard-coded in scripts; goals must be data (task 6.4).
 - Prefilter drops are final and never re-scored when preferences change; store sub-scores and re-rank instead.
 

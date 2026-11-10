@@ -14,7 +14,10 @@ Output names the file, line and rule only, never the matched text (CI logs of a 
   python3 scripts/leak_check.py --all         every tracked file (CI, and before making the repo public)
 Exit 0 clean, 1 hits, 2 usage/setup error.
 """
-import os, re, subprocess, sys
+import os
+import re
+import subprocess
+import sys
 
 ALLOWED_EMAIL_DOMAINS = ("example.com", "example.org", "example.net", "users.noreply.github.com", "anthropic.com")
 EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,}")

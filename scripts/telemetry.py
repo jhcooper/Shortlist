@@ -20,8 +20,16 @@ CLI:
     python3 telemetry.py report [--days 7]   per-step and per-day table from STATE_DIR/telemetry (the weekly review uses it)
     python3 telemetry.py pricing             shows the price table in use and whether it needs re-checking
 """
-import sys, os, json, time, re, uuid, glob, datetime as dt
-import urllib.request, urllib.error
+import sys
+import os
+import json
+import time
+import re
+import uuid
+import glob
+import datetime as dt
+import urllib.request
+import urllib.error
 from contextlib import contextmanager
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -442,18 +450,24 @@ def report(folder, days=7, today=None):
         if os.path.basename(f)[6:16] < since:
             continue
         with open(f, encoding="utf-8") as fh:
-            calls += [json.loads(l) for l in fh if l.strip()]
+            calls += [json.loads(line) for line in fh if line.strip()]
     runs = []
     rp = os.path.join(folder, "runs.jsonl")
     if os.path.exists(rp):
         with open(rp, encoding="utf-8") as fh:
-            runs = [r for r in (json.loads(l) for l in fh if l.strip()) if r.get("run_date", "") >= since]
+            runs = [r for r in (json.loads(line) for line in fh if line.strip()) if r.get("run_date", "") >= since]
     lines = [f"Telemetry, last {days} days (since {since}): {len(runs)} runs, {len(calls)} model calls", ""]
     steps = {}
     for c in calls:
         b = steps.setdefault(c["step"], [0, 0, 0, 0, 0, 0.0, 0, 0])
-        b[0] += 1; b[1] += c["input_tokens"]; b[2] += c["output_tokens"]; b[3] += c["cache_read_tokens"]
-        b[4] += c["web_search_requests"]; b[5] += c["cost_usd"] or 0.0; b[6] += c["latency_ms"]; b[7] += 0 if c["ok"] else 1
+        b[0] += 1
+        b[1] += c["input_tokens"]
+        b[2] += c["output_tokens"]
+        b[3] += c["cache_read_tokens"]
+        b[4] += c["web_search_requests"]
+        b[5] += c["cost_usd"] or 0.0
+        b[6] += c["latency_ms"]
+        b[7] += 0 if c["ok"] else 1
     n = max(len(runs), 1)
     lines.append(f"{'step':<14}{'calls':>6}{'in/run':>10}{'out/run':>9}{'cached/run':>11}{'search':>7}{'$/run':>8}{'avg s':>7}{'err':>5}")
     for name, b in sorted(steps.items(), key=lambda kv: -kv[1][5]):

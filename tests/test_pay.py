@@ -1,9 +1,7 @@
-"""parse_pay unit cases. Run: python3 tests/test_pay.py  (exit 1 on any failure). Uses only config.example/."""
-import os, sys
-HERE = os.path.dirname(os.path.abspath(__file__))
-os.environ.setdefault("CONFIG_DIR", os.path.join(HERE, "..", "config.example"))  # fictional person
-sys.path.insert(0, os.path.join(HERE, "..", "scripts"))
-import prefilter as P
+"""parse_pay unit cases. Uses only config.example/."""
+import pytest
+
+from shortlist.core import prefilter as P
 
 NONE = (None, None, None)
 CASES = [
@@ -56,10 +54,7 @@ CASES = [
     ("$55 - 65K", (55000, 65000, "year")),
 ]
 
-fails = 0
-for text, want in CASES:
-    got = P.parse_pay(text)
-    if tuple(got) != tuple(want):
-        fails += 1; print("FAIL", repr(text), "->", got, "expected", want)
-print(f"{len(CASES) - fails}/{len(CASES)} passed")
-sys.exit(1 if fails else 0)
+
+@pytest.mark.parametrize(("text", "want"), CASES, ids=[repr(t) for t, _ in CASES])
+def test_parse_pay(text, want):
+    assert tuple(P.parse_pay(text)) == tuple(want)

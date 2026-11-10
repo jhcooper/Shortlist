@@ -20,9 +20,12 @@
       After write-back: confirms every tracker.json row exists in the database with the
       same status. Exit 1 on mismatch.
 """
-import sys, os, re, glob, json
+import sys
+import os
+import re
+import glob
 import datetime as dt
-from common import p, outp, load, save, today, iso_now, norm_url, dedupe_key, local_date, ts_after, TrackedIndex, dp
+from common import outp, load, save, today, iso_now, norm_url, dedupe_key, local_date, ts_after, TrackedIndex, dp
 
 FIELDS = ["id", "date_found", "track", "company", "role", "location", "work_mode", "posting_url", "source",
           "base_pay", "fit", "chance", "why", "status", "resume_url", "cover_letter_url", "date_applied",

@@ -5,7 +5,7 @@
 Queries come from sources.yaml (search). Connector searches look back 3 days (the run is daily;
 Monday looks back 4 days to cover the weekend).
 """
-from common import p, outp, load, save, now_et, dp
+from common import outp, load, save, now_et, dp
 from config import get as cfg_get
 
 

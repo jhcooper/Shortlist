@@ -1,0 +1,33 @@
+[project]
+name = "shortlist"
+version = "0.1.0"
+description = "Finds the few jobs worth applying to, explains why each fits, and tracks applications."
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = ["pyyaml"]
+
+[project.optional-dependencies]
+# anthropic<1: tests/test_telemetry.py checks real SDK types and imports httpx, which newer SDKs no longer ship.
+dev = ["pytest>=8", "ruff>=0.6", "anthropic<1"]
+
+[build-system]
+requires = ["setuptools>=77"]  # 77+ reads the SPDX `license = "MIT"` form
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["shortlist*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# repo root for `import shortlist`; scripts/ for the command-line modules the tests also import (telemetry, sync_tracker...)
+pythonpath = [".", "scripts"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 160
+extend-exclude = ["node_modules", ".tools", "out"]
+
+[tool.ruff.lint]
+# The classic default set: syntax errors, undefined or unused names, risky statements.
+select = ["E4", "E7", "E9", "F"]

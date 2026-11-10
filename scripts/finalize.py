@@ -12,8 +12,9 @@ Inputs (all optional except what the step produced):
   out/readback/meta/near_misses.json   (from the start-of-run database read)
   out/problems.json       list of strings for the email footer
 """
-import sys, os
-from common import p, outp, load, save, today, iso_now, row_id, load_jsonl, dp
+import sys
+import os
+from common import outp, load, save, today, iso_now, row_id, load_jsonl, dp
 from sources import normalize_source
 
 from config import load_config

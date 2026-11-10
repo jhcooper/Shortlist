@@ -10,9 +10,13 @@ session append with `log`. `collect` merges everything into data/errors/<date>.j
   python3 scripts/errors.py collect      -> data/errors/<today>.jsonl
   python3 scripts/errors.py summary      -> out/error_summary.json (counts, footer lines, new/spiking vs last 5 runs)
 """
-import sys, os, glob, json, re
+import sys
+import os
+import glob
+import json
+import re
 from urllib.parse import urlparse
-from common import p, outp, save, load_jsonl, today, iso_now, dp
+from common import outp, save, load_jsonl, today, iso_now, dp
 
 KINDS = {"fetch_blocked", "fetch_failed", "search_empty", "connector_error", "upload_mismatch",
          "validation_failed", "db_write_conflict", "parse_error", "timeout", "other"}

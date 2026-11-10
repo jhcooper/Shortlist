@@ -7,8 +7,10 @@ A run marks itself by committing STATE_DIR/runs/<date>.json (in the config repo)
 the end of the run rewrites it with status "done". A "started" marker older than 2 hours
 is treated as a crashed run and may be retried. --force = you said "run anyway".
 """
-import sys, subprocess, datetime as dt
-from common import p, load, save, today, iso_now, now_et, dp
+import sys
+import subprocess
+import datetime as dt
+from common import load, save, today, iso_now, now_et, dp
 
 
 def git(*args, check=True):

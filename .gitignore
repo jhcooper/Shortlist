@@ -18,3 +18,6 @@ config.example/state/*
 .env.*
 !.env.example
 /.tools/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/

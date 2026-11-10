@@ -1,52 +1,78 @@
-"""leak_check: catches personal emails, phone numbers and private patterns; allows fiction; never prints the match.
-Run: python3 tests/test_leak_check.py"""
-import os, sys, subprocess, tempfile
+"""leak_check: catches personal emails, phone numbers and private patterns; allows fiction; never prints the match."""
+import os
+import re
+import subprocess
+import sys
+
+import pytest
+
+import leak_check as L
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, "scripts"))
-import leak_check as L  # noqa: E402
-
-fails, n = [], 0
-
-
-def check(name, ok, info=""):
-    global n
-    n += 1
-    if not ok:
-        fails.append(f"{name}: {info}")
-
-
-rules = [("private pattern #1", __import__("re").compile(r"maple\s+court", 2))]
-cases = [("contact pat.doe@gmail.com", True), ("alex.rivera@example.com", False), ("noreply@anthropic.com", False),  # leakcheck:allow
+SCRIPT = os.path.join(ROOT, "scripts", "leak_check.py")
+RULES = [("private pattern #1", re.compile(r"maple\s+court", 2))]
+CASES = [("contact pat.doe@gmail.com", True), ("alex.rivera@example.com", False), ("noreply@anthropic.com", False),  # leakcheck:allow
          ("call 646-273-9184", True), ("phone: 212-555-0142", False), ("(415) 555-0199", False),  # leakcheck:allow
          ("version 1.234.567.8901", False), ("12 Maple Court", True), ("timestamp 2026-11-03", False)]
-for text, bad in cases:
-    hits = L.scan_text(text, rules)
-    check(f"{'flags' if bad else 'allows'}: {text}", bool(hits) == bad, hits)
+
+
+@pytest.mark.parametrize(("text", "bad"), CASES, ids=[f"{'flags' if b else 'allows'}: {t}" for t, b in CASES])
+def test_scan_text(text, bad):
+    hits = L.scan_text(text, RULES)
+    assert bool(hits) == bad, hits
+
+
+def test_allow_marker_skips_a_line():
+    assert L.scan_text("x pat.doe@gmail.com  # leakcheck:" + "allow", RULES) == []  # leakcheck:allow
+
 
 # end to end on a throwaway repo: staged mode, exit codes, no matched text in output
-check("allow marker skips a line", L.scan_text("x pat.doe@gmail.com  # leakcheck:" + "allow", rules) == [])  # leakcheck:allow
-d = tempfile.mkdtemp()
-run = lambda *a, **kw: subprocess.run(a, cwd=d, capture_output=True, text=True, **kw)
-run("git", "init", "-q")
-open(os.path.join(d, "a.txt"), "w").write("ok line\nemail pat.doe@gmail.com\n")  # leakcheck:allow
-open(os.path.join(d, "pats.txt"), "w").write("# comment\nsecretword\n")
-run("git", "add", "a.txt")
-env = dict(os.environ, LEAK_PATTERNS="secretword")
-env.pop("CONFIG_DIR", None)
-r = run(sys.executable, os.path.join(ROOT, "scripts", "leak_check.py"), "--staged", env=env)
-check("staged hit -> exit 1 with file:line", r.returncode == 1 and "a.txt:2:" in r.stdout, r.stdout + r.stderr)
-check("output never contains the matched text", "pat.doe" not in r.stdout + r.stderr)
-open(os.path.join(d, "a.txt"), "w").write("the secretword is here\n")
-run("git", "add", "a.txt")
-r = run(sys.executable, os.path.join(ROOT, "scripts", "leak_check.py"), "--staged", "--patterns", os.path.join(d, "pats.txt"))
-check("private pattern from file -> exit 1, named by number", r.returncode == 1 and "private pattern #2" in r.stdout
-      and "secretword" not in r.stdout, r.stdout)
-open(os.path.join(d, "a.txt"), "w").write("nothing here\n")
-run("git", "add", "a.txt")
-r = run(sys.executable, os.path.join(ROOT, "scripts", "leak_check.py"), "--staged", env=env)
-check("clean -> exit 0", r.returncode == 0, r.stdout + r.stderr)
+@pytest.fixture
+def repo(tmp_path):
+    def run(*a, **kw):
+        return subprocess.run(a, cwd=tmp_path, capture_output=True, text=True, **kw)
 
-print(f"{n - len(fails)}/{n} passed")
-for f in fails:
-    print("FAIL", f)
-sys.exit(1 if fails else 0)
+    def stage(text):
+        (tmp_path / "a.txt").write_text(text)
+        run("git", "add", "a.txt")
+
+    run("git", "init", "-q")
+    return tmp_path, run, stage
+
+
+def env_with_pattern():
+    env = dict(os.environ, LEAK_PATTERNS="secretword")
+    env.pop("CONFIG_DIR", None)
+    return env
+
+
+@pytest.fixture
+def staged_email(repo):
+    d, run, stage = repo
+    (d / "pats.txt").write_text("# comment\nsecretword\n")
+    stage("ok line\nemail pat.doe@gmail.com\n")  # leakcheck:allow
+    return run(sys.executable, SCRIPT, "--staged", env=env_with_pattern())
+
+
+def test_staged_hit_exits_1_with_file_line(staged_email):
+    r = staged_email
+    assert r.returncode == 1 and "a.txt:2:" in r.stdout, r.stdout + r.stderr
+
+
+def test_output_never_contains_the_matched_text(staged_email):
+    assert "pat.doe" not in staged_email.stdout + staged_email.stderr
+
+
+def test_private_pattern_from_file_named_by_number(repo):
+    d, run, stage = repo
+    (d / "pats.txt").write_text("# comment\nsecretword\n")
+    stage("the secretword is here\n")
+    r = run(sys.executable, SCRIPT, "--staged", "--patterns", str(d / "pats.txt"))
+    assert r.returncode == 1 and "private pattern #2" in r.stdout and "secretword" not in r.stdout, r.stdout
+
+
+def test_clean_exits_0(repo):
+    d, run, stage = repo
+    stage("nothing here\n")
+    r = run(sys.executable, SCRIPT, "--staged", env=env_with_pattern())
+    assert r.returncode == 0, r.stdout + r.stderr
